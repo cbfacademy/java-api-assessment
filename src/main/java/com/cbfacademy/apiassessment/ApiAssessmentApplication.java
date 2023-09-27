@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiAssessmentApplication {
 
-	@Value("${app.title}")
-	private String title;
 	public static void main(String[] args) {
 		SpringApplication.run(ApiAssessmentApplication.class, args);
 	}
