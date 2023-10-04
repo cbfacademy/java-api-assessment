@@ -76,9 +76,6 @@ Before you begin, make sure you have the following installed:
    1. [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
    2. [Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=vmware.vscode-boot-dev-pack)
 
-#### Note
-You can use an alternative IDE if preferred, but please be aware that VS Code is the only one formally supported by CBF Academy staff.
-
 Also make sure you have accounts for the following:
 
 1. [GitHub](https://github.com/signup)
