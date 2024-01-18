@@ -1,4 +1,4 @@
-package com.cbfacademy.apiassessment.controller;
+package com.cbfacademy.apiassessment.file;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 
-@RestController
+@RestController("/api/file")
 public class FileController {
 
     @GetMapping("/test")
@@ -22,5 +22,11 @@ public class FileController {
     @GetMapping("/upload/{path}")
     public String handleFileUpload(@PathVariable("path") String path){
         return String.format("This is the upload endpoint %s", path) ;
+
+ 
     }
+
+    //@PostMapping
+    //public String 
+
 }
