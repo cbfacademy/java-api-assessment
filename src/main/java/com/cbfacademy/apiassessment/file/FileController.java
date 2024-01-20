@@ -1,19 +1,19 @@
 package com.cbfacademy.apiassessment.file;
-
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.web.multipart.MultipartFile;
-//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
-@RestController("/api/file")
+@RestController
+@RequestMapping("/api/file")
 public class FileController {
 
     @GetMapping("/test")
@@ -29,10 +29,11 @@ public class FileController {
  
     }
 
-    @PostMapping
-    public String uploadFile(){
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public String uploadFile(@RequestParam("file") MultipartFile file){
 
-        return "This is the upload file endpoint";
+        String fileType = file.getContentType();
+        return String.format("This is a %s file", fileType);
     }
 
     @GetMapping
