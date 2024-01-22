@@ -8,6 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/file")
 public class FileController {
 
+    private final FileService fileService;
+
+    public FileController(FileService fileService){
+        this.fileService = fileService;
+    }
+
     // Test endpoint
     @GetMapping("/test")
     public String test() {
@@ -20,19 +26,19 @@ public class FileController {
         return String.format("This is the upload endpoint %s", path);
     }
 
-    // Upload endpoint for handling file uploads
+
+    // Upload Endpoints
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public String uploadFile(
             @RequestParam("file") MultipartFile file,
-            @RequestParam("uploaderName") String uploaderName) {
+            @RequestParam("uploaderName") String uploaderName,
+            @RequestParam("userId") String userId
+          ) {
 
-        // Retrieve the content type of the uploaded file
-        String fileType = file.getContentType();
-
-        // Return a formatted response message with file details
-        return String.format("File '%s' uploaded by '%s' with content type '%s'",
-                file.getOriginalFilename(), uploaderName, fileType);
+        // Delegate processing to the service layer
+        return fileService.processUploadedFile(file, uploaderName, userId);
     }
+
 
     // Retrieve file endpoint
     @GetMapping
