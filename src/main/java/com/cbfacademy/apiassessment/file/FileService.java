@@ -12,10 +12,19 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileService {
 
+    private final FileUtil fileUtil;
+
+    public FileService(FileUtil fileUtil){
+
+        this.fileUtil = fileUtil;
+
+    }
+
     public String processUploadedFile(
             MultipartFile file,
             String uploaderName,
             String userId) {
+
 
         // Your business logic or processing here
         // Variables for the uploaded file
@@ -29,11 +38,17 @@ public class FileService {
         // The Name of the file
         String fileName = file.getOriginalFilename();
 
+        // File ID
+        String fileUploadId = fileUtil.generateFileId();
+
+        // File Time Stamp
+        String fileTimeStamp = fileUtil.fileTimeStamp();
 
         // For demonstration purposes, constructing a response message
         return String.format(
                 "File '%s' uploaded by '%s' with content type '%s' and size %d bytes. Processed by service.",
                 file, uploaderName, file.getContentType(), file.getSize());
+        
     }
 
 

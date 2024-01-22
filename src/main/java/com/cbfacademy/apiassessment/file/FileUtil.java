@@ -1,6 +1,5 @@
 package com.cbfacademy.apiassessment.file;
 
-import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -12,7 +11,6 @@ public class FileUtil {
 
         public String generateFileId() {
 
-        
         // Generate a random UUID
         UUID randomUUID = UUID.randomUUID();
 
