@@ -79,6 +79,34 @@ public class FamilyActivity {
         this.activityCostPerAdult = newActivityCostPerAdult;
     }
 
+    public BigDecimal getActivityCostPerChild() {
+        return activityCostPerChild;
+    }
+
+    public void setActivityCostPerChild(BigDecimal newActivityCostPerChild) {
+        this.activityCostPerChild = newActivityCostPerChild;
+    }
+
+    public BigDecimal getFoodCostPerAdult() {
+        return foodCostPerAdult;
+    }
+
+    public void setFoodCostPerAdult(BigDecimal newFoodCostPerAdult) {
+        this.foodCostPerAdult = newFoodCostPerAdult;
+    }
+
+    public BigDecimal getFoodCostPerChild() {
+        return foodCostPerChild;
+    }
+
+    public void setFoodCostPerChild(BigDecimal newFoodCostPerChild) {
+        this.foodCostPerChild = newFoodCostPerChild;
+    }
+
+    public boolean getIndoor() {
+        return indoor;
+    }
+
     public BigDecimal getBudget() {
         return budget;
     }
