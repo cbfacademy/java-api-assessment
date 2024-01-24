@@ -31,6 +31,12 @@ public interface FamilyActivityService {
     List<FamilyActivity> getAllOutdoorActivities();
 
     /**
+     * Retrieves a list of all family activities sorted by budget.
+     * @return A list of family activities sorted by budget.
+     */
+    List<FamilyActivity> getSortedActivitiesByBudget();
+
+    /**
      * Creates a new family activity.
      * @param activity The family activity object to be created.
      * @return The created family activity.
