@@ -103,7 +103,7 @@ public class FamilyActivity {
         this.foodCostPerChild = newFoodCostPerChild;
     }
 
-    public boolean getIndoor() {
+    public boolean isIndoor() {
         return indoor;
     }
 
