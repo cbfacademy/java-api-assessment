@@ -24,14 +24,15 @@ public interface FamilyActivityRepository{
 
     /**
      * Deletes a family activity based on its unique identifier.
-     * @param activity the activity to delete.
+     * @param id the id of activity to delete.
      */
-    void delete(FamilyActivity activity);
+    void delete(UUID id);
 
     /**
      * Updates an existing family activity in the repository.
+     * @param id the activity to update.
      * @param activity the activity to update.
      * @return the updated family activity.
      */
-    FamilyActivity update(FamilyActivity activity);
+    FamilyActivity update(UUID id,FamilyActivity activity);
 }
