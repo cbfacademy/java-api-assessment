@@ -27,21 +27,13 @@ public class FileService {
 
 
         // Your business logic or processing here
+
         // Variables for the uploaded file
-        // The content type of the file
 
         String contentType = file.getContentType();
-
-        // The Size of the file
         double size = file.getSize();
-
-        // The Name of the file
         String fileName = file.getOriginalFilename();
-
-        // File ID
         String fileUploadId = fileUtil.generateFileId();
-
-        // File Time Stamp
         String fileTimeStamp = fileUtil.fileTimeStamp();
 
         // For demonstration purposes, constructing a response message
