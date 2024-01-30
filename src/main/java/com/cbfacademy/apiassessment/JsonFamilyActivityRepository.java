@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 
 import com.cbfacademy.apiassessment.familyActivities.FamilyActivity;
 import com.cbfacademy.apiassessment.familyActivities.FamilyActivityRepository;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonFamilyActivityRepository implements FamilyActivityRepository{
@@ -27,50 +26,66 @@ public class JsonFamilyActivityRepository implements FamilyActivityRepository{
 
     }
 
-    private Map<UUID, FamilyActivity> loadDataFromJson() {
+    public Map<UUID, FamilyActivity> loadDataFromJson() {
         try {
             File file = new File(filePath);
             if (file.exists()) {
-                objectMapper.readValue(file, FamilyActivity[].class);
+                FamilyActivity[] activities = objectMapper.readValue(file, FamilyActivity[].class);
+                // Create a HashMap to store the loaded data
+                Map<UUID, FamilyActivity> activityMap = new HashMap<>();
+                // Populate the HashMap with data from the array
+                for (FamilyActivity activity : activities) {
+                    activityMap.put(activity.getId(), activity);
+                }
+                return activityMap;
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        // Return an empty HashMap if there's an error or the file doesn't exist
         return new HashMap<>();
     }
 
     private void saveDataToJson() {
-        
+        try {
+            objectMapper.writeValue(new File(filePath), database);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<FamilyActivity> retrieveAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retrieveAll'");
+        return List.copyOf(database.values());
     }
 
     @Override
     public FamilyActivity retrieve(UUID id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retrieve'");
+        return database.get(id);
     }
 
     @Override
     public FamilyActivity create(FamilyActivity activity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        database.put(activity.getId(), activity);
+        saveDataToJson();
+        return activity;
     }
 
     @Override
     public void delete(UUID id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        database.remove(id);
+        saveDataToJson();
     }
 
     @Override
     public FamilyActivity update(UUID id, FamilyActivity activity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        if (database.containsKey(id)) {
+            database.put(id, activity);
+            saveDataToJson();
+            return activity;
+        } else {
+            return null; //Change this to exception once you have created it.
+        }
     }
     
 }
