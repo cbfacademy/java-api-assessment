@@ -1,12 +1,16 @@
 package com.cbfacademy.apiassessment.file;
 
 import java.io.File;
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.UUID;
 
+import org.apache.tomcat.jni.FileInfo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -16,9 +20,15 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileService {
 
 
-    private final String JSON_FILE_PATH = "../../../../resources/uploaded_files.json";
+    @Value("classpath:uploaded_files.json")
+    private Resource jsonResource;
 
-    private final String UPLOAD_DIRECTORY = "../../../../resources/uploads/";
+   // private final String JSON_FILE_PATH = jsonResource.getFile().getAbsolutePath();
+
+    //private final String UPLOAD_DIRECTORY = "../../../../resources/uploads/";
+
+    @Value("classpath:uploads")
+    private Resource fileUploadsResource;
 
     private final FileUtil fileUtil;
 
@@ -28,25 +38,31 @@ public class FileService {
 
     }
 
-    public String processUploadedFile(
-            MultipartFile file,
-            String uploaderName,
-            String userId) {
+       public FileModel processUploadedFile(MultipartFile file, String userInfo) {
+        
+        fileUtil.validateFile(file);
+       
 
-        // Your business logic or processing here
-        // Variables for the uploaded file
+        try {
+            String fileName = file.getOriginalFilename();
+            String filePath = fileUtil.saveFileToLocalDisk(file,fileUploadsResource);
 
-        String contentType = file.getContentType();
-        double size = file.getSize();
-        String fileName = file.getOriginalFilename();
-        String fileUploadId = fileUtil.generateFileId();
-        String fileTimeStamp = fileUtil.fileTimeStamp();
+            FileModel fileInfo = new FileModel();
+            fileInfo.setFileName(fileName);
+            fileInfo.setFilePath(filePath);
+            fileInfo.setTimeStamp(LocalDateTime.now().toString());
+            fileInfo.setUser(new FileUser(UUID.randomUUID().toString(),userInfo));
 
-        // For demonstration purposes, constructing a response message
-        return String.format(
-                "File '%s' uploaded by '%s' with content type '%s' and size %d bytes. Processed by service.",
-                file, uploaderName, file.getContentType(), file.getSize());
+           // List<FileModel> existingFiles = fileUtil.readFileInfoFromJsonFile();
+           // existingFiles.add(fileInfo);
+            //saveFileInfoToJsonFile(existingFiles);
 
+            return fileInfo;
+
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to upload file.", e);
+        }
     }
-
+    
+    
 }
