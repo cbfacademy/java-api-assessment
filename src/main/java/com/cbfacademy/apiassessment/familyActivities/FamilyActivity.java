@@ -13,10 +13,10 @@ public class FamilyActivity {
     private BigDecimal activityCostPerChild; 
     private BigDecimal foodCostPerAdult;
     private BigDecimal foodCostPerChild;
-    private boolean indoor;
+    private ActivityType activityType;
     private BigDecimal budget;
 
-    public FamilyActivity(String activityName, String activityDescription, int numberOfAdults, int numberOfChildren, BigDecimal activityCostPerAdult, BigDecimal activityCostPerChild, BigDecimal foodCostPerAdult, BigDecimal foodCostPerChild, boolean indoor) {
+    public FamilyActivity(String activityName, String activityDescription, int numberOfAdults, int numberOfChildren, BigDecimal activityCostPerAdult, BigDecimal activityCostPerChild, BigDecimal foodCostPerAdult, BigDecimal foodCostPerChild, ActivityType activityType) {
         this.activityName = activityName;
         this.activityDescription = activityDescription;
         this.numberOfAdults = numberOfAdults; 
@@ -25,7 +25,7 @@ public class FamilyActivity {
         this.activityCostPerChild = activityCostPerChild;
         this.foodCostPerAdult = foodCostPerAdult;
         this.foodCostPerChild = foodCostPerChild;
-        this.indoor = indoor;
+        this.activityType = activityType;
         this.id = UUID.randomUUID();
 
         BigDecimal totalAdultCost = activityCostPerAdult.multiply(new BigDecimal(numberOfAdults)).add(foodCostPerAdult.multiply(new BigDecimal(numberOfAdults)));
@@ -103,8 +103,8 @@ public class FamilyActivity {
         this.foodCostPerChild = newFoodCostPerChild;
     }
 
-    public boolean isIndoor() {
-        return indoor;
+    public ActivityType getActivityType() {
+        return activityType;
     }
 
     public BigDecimal getBudget() {
