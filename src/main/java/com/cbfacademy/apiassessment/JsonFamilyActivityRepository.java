@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import com.cbfacademy.apiassessment.familyActivities.ActivityType;
 import com.cbfacademy.apiassessment.familyActivities.FamilyActivity;
 import com.cbfacademy.apiassessment.familyActivities.FamilyActivityRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,17 +90,11 @@ public class JsonFamilyActivityRepository implements FamilyActivityRepository{
         }
     }
 
-
     @Override
-    public List<FamilyActivity> retrieveAllSortedActivities() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retrieveAllSortedActivities'");
-    }
-
-    @Override
-    public List<FamilyActivity> retrieveAllByActivityType() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retrieveAllByActivityType'");
+    public List<FamilyActivity> retrieveAllByActivityType(ActivityType type) {
+        return database.values().stream()
+        .filter(activity -> activity.getActivityType() == type)
+        .collect(Collectors.toList());
     }
     
 }

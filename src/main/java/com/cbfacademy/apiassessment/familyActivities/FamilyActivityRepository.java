@@ -9,11 +9,7 @@ public interface FamilyActivityRepository{
     List<FamilyActivity> retrieveAll();
 
     //Retrieves all family activities of the specified type
-    List<FamilyActivity> retrieveAllByActivityType();
-
-
-    //Retrieves all family activities sorted
-    List<FamilyActivity> retrieveAllSortedActivities();
+    List<FamilyActivity> retrieveAllByActivityType(ActivityType type);
 
     /**
      * Retrieves a family activity by its unique identifier.
