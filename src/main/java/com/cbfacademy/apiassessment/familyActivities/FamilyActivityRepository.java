@@ -8,6 +8,15 @@ public interface FamilyActivityRepository{
     //Retrieves all family activities.
     List<FamilyActivity> retrieveAll();
 
+    //Retrieves all indoor family activities
+    List<FamilyActivity> retrieveAllIndoorActivities();
+
+    //Retrieves all outdoor family activities
+    List<FamilyActivity> retrieveAllOutdoorActivities();
+
+    //Retrieves all family activities sorted
+    List<FamilyActivity> retrieveAllSortedActivities();
+
     /**
      * Retrieves a family activity by its unique identifier.
      * @param id the identifier of the family activity.
