@@ -1,4 +1,4 @@
-package com.cbfacademy.apiassessment;
+package com.cbfacademy.apiassessment.familyActivities;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,9 +10,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import com.cbfacademy.apiassessment.familyActivities.ActivityType;
-import com.cbfacademy.apiassessment.familyActivities.FamilyActivity;
-import com.cbfacademy.apiassessment.familyActivities.FamilyActivityRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonFamilyActivityRepository implements FamilyActivityRepository{
