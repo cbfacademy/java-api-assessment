@@ -87,5 +87,18 @@ public class JsonFamilyActivityRepository implements FamilyActivityRepository{
             return null; //Change this to exception once you have created it.
         }
     }
+
+
+    @Override
+    public List<FamilyActivity> retrieveAllSortedActivities() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'retrieveAllSortedActivities'");
+    }
+
+    @Override
+    public List<FamilyActivity> retrieveAllByActivityType() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'retrieveAllByActivityType'");
+    }
     
 }
