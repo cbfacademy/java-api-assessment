@@ -9,7 +9,29 @@ public interface FamilyActivityService {
      * Retrieves a list of all family activities.
      * @return A list of all family activities.
      */
-    List<FamilyActivity> getAllFamilyActivities();
+    List<FamilyActivity> getFamilyActivities();
+
+    /**
+     * Retrieves a list of all activities of the given type.
+     * @param type The ActivityType of the activities to retrieve.
+     * @return A list of all activities of the given type.
+     */
+    List<FamilyActivity> getFamilyActivities(ActivityType type);
+
+    /**
+     * Retrieves a list of all activities sorted by the budget amounts in the given order.
+     * @param order The order in which we want the activities to be sorted. 
+     * @return A list of all activities sorted by the budget amounts in the given order.
+     */
+    List<FamilyActivity> getFamilyActivities(SortOrder order);
+
+    /**
+     * Retrieves a list of activities of the given type sorted by budget in the given order.
+     * @param type The ActivityType of the activities to retrieve.
+     * @param order The order in which we want the activities to be sorted.
+     * @return A list of activities of the given type sorted by budget in the given order.
+     */
+    List<FamilyActivity> getFamilyActivities(ActivityType type, SortOrder order);
 
     /**
      * Retrieves a family activity by its id.
@@ -17,24 +39,6 @@ public interface FamilyActivityService {
      * @return The family activity with the specified id, or null if it is not found.
      */
     FamilyActivity getFamilyActivity(UUID id);
-
-    /**
-     * Retrieves a list of all indoor family activities.
-     * @return A list of all indoor family activities.
-     */
-    List<FamilyActivity> getAllIndoorActivities();
-
-    /**
-     * Retrieves a list of all outdoor activities.
-     * @return A list of all outdoor activities.
-     */
-    List<FamilyActivity> getAllOutdoorActivities();
-
-    /**
-     * Retrieves a list of all family activities sorted by budget.
-     * @return A list of family activities sorted by budget.
-     */
-    List<FamilyActivity> getSortedActivitiesByBudget();
 
     /**
      * Creates a new family activity.
