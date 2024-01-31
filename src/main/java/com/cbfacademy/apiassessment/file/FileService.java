@@ -19,43 +19,41 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileService {
 
-
     @Value("classpath:uploaded_files.json")
     private Resource jsonResource;
 
-   // private final String JSON_FILE_PATH = jsonResource.getFile().getAbsolutePath();
+    // private final String JSON_FILE_PATH =
+    // jsonResource.getFile().getAbsolutePath();
 
-    //private final String UPLOAD_DIRECTORY = "../../../../resources/uploads/";
+    // private final String UPLOAD_DIRECTORY = "../../../../resources/uploads/";
 
     @Value("classpath:uploads")
     private Resource fileUploadsResource;
 
     private final FileUtil fileUtil;
 
-    public FileService(FileUtil fileUtil) {
-
+    public FileService(@Value("classpath:uploads") Resource fileUploadsResource, FileUtil fileUtil) {
+        this.fileUploadsResource = fileUploadsResource;
         this.fileUtil = fileUtil;
-
     }
 
-       public FileModel processUploadedFile(MultipartFile file, String userInfo) {
-        
+    public FileModel processUploadedFile(MultipartFile file, String userInfo) {
+
         fileUtil.validateFile(file);
-       
 
         try {
             String fileName = file.getOriginalFilename();
-            String filePath = fileUtil.saveFileToLocalDisk(file,fileUploadsResource);
+            String filePath = fileUtil.saveFileToLocalDisk(file, fileUploadsResource);
 
             FileModel fileInfo = new FileModel();
             fileInfo.setFileName(fileName);
             fileInfo.setFilePath(filePath);
             fileInfo.setTimeStamp(LocalDateTime.now().toString());
-            fileInfo.setUser(new FileUser(UUID.randomUUID().toString(),userInfo));
+            fileInfo.setUser(new FileUser(UUID.randomUUID().toString(), userInfo));
 
-           // List<FileModel> existingFiles = fileUtil.readFileInfoFromJsonFile();
-           // existingFiles.add(fileInfo);
-            //saveFileInfoToJsonFile(existingFiles);
+            List<FileModel> existingFiles = fileUtil.readFileInfoFromJsonFile();
+            existingFiles.add(fileInfo);
+            fileUtil.saveFileInfoToJsonFile(existingFiles);
 
             return fileInfo;
 
@@ -63,6 +61,5 @@ public class FileService {
             throw new RuntimeException("Failed to upload file.", e);
         }
     }
-    
-    
+
 }

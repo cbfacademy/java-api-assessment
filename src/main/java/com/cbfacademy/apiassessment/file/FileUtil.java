@@ -15,17 +15,21 @@ import org.apache.tomcat.jni.FileInfo;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class FileUtil {
 
-        public String generateFileId() {
+    private final Resource jsonResource;
 
+    public FileUtil(Resource jsonResource) {
+        this.jsonResource = jsonResource;
+    }
+
+        public String generateFileId() {
         // Generate a random UUID
         UUID randomUUID = UUID.randomUUID();
-
         // Convert the UUID to a string
         String generatedID = randomUUID.toString();
 
@@ -54,11 +58,12 @@ public class FileUtil {
                 throw new Exception("Invalid file. Please upload an image.");
             } catch (Exception e) {
         
-                // TODO Auto-generated catch block
+                // Auto-generated catch block
                 e.printStackTrace();
             }
         }
     }
+
     
     public String saveFileToLocalDisk(MultipartFile file, Resource uploadsDir) throws IOException {
         Path filePath = Path.of(uploadsDir.getURI().toString(), file.getOriginalFilename());
@@ -67,27 +72,27 @@ public class FileUtil {
         return filePath.toString();
     }
 
-    public void saveFileInfoToJsonFile(List<FileInfo> fileInfoList) {
-        //try {
+    public void saveFileInfoToJsonFile(List<FileModel> fileInfoList) {
+        try {
             ObjectMapper objectMapper = new ObjectMapper();
-            //objectMapper.writeValue(new File(jsonResource.getURI()), fileInfoList);
-        //} //catch (IOException e) {
-            //throw new RuntimeException("Failed to save file info to JSON file.", e);
-       // }
+            objectMapper.writeValue(new File(jsonResource.getURI()), fileInfoList);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to save file info to JSON file.", e);
+        }
     }
 
-    public List<FileInfo> readFileInfoFromJsonFile() {
-        //try {
+    public List<FileModel> readFileInfoFromJsonFile() {
+        try {
             ObjectMapper objectMapper = new ObjectMapper();
-            //File file = new File(jsonResource.getURI());
-
-            //if (!file.exists()) {
+            File file = new File(jsonResource.getURI());
+    
+            if (!file.exists()) {
                 return new ArrayList<>();
-            //}
-
-            //return objectMapper.readValue(file, new TypeReference<List<FileInfo>>() {});
-        //} //catch (IOException e) {
-            //throw new RuntimeException("Failed to read file info from JSON file.", e);
-        //}
+            }
+    
+            return objectMapper.readValue(file, new TypeReference<List<FileModel>>() {});
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to read file info from JSON file.", e);
+        }
     }
 }
