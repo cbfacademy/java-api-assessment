@@ -50,6 +50,9 @@ public class FileService {
             fileInfo.setFilePath(filePath);
             fileInfo.setTimeStamp(LocalDateTime.now().toString());
             fileInfo.setUser(new FileUser(UUID.randomUUID().toString(), userInfo));
+            fileInfo.setId(UUID.randomUUID().toString());
+            fileInfo.setFileSize(String.valueOf(file.getSize()));
+            fileInfo.setFileType(file.getContentType());
 
             List<FileModel> existingFiles = fileUtil.readFileInfoFromJsonFile();
             existingFiles.add(fileInfo);
