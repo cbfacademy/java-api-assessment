@@ -29,14 +29,14 @@ public class FileController {
 
     // Upload Endpoints
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public String uploadFile(
+    public FileModel uploadFile(
             @RequestParam("file") MultipartFile file,
-            @RequestParam("uploaderName") String uploaderName,
-            @RequestParam("userId") String userId
+            @RequestParam("uploaderName") String uploaderName
+
           ) {
 
         // Delegate processing to the service layer
-        return fileService.processUploadedFile(file, uploaderName, userId);
+        return fileService.processUploadedFile(file, uploaderName);
     }
 
 
