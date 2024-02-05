@@ -50,13 +50,22 @@ public class JsonFamilyActivityService implements FamilyActivityService {
 
     @Override
     public FamilyActivity createFamilyActivity(FamilyActivity activity) {
-        return familyActivityRepository.create(activity);
+        try {
+            return familyActivityRepository.create(activity);
+        } catch (InvalidActivityDetailsException | IncompleteActivityDetailsException e) {
+            throw new RuntimeException("Error creating family activity", e);
+        }
     }
-    
+
     @Override
     public FamilyActivity updateFamilyActivity(UUID id, FamilyActivity updatedActivity) {
-        return familyActivityRepository.update(id, updatedActivity);
+        try {
+            return familyActivityRepository.update(id, updatedActivity);
+        } catch (InvalidActivityDetailsException | IncompleteActivityDetailsException e) {
+            throw new RuntimeException("Error updating family activity", e);
+        }
     }
+
 
     @Override
     public void deleteFamilyActivity(UUID id) {
