@@ -16,24 +16,25 @@ public class FamilyActivity {
     private ActivityType activityType;
     private BigDecimal budget;
 
-    public FamilyActivity(String activityName, String activityDescription, int numberOfAdults, int numberOfChildren, BigDecimal activityCostPerAdult, BigDecimal activityCostPerChild, BigDecimal foodCostPerAdult, BigDecimal foodCostPerChild, ActivityType activityType) {
-        this.activityName = activityName;
-        this.activityDescription = activityDescription;
-        this.numberOfAdults = numberOfAdults; 
-        this.numberOfChildren = numberOfChildren;
-        this.activityCostPerAdult = activityCostPerAdult;
-        this.activityCostPerChild = activityCostPerChild;
-        this.foodCostPerAdult = foodCostPerAdult;
-        this.foodCostPerChild = foodCostPerChild;
-        this.activityType = activityType;
-        this.id = UUID.randomUUID();
+public FamilyActivity(String activityName, String activityDescription, int numberOfAdults, int numberOfChildren,
+        BigDecimal activityCostPerAdult, BigDecimal activityCostPerChild, BigDecimal foodCostPerAdult,
+        BigDecimal foodCostPerChild, ActivityType activityType) {
+    this.activityName = activityName;
+    this.activityDescription = activityDescription;
+    this.numberOfAdults = numberOfAdults;
+    this.numberOfChildren = numberOfChildren;
+    this.activityCostPerAdult = activityCostPerAdult != null ? activityCostPerAdult : BigDecimal.ZERO;
+    this.activityCostPerChild = activityCostPerChild != null ? activityCostPerChild : BigDecimal.ZERO;
+    this.foodCostPerAdult = foodCostPerAdult != null ? foodCostPerAdult : BigDecimal.ZERO;
+    this.foodCostPerChild = foodCostPerChild != null ? foodCostPerChild : BigDecimal.ZERO;
+    this.activityType = activityType;
+    this.id = UUID.randomUUID();
 
-        BigDecimal totalAdultCost = activityCostPerAdult.multiply(new BigDecimal(numberOfAdults)).add(foodCostPerAdult.multiply(new BigDecimal(numberOfAdults)));
-        BigDecimal totalChildrenCost = activityCostPerChild.multiply(new BigDecimal(numberOfChildren)).add(foodCostPerChild.multiply(new BigDecimal(numberOfChildren)));
+    BigDecimal totalAdultCost = this.activityCostPerAdult.multiply(new BigDecimal(numberOfAdults)).add(this.foodCostPerAdult.multiply(new BigDecimal(numberOfAdults)));
+    BigDecimal totalChildrenCost = this.activityCostPerChild.multiply(new BigDecimal(numberOfChildren)).add(this.foodCostPerChild.multiply(new BigDecimal(numberOfChildren)));
 
-        this.budget = totalAdultCost.add(totalChildrenCost);
-
-    }
+    this.budget = totalAdultCost.add(totalChildrenCost);
+}
 
     public UUID getId() {
         return id;
