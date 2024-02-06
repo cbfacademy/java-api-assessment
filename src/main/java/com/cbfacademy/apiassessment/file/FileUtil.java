@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.apache.tomcat.jni.FileInfo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,11 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class FileUtil {
 
-    private final Resource jsonResource;
-
-    public FileUtil(Resource jsonResource) {
-        this.jsonResource = jsonResource;
-    }
+    private final String JSON_FILE = "C:\\Users\\admin\\Desktop\\JAVA\\uploadfiles\\uploaded_files.json";
 
         public String generateFileId() {
         // Generate a random UUID
@@ -65,8 +62,8 @@ public class FileUtil {
     }
 
     
-    public String saveFileToLocalDisk(MultipartFile file, Resource uploadsDir) throws IOException {
-        Path filePath = Path.of(uploadsDir.getURI().toString(), file.getOriginalFilename());
+    public String saveFileToLocalDisk(MultipartFile file, String uploadsDir) throws IOException {
+        Path filePath = Path.of(uploadsDir, file.getOriginalFilename());
         Files.createDirectories(filePath.getParent());
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
         return filePath.toString();
@@ -75,7 +72,7 @@ public class FileUtil {
     public void saveFileInfoToJsonFile(List<FileModel> fileInfoList) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.writeValue(new File(jsonResource.getURI()), fileInfoList);
+            objectMapper.writeValue(new File(JSON_FILE), fileInfoList);
         } catch (IOException e) {
             throw new RuntimeException("Failed to save file info to JSON file.", e);
         }
@@ -84,7 +81,7 @@ public class FileUtil {
     public List<FileModel> readFileInfoFromJsonFile() {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            File file = new File(jsonResource.getURI());
+            File file = new File(JSON_FILE);
     
             if (!file.exists()) {
                 return new ArrayList<>();

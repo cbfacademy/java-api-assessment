@@ -13,6 +13,8 @@ import org.apache.tomcat.jni.FileInfo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,23 +29,25 @@ public class FileService {
 
     // private final String UPLOAD_DIRECTORY = "../../../../resources/uploads/";
 
-    @Value("classpath:uploads")
-    private Resource fileUploadsResource;
 
+
+    private final String UPLOAD_DIRECTORY = "C:\\Users\\admin\\Desktop\\JAVA\\uploadfiles";
     private final FileUtil fileUtil;
 
-    public FileService(@Value("classpath:uploads") Resource fileUploadsResource, FileUtil fileUtil) {
-        this.fileUploadsResource = fileUploadsResource;
+    public FileService(FileUtil fileUtil) {
+
         this.fileUtil = fileUtil;
     }
 
-    public FileModel processUploadedFile(MultipartFile file, String userInfo) {
+    public ResponseEntity<FileBaseResponse> processUploadedFile(MultipartFile file, String userInfo) {
+        FileBaseResponse fileBaseResponse = new FileBaseResponse();
+        HttpStatus httpStatus;
 
         fileUtil.validateFile(file);
 
         try {
             String fileName = file.getOriginalFilename();
-            String filePath = fileUtil.saveFileToLocalDisk(file, fileUploadsResource);
+            String filePath = fileUtil.saveFileToLocalDisk(file, UPLOAD_DIRECTORY);
 
             FileModel fileInfo = new FileModel();
             fileInfo.setFileName(fileName);
@@ -58,11 +62,20 @@ public class FileService {
             existingFiles.add(fileInfo);
             fileUtil.saveFileInfoToJsonFile(existingFiles);
 
-            return fileInfo;
-
+            fileBaseResponse.setStatus(HttpStatus.OK.value());
+            fileBaseResponse.setData(fileInfo);
+            fileBaseResponse.setMessage("File uploaded successfully");
+            httpStatus = HttpStatus.OK;
         } catch (IOException e) {
-            throw new RuntimeException("Failed to upload file.", e);
+
+
+            fileBaseResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            fileBaseResponse.setData(e.getMessage());
+            fileBaseResponse.setMessage("File uploaded failed");
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         }
+
+        return new ResponseEntity<>(fileBaseResponse, httpStatus);
     }
 
 }

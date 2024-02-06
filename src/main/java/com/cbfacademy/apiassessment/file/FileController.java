@@ -1,6 +1,7 @@
 package com.cbfacademy.apiassessment.file;
 
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,7 +30,7 @@ public class FileController {
 
     // Upload Endpoints
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public FileModel uploadFile(
+    public ResponseEntity<FileBaseResponse> uploadFile(
             @RequestParam("file") MultipartFile file,
             @RequestParam("uploaderName") String uploaderName
 
