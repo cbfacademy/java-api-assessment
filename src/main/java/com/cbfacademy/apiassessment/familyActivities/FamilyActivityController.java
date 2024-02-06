@@ -27,18 +27,30 @@ public class FamilyActivityController {
     public List<FamilyActivity> getAllFamilyActivities(
             @RequestParam(value = "type", required = false) ActivityType type,
             @RequestParam(value = "order", required = false) SortOrder order) {
-        
+    
+        List<FamilyActivity> activities;
+    
+        // Logic to retrieve activities based on type
+    
         // Check if type and order parameters are provided
         if (type != null && order != null) {
-            return familyActivityService.getFamilyActivities(type, order);
+            activities = familyActivityService.getFamilyActivities(type, order);
         } else if (type != null) {
-            return familyActivityService.getFamilyActivities(type);
+            activities = familyActivityService.getFamilyActivities(type);
         } else if (order != null) {
-            return familyActivityService.getFamilyActivities(order);
+            activities = familyActivityService.getFamilyActivities(order);
         } else {
-            return familyActivityService.getFamilyActivities();
+            activities = familyActivityService.getFamilyActivities();
         }
+    
+        // Sort the activities if order is provided
+        if (order != null) {
+            ActivitySorter.sort(activities, order);
+        }
+    
+        return activities;
     }
+    
 
     @GetMapping("/{id}")
     public FamilyActivity getFamilyActivityById(@PathVariable UUID id) {

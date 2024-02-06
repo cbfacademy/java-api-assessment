@@ -47,4 +47,3 @@ public class ActivitySorter {
         activities.set(j, temp);
     }
 }
-
