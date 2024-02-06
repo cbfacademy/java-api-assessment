@@ -10,12 +10,11 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * JsonFamilyActivityRepository is responsible for persisting and retrieving family activity data in JSON format.
- */
+@Repository
 public class JsonFamilyActivityRepository implements FamilyActivityRepository{
 
     // File path for JSON data
