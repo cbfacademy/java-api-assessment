@@ -82,5 +82,14 @@ public class FileService {
     public List<FileModel> getAllUploadedFiles() {
         return fileUtil.readFileInfoFromJsonFile();
     }
+    // Update uploaded file
+    public FileModel updateUploadedFile(FileModel updatedFile) {
+        return fileUtil.updateUploadedFile(updatedFile);
+    }
+
+    // Delete uploaded file by ID
+    public void deleteUploadedFile(String id) {
+        fileUtil.deleteUploadedFile(id);
+    }
 
 }

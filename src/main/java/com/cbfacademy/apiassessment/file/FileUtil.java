@@ -92,4 +92,30 @@ public class FileUtil {
             throw new RuntimeException("Failed to read file info from JSON file.", e);
         }
     }
+
+    // Update uploaded file information
+    public FileModel updateUploadedFile(FileModel updatedFile) {
+        List<FileModel> fileModels = readFileInfoFromJsonFile();
+        for (int i = 0; i < fileModels.size(); i++) {
+            if (fileModels.get(i).getId().equals(updatedFile.getId())) {
+                fileModels.set(i, updatedFile);
+                saveFileInfoToJsonFile(fileModels);
+                return updatedFile;
+            }
+        }
+        throw new RuntimeException("Uploaded file with id " + updatedFile.getId() + " not found.");
+    }
+    // Delete uploaded file by ID
+    public void deleteUploadedFile(String id) {
+        List<FileModel> fileModels = readFileInfoFromJsonFile();
+        for (int i = 0; i < fileModels.size(); i++) {
+            if (fileModels.get(i).getId().equals(id)) {
+                fileModels.remove(i);
+                saveFileInfoToJsonFile(fileModels);
+                return;
+            }
+        }
+        throw new RuntimeException("Uploaded file with id " + id + " not found.");
+    }
+
 }

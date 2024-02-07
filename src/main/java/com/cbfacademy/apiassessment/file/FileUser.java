@@ -1,6 +1,6 @@
 package com.cbfacademy.apiassessment.file;
 
-public class FileUser {
+public class FileUser{
     
     private String id;
     private String userName;

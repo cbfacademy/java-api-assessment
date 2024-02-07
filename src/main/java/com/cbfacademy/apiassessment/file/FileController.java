@@ -67,10 +67,32 @@ public class FileController {
     public String updateFile() {
         return "This is the update file endpoint";
     }
+    // Update uploaded file
+    @PutMapping("/update")
+    public ResponseEntity<FileBaseResponse> updateUploadedFile(@RequestBody FileModel updatedFile) {
+        FileModel updatedFileInfo = fileService.updateUploadedFile(updatedFile);
+        FileBaseResponse response = new FileBaseResponse();
+        response.setStatus(HttpStatus.OK.value());
+        response.setMessage("Uploaded file updated successfully");
+        response.setData(updatedFileInfo);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 
     // Delete file endpoint
     @DeleteMapping
     public String removeFile() {
         return "This is the delete file endpoint";
     }
+
+    // Delete uploaded file by ID
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<FileBaseResponse> deleteUploadedFile(@PathVariable String id) {
+        fileService.deleteUploadedFile(id);
+        FileBaseResponse response = new FileBaseResponse();
+        response.setStatus(HttpStatus.OK.value());
+        response.setMessage("Uploaded file deleted successfully");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }
