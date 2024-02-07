@@ -1,9 +1,12 @@
 package com.cbfacademy.apiassessment.file;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/file")
@@ -11,7 +14,7 @@ public class FileController {
 
     private final FileService fileService;
 
-    public FileController(FileService fileService){
+    public FileController(FileService fileService) {
         this.fileService = fileService;
     }
 
@@ -34,7 +37,7 @@ public class FileController {
             @RequestParam("file") MultipartFile file,
             @RequestParam("uploaderName") String uploaderName
 
-          ) {
+    ) {
 
         // Delegate processing to the service layer
         return fileService.processUploadedFile(file, uploaderName);
@@ -46,6 +49,18 @@ public class FileController {
     public String retrieveFile() {
         return "This is the retrieve file endpoint";
     }
+
+    // Retrieve all uploaded files
+    @GetMapping("/all")
+    public ResponseEntity<FileBaseResponse> getAllUploadedFiles() {
+        List<FileModel> uploadedFiles = fileService.getAllUploadedFiles();
+        FileBaseResponse response = new FileBaseResponse();
+        response.setStatus(HttpStatus.OK.value());
+        response.setMessage("All uploaded files retrieved successfully");
+        response.setData(uploadedFiles);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 
     // Update file endpoint
     @PutMapping

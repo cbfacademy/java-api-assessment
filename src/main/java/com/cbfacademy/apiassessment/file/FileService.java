@@ -78,4 +78,9 @@ public class FileService {
         return new ResponseEntity<>(fileBaseResponse, httpStatus);
     }
 
+    // Retrieve all uploaded files
+    public List<FileModel> getAllUploadedFiles() {
+        return fileUtil.readFileInfoFromJsonFile();
+    }
+
 }
