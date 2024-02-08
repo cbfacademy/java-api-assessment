@@ -18,17 +18,6 @@ public class FileController {
         this.fileService = fileService;
     }
 
-    // Test endpoint
-    @GetMapping("/test")
-    public String test() {
-        return "This is the test endpoint";
-    }
-
-    // Upload endpoint with a dynamic path parameter
-    @GetMapping("/upload/{path}")
-    public String handleFileUpload(@PathVariable("path") String path) {
-        return String.format("This is the upload endpoint %s", path);
-    }
 
 
     // Upload Endpoints
