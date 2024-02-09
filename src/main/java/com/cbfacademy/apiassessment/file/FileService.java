@@ -113,6 +113,7 @@ public class FileService {
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             response.setMessage("Failed to retrieve uploaded file");
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+            System.out.println(e.getMessage());
         }
         return new ResponseEntity<>(response, httpStatus);
     }

@@ -42,7 +42,8 @@ public class FileController {
 
     // Get uploaded file by ID
     @GetMapping("/{id}")
-    public ResponseEntity<FileBaseResponse> getUploadedFileById(String id) {
+    public ResponseEntity<FileBaseResponse> getUploadedFileById(@PathVariable String id) {
+        System.out.println(id);
         return fileService.getUploadedFileById(id);
     }
 
