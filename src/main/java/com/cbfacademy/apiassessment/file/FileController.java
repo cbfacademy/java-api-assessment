@@ -40,6 +40,12 @@ public class FileController {
 
     }
 
+    // Get uploaded file by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<FileBaseResponse> getUploadedFileById(String id) {
+        return fileService.getUploadedFileById(id);
+    }
+
 
     // Update uploaded file
     @PutMapping("/update")

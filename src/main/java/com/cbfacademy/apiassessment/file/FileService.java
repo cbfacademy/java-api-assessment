@@ -16,6 +16,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -85,7 +86,7 @@ public class FileService {
             response.setStatus(HttpStatus.OK.value());
             response.setMessage("All uploaded files retrieved successfully");
             response.setData(uploadedFiles);
-            httpStatus = HttpStatus.ACCEPTED;
+            httpStatus = HttpStatus.OK;
         } catch (Exception e){
 
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
@@ -97,6 +98,24 @@ public class FileService {
 
     }
 
+
+    // Get uploaded file by ID
+    public ResponseEntity<FileBaseResponse> getUploadedFileById(@PathVariable String id) {
+        FileBaseResponse response = new FileBaseResponse();
+        HttpStatus httpStatus;
+        try {
+            FileModel file = fileUtil.getUploadedFileById(id);
+            response.setStatus(HttpStatus.OK.value());
+            response.setMessage("Uploaded file retrieved successfully");
+            response.setData(file);
+            httpStatus = HttpStatus.OK;
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            response.setMessage("Failed to retrieve uploaded file");
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<>(response, httpStatus);
+    }
 
 
     // Update uploaded file

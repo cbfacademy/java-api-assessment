@@ -34,6 +34,8 @@ public class FileUtil {
 
     }
 
+
+
     public String fileTimeStamp(){
 
         // Time stamp
@@ -93,6 +95,7 @@ public class FileUtil {
         }
     }
 
+
     // Update uploaded file information
     public FileModel updateUploadedFile(FileModel updatedFile) {
         List<FileModel> fileModels = readFileInfoFromJsonFile();
@@ -105,6 +108,8 @@ public class FileUtil {
         }
         throw new RuntimeException("Uploaded file with id " + updatedFile.getId() + " not found.");
     }
+
+
     // Delete uploaded file by ID
     public void deleteUploadedFile(String id) {
         List<FileModel> fileModels = readFileInfoFromJsonFile();
@@ -118,4 +123,14 @@ public class FileUtil {
         throw new RuntimeException("Uploaded file with id " + id + " not found.");
     }
 
+    // Get uploaded file by ID
+    public FileModel getUploadedFileById(String id) {
+        List<FileModel> fileModels = readFileInfoFromJsonFile();
+        for (FileModel fileModel : fileModels) {
+            if (fileModel.getId().equals(id)) {
+                return fileModel;
+            }
+        }
+        throw new RuntimeException("Uploaded file with id " + id + " not found.");
+    }
 }
