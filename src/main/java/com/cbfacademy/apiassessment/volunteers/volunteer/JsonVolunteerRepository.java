@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Repository
@@ -60,5 +61,15 @@ public Volunteer save(Volunteer volunteer) {
     return volunteer;
 }
 
+@Override
+public Optional<Volunteer> findById(UUID id) {
+    return volunteers.stream()
+                     .filter(volunteer -> volunteer.getId().equals(id))
+                     .findFirst();
+}
 
+@Override
+public List<Volunteer> findAll() {
+    return volunteers;
+}
 }
