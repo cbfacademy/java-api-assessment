@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,30 +48,46 @@ private void loadVolunteers() {
         }   
     }
 
-
-@Override
-public Volunteer save(Volunteer volunteer) {
-    // If the volunteer is new, add it to the list, otherwise update it
-    Optional<Volunteer> existingVolunteer = findById(volunteer.getId());
-    if (existingVolunteer.isPresent()) {
-        int index = volunteers.indexOf(existingVolunteer.get());
-        volunteers.set(index, volunteer);
-    } else {
-        volunteers.add(volunteer);
+    // Save the current state of the volunteers list to the JSON file
+    private void saveVolunteers() {
+        try (FileWriter writer = new FileWriter(filePath)){
+            gson.toJson(volunteers, writer);  
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    saveVolunteers();
-    return volunteer;
-}
 
-@Override
-public Optional<Volunteer> findById(UUID id) {
-    return volunteers.stream()
-                     .filter(volunteer -> volunteer.getId().equals(id))
-                     .findFirst();
-}
 
-@Override
-public List<Volunteer> findAll() {
-    return volunteers;
-}
+    @Override
+    public Volunteer save(Volunteer volunteer) {
+        // If the volunteer is new, add it to the list, otherwise update it
+        Optional<Volunteer> existingVolunteer = findById(volunteer.getId());
+        if (existingVolunteer.isPresent()) {
+            int index = volunteers.indexOf(existingVolunteer.get());
+            volunteers.set(index, volunteer);
+        } else {
+            volunteers.add(volunteer);
+        }
+        saveVolunteers();
+        return volunteer;
+    }
+
+    @Override
+    public Optional<Volunteer> findById(UUID id) {
+            return volunteers.stream()
+                             .filter(volunteer -> volunteer.getId().equals(id))
+                             .findFirst();
+    }
+
+    @Override
+    public List<Volunteer> findAll() {
+        return volunteers;
+    }
+
+    @Override
+        public void delete(Volunteer volunteer) {
+        volunteers.remove(volunteer);
+        saveVolunteers();
+    }
+
 }
