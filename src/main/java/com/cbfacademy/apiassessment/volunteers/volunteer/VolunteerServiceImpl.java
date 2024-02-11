@@ -1,5 +1,6 @@
 package com.cbfacademy.apiassessment.volunteers.volunteer;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +59,11 @@ private void validateVolunteer(Volunteer volunteer) {
         throw new IllegalArgumentException("Email is required.");
     }
 }
+
+    // Retrieves a list of all volunteers from the repository
+    @Override
+    public List<Volunteer> getAllVolunteers() {
+        return volunteerRepository.findAll();
+    }
+
 }
