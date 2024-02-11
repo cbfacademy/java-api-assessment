@@ -66,10 +66,19 @@ private void validateVolunteer(Volunteer volunteer) {
         return volunteerRepository.findAll();
     }
 
+    // Fetches a single volunteer by their UUID
     @Override
     public Volunteer getVolunteerById(UUID id) {
         // Throws an exception if the volunteer is not found
         return volunteerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Volunteer not found"));
+
+    // Deletes a volunteer identified by their UUID
+    @Override
+    public void deleteVolunteer(UUID id) {
+        Volunteer volunteer = getVolunteerById(id); // Ensures volunteer exists before deletion
+        volunteerRepository.delete(volunteer);
+    }
+                
 
 }
