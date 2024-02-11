@@ -6,6 +6,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cbfacademy.apiassessment.volunteers.exception.VolunteerNotFoundException;
+
 
 // Marks this class a Spring-managed service component
 @Service 
@@ -15,6 +17,9 @@ public class VolunteerServiceImpl implements VolunteerService {
     private final VolunteerRepository volunteerRepository;
 
     // Constructor-based dependency injection for the repository 
+    /**
+     * @param volunteerRepository
+     */
     @Autowired
     public VolunteerServiceImpl(VolunteerRepository volunteerRepository) {
         this.volunteerRepository = volunteerRepository;
@@ -35,7 +40,7 @@ public class VolunteerServiceImpl implements VolunteerService {
         // Ensure the volunteer exists before updating
         return volunteerRepository.findById(id)
                 .map(existingVolunteer -> volunteerRepository.save(volunteer))
-                .orElseThrow(() -> RuntimeException("Volunteer not found"));
+                .orElseThrow(() -> new VolunteerNotFoundException(id)); // Custom exception
     }
 
     
@@ -44,21 +49,20 @@ public class VolunteerServiceImpl implements VolunteerService {
     * @param volunteer the volunteer to validate.
     * @throws IllegalArgumentException if any mandatory field is empty.
     */
-
-private void validateVolunteer(Volunteer volunteer) {
-    if (volunteer.getFirstName() == null || volunteer.getFirstName().trim().isEmpty()) {
-        throw new IllegalArgumentException("First name is required.");
+    private void validateVolunteer(Volunteer volunteer) {
+        if (volunteer.getFirstName() == null || volunteer.getFirstName().trim().isEmpty()) {
+            throw new IllegalArgumentException("First name is required.");
+        }
+        if (volunteer.getLastName() == null || volunteer.getLastName().trim().isEmpty()) {
+            throw new IllegalArgumentException("Last name is required.");
+        }
+        if (volunteer.getContactNumber() == null || volunteer.getContactNumber().trim().isEmpty()) {
+            throw new IllegalArgumentException("Contact number is required.");
+        }
+        if (volunteer.getEmail() == null || volunteer.getEmail().trim().isEmpty()) {
+            throw new IllegalArgumentException("Email is required.");
+        }
     }
-    if (volunteer.getLastName() == null || volunteer.getLastName().trim().isEmpty()) {
-        throw new IllegalArgumentException("Last name is required.");
-    }
-    if (volunteer.getContactNumber() == null || volunteer.getContactNumber().trim().isEmpty()) {
-        throw new IllegalArgumentException("Contact number is required.");
-    }
-    if (volunteer.getEmail() == null || volunteer.getEmail().trim().isEmpty()) {
-        throw new IllegalArgumentException("Email is required.");
-    }
-}
 
     // Retrieves a list of all volunteers from the repository
     @Override
@@ -72,6 +76,7 @@ private void validateVolunteer(Volunteer volunteer) {
         // Throws an exception if the volunteer is not found
         return volunteerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Volunteer not found"));
+    }
 
     // Deletes a volunteer identified by their UUID
     @Override
