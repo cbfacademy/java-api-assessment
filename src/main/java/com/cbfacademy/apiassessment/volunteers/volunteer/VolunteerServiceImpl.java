@@ -66,4 +66,10 @@ private void validateVolunteer(Volunteer volunteer) {
         return volunteerRepository.findAll();
     }
 
+    @Override
+    public Volunteer getVolunteerById(UUID id) {
+        // Throws an exception if the volunteer is not found
+        return volunteerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Volunteer not found"));
+
 }
