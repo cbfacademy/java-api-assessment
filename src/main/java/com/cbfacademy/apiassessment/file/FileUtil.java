@@ -50,16 +50,12 @@ public class FileUtil {
         return formattedTimestamp;
     }
 
-     public void validateFile(MultipartFile file) {
+     public void validateFile(MultipartFile file) throws ValidateFileException {
         // Implement file validation logic (e.g., file type, size, etc.)
         if (file.isEmpty() || !file.getContentType().startsWith("image")) {
-            try {
-                throw new Exception("Invalid file. Please upload an image.");
-            } catch (Exception e) {
-        
-                // Auto-generated catch block
-                e.printStackTrace();
-            }
+
+                throw new ValidateFileException("Invalid file. Please upload an image.");
+
         }
     }
 

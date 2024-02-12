@@ -38,9 +38,11 @@ public class FileService {
         FileBaseResponse fileBaseResponse = new FileBaseResponse();
         HttpStatus httpStatus;
 
-        fileUtil.validateFile(file);
+
 
         try {
+            fileUtil.validateFile(file);
+
             String fileName = file.getOriginalFilename();
             String filePath = fileUtil.saveFileToLocalDisk(file, UPLOAD_DIRECTORY);
 
@@ -68,6 +70,15 @@ public class FileService {
             fileBaseResponse.setData(e.getMessage());
             fileBaseResponse.setMessage("File uploaded failed");
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        catch (ValidateFileException e) {
+
+
+            fileBaseResponse.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+            fileBaseResponse.setData(e.getMessage());
+            fileBaseResponse.setMessage("Not a valid file");
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+
         }
 
         return new ResponseEntity<>(fileBaseResponse, httpStatus);
