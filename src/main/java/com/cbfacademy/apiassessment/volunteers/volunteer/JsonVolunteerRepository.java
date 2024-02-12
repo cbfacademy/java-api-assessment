@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.sql.Date;
+import java.time.LocalDate;
 
 
 @Repository
@@ -66,15 +66,15 @@ private void loadVolunteers() {
         // Check if volunteers list is empty, indicating no data was loaded from JSON
         if (volunteers.isEmpty()) {
             // Populate the list with intial data
-            volunteers.add(new Volunteer("Elizabeth", "John", Date.valueOf("1980-01-15"), "07584986718", "lizzi.john@yahoo.com", "Administrator", "Organisation", true, Date.valueOf("2023-08-15")));
-            volunteers.add(new Volunteer("Matthew", "Lazarus", Date.valueOf("1962-12-07"), "07553698744", "matthewlazarus12@gmail.com", "Accountant", "Accounting", false, Date.valueOf("2012-04-25")));
-            volunteers.add(new Volunteer("Rachael", "Mark", Date.valueOf("2001-11-14"), "07956412843", "markrachael2001@live.co.uk", "Greeter", "Hospitality", true, Date.valueOf("2024-01-18")));
-            volunteers.add(new Volunteer("Joshua", "Nun", Date.valueOf("1990-01-01"), "07383555777", "j.nun@gmail.com", "Choir Member", "Singing", true, Date.valueOf("2020-01-01")));
-            volunteers.add(new Volunteer("Sarah", "Bethel", Date.valueOf("1985-05-15"), "07958444888", "bethelsarah@me.com", "Accountant", "Accounting", true, Date.valueOf("2019-05-20")));
-            volunteers.add(new Volunteer("David", "Judah", Date.valueOf("1988-08-08"), "07777777333", "judahdavid@gmail.com", "Bookkeeper", "Event Management", true, Date.valueOf("2004-12-18")));
-            volunteers.add(new Volunteer("Micah", "Grace", Date.valueOf("1995-08-28"), "07773335551", "micah.g@icloud.com", "Manager", "Public Speaking", true, Date.valueOf("2019-03-12")));
-            volunteers.add(new Volunteer("John", "Mark", Date.valueOf("2004-07-07"), "07958775533", "johnmarkh@icloud.com", "Greeter", "Teacher", false, Date.valueOf("2023-12-04")));
-            volunteers.add(new Volunteer("Ruth", "Boaz", Date.valueOf("1957-02-03"), "07778244236", "ruthboaz@yahoo.com", "Receptionist", "Record Keeping", true, Date.valueOf("2004-08-18")));
+            volunteers.add(new Volunteer("Elizabeth", "John", LocalDate.of(1980,01,15), "07584986718", "lizzi.john@yahoo.com", "Administrator", "Organisation", true, LocalDate.of(2023,8,15)));
+            volunteers.add(new Volunteer("Matthew", "Lazarus", LocalDate.of(1962,12,07), "07553698744", "matthewlazarus12@gmail.com", "Accountant", "Accounting", false, LocalDate.of(2012,04,25)));
+            volunteers.add(new Volunteer("Rachael", "Mark", LocalDate.of(2001,11,14), "07956412843", "markrachael2001@live.co.uk", "Greeter", "Hospitality", true, LocalDate.of(2024,01,18)));
+            volunteers.add(new Volunteer("Joshua", "Nun", LocalDate.of(1990,01,01), "07383555777", "j.nun@gmail.com", "Choir Member", "Singing", true, LocalDate.of(2020,01,01)));
+            volunteers.add(new Volunteer("Sarah", "Bethel", LocalDate.of(1985,05,15), "07958444888", "bethelsarah@me.com", "Accountant", "Accounting", true, LocalDate.of(2019,05,20)));
+            volunteers.add(new Volunteer("David", "Judah", LocalDate.of(1988,8,8), "07777777333", "judahdavid@gmail.com", "Bookkeeper", "Event Management", true, LocalDate.of(2004,12,18)));
+            volunteers.add(new Volunteer("Micah", "Grace", LocalDate.of(1995,8,28), "07773335551", "micah.g@icloud.com", "Manager", "Public Speaking", true, LocalDate.of(2019,03,12)));
+            volunteers.add(new Volunteer("John", "Mark", LocalDate.of(2004,07,07), "07958775533", "johnmarkh@icloud.com", "Greeter", "Teacher", false, LocalDate.of(2023,12,04)));
+            volunteers.add(new Volunteer("Ruth", "Boaz", LocalDate.of(1957,02,03), "07778244236", "ruthboaz@yahoo.com", "Receptionist", "Record Keeping", true, LocalDate.of(2004,8,18)));
             // Save the newly added volunteers to the JSON file
             saveVolunteers();
         }
