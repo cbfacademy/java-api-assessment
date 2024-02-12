@@ -1,6 +1,6 @@
 package com.cbfacademy.apiassessment.volunteers.person;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Represents a person with basic personal information. This class serves as a base
@@ -10,7 +10,7 @@ import java.sql.Date;
 public class Person {
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String contactNumber;
     private String email;
 
@@ -23,7 +23,7 @@ public class Person {
  * @param contactNumber The contact number of the person..
  * @param email         The email address of the person.
  */
-public Person(String firstName, String lastName, Date dateOfBirth, String contactNumber, String email) {
+public Person(String firstName, String lastName, LocalDate dateOfBirth, String contactNumber, String email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.dateOfBirth = dateOfBirth;
@@ -74,7 +74,7 @@ public Person(String firstName, String lastName, Date dateOfBirth, String contac
      * 
      * @return the date of birth of this person.
      */
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -83,7 +83,7 @@ public Person(String firstName, String lastName, Date dateOfBirth, String contac
      * 
      * @param dateOfBirth A Date object representing the person's date of birth, not null.
      */
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
