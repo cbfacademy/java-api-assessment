@@ -18,6 +18,8 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.time.LocalDate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Repository
@@ -25,6 +27,7 @@ public class JsonVolunteerRepository implements VolunteerRepository {
     private final String filePath = "java-api-assessment/src/main/resources/volunteers.json";
     private Gson gson = new Gson();
     private List<Volunteer> volunteers = new ArrayList<>();
+    private static final Logger logger = LoggerFactory.getLogger(JsonVolunteerRepository.class);
 
 
     public JsonVolunteerRepository() {
@@ -38,17 +41,13 @@ private void loadVolunteers() {
         try (FileReader reader = new FileReader(filePath)) {
             Type listOfVolunteersType = new TypeToken<ArrayList<Volunteer>>() {}.getType();
             volunteers = gson.fromJson(reader, listOfVolunteersType);
-            // In case the file is empty or the content is not valid
-            if (volunteers == null) {
-                volunteers = new ArrayList<>();
-            }
+            if (volunteers == null) volunteers = new ArrayList<>();
+                
         } catch (IOException e) {
-            e.printStackTrace();
-            // In case of an IOException, initialize an empty list
+            logger.error("Failed to load volunteers from file: {}", filePath, e); 
             volunteers = new ArrayList<>();
         }    
     } else {
-        //If the file doesn't exist or is empty, start with an empty list
         volunteers = new ArrayList<>();
         }   
     }
@@ -58,7 +57,7 @@ private void loadVolunteers() {
         try (FileWriter writer = new FileWriter(filePath)){
             gson.toJson(volunteers, writer);  
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Failed to save volunteers to file: {}", filePath, e);
         }
     }
 
