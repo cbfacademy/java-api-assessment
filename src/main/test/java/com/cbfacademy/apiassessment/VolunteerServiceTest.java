@@ -43,7 +43,7 @@ public class VolunteerServiceTest {
     @Test
     public void whenCreateVolunteerWithInvalidAttributes_thenThrowException() {
         // Given: An invalid volunteer object (e.g., with a null name)
-        Volunteer invalidVolunteer = new Volunteer(null, "Doe", /* other parameters */);
+        Volunteer invalidVolunteer = new Volunteer(null, "Caleb", LocalDate.of(2000,07,28), "07958444472", "m.caleb@gmail.com", "Event Manager", "Hospitality", true, LocalDate.of(2023,03,18));
 
         // When & Then: Creating an invalid volunteer should throw IllegalArgumentException
         assertThrows(IllegalArgumentException.class, () -> {
