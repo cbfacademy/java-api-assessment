@@ -75,7 +75,7 @@ public class VolunteerServiceImpl implements VolunteerService {
     public Volunteer getVolunteerById(UUID id) {
         // Throws an exception if the volunteer is not found
         return volunteerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Volunteer not found"));
+                .orElseThrow(() -> new VolunteerNotFoundException(id));
     }
 
     // Deletes a volunteer identified by their UUID
