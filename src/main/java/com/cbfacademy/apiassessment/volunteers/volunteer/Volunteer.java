@@ -24,7 +24,7 @@ public class Volunteer extends Person {
  * @param email            The email address of the volunteer.
  * @param role             The role/position of the volunteer.
  * @param skills           The skills or talents the volunteer possesses.
- * @param isActive           Indicates whether the volunteer is currently active.
+ * @param isActive         Indicates whether the volunteer is currently active.
  * @param dateJoined       The date the volunteer joined the church
  */
     
@@ -64,7 +64,7 @@ public class Volunteer extends Person {
         this.skills = skills;
     }
 
-    public boolean getisActive() {
+    public boolean isActive() {
         return isActive;
     }
 

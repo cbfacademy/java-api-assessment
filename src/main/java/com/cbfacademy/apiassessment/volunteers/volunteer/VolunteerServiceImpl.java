@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import com.cbfacademy.apiassessment.volunteers.exception.VolunteerNotFoundException;
 import com.cbfacademy.apiassessment.volunteers.search.AdvancedSearchQuery;
 
-import com.cbfacademy.apiassessment.volunteers.volunteer.Volunteer;
-import com.cbfacademy.apiassessment.volunteers.volunteer.VolunteerRepository;
-
 
 // Marks this class a Spring-managed service component
 @Service 
