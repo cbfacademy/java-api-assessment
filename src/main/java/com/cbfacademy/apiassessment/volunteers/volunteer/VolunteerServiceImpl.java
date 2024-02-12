@@ -2,11 +2,12 @@ package com.cbfacademy.apiassessment.volunteers.volunteer;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cbfacademy.apiassessment.volunteers.exception.VolunteerNotFoundException;
+import com.cbfacademy.apiassessment.volunteers.search.AdvancedSearchQuery;
 
 
 // Marks this class a Spring-managed service component
@@ -20,7 +21,6 @@ public class VolunteerServiceImpl implements VolunteerService {
     /**
      * @param volunteerRepository
      */
-    @Autowired
     public VolunteerServiceImpl(VolunteerRepository volunteerRepository) {
         this.volunteerRepository = volunteerRepository;
     }
@@ -43,7 +43,7 @@ public class VolunteerServiceImpl implements VolunteerService {
                 .orElseThrow(() -> new VolunteerNotFoundException(id)); // Custom exception
     }
 
-    
+
    /**
     * Validates the mandatory fields of a volunteer.
     * @param volunteer the volunteer to validate.
@@ -85,5 +85,20 @@ public class VolunteerServiceImpl implements VolunteerService {
         volunteerRepository.delete(volunteer);
     }
                 
+    @Override
+    public List<Volunteer> searchVolunteers(AdvancedSearchQuery query) {
+        List<Volunteer> allVolunteers = volunteerRepository.findAll();
+        return allVolunteers.stream()
+                .filter(volunteer -> volunteer.isActive() == query.isActive()) // Filter by active status
+                .filter(volunteer -> matchesSkills(volunteer, query.getSkills())) //Filter by skills
+                .collect(Collectors.toList());
 
+    }
+
+    private boolean matchesSkills(Volunteer volunteer, List<String> requiredSkills) {
+        if (requiredSkills == null || requiredSkills.isEmpty()) {
+            return true; // If no skills are specified in the query, all volunteers match. 
+        }
+        return requiredSkills.stream().anyMatch(skill -> volunteer.getSkills().contains(skill));
+    }
 }
