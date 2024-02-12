@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 import java.time.LocalDate;
 
 
@@ -111,6 +112,20 @@ private void loadVolunteers() {
         public void delete(Volunteer volunteer) {
         volunteers.remove(volunteer);
         saveVolunteers();
+    }
+
+    @Override
+    public List<Volunteer> findBySkill(String skill) {
+        return volunteers.stream()
+                         .filter(volunteer -> volunteer.getSkills() != null && volunteer.getSkills().toLowerCase().contains(skill.toLowerCase()))
+                         .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Volunteer> findByIsActive(boolean isActive) {
+        return volunteers.stream()
+                         .filter(volunteer -> volunteer.isActive() == isActive)
+                         .collect(Collectors.toList());
     }
 
 }
