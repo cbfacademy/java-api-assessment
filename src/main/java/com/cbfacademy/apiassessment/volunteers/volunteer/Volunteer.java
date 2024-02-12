@@ -10,7 +10,7 @@ public class Volunteer extends Person {
     private final UUID id; // Unique identifier for each volunteer
     private String role; // Role/position of the volunteer
     private String skills; // Skills or talents the volunteer possesses
-    private boolean active; // Indicates whther the volunteer is currently active
+    private boolean isActive; // Indicates whther the volunteer is currently active
     private Date dateJoined; // Date when the volunteer joined the church
 
 
@@ -24,16 +24,16 @@ public class Volunteer extends Person {
  * @param email            The email address of the volunteer.
  * @param role             The role/position of the volunteer.
  * @param skills           The skills or talents the volunteer possesses.
- * @param active           Indicates whether the volunteer is currently active.
+ * @param isActive           Indicates whether the volunteer is currently active.
  * @param dateJoined       The date the volunteer joined the church
  */
     
-    public Volunteer(String firstName, String lastName, Date dateOfBirth, String contactNumber, String email, String role, String skills, boolean active, Date dateJoined) {
+    public Volunteer(String firstName, String lastName, Date dateOfBirth, String contactNumber, String email, String role, String skills, boolean isActive, Date dateJoined) {
         super(firstName, lastName, dateOfBirth, contactNumber, email); // Call to super (Person) constructor
-        this.id = UUID.randomUUID(); // Generate a unique identifier for the volunteThe constructor Person(String, String, Date, String, String) is undefinedJava(134217858)er
+        this.id = UUID.randomUUID(); // Generate a unique identifier for the volunteer
         this.role = role;
         this.skills = skills;
-        this.active = active;
+        this.isActive = isActive;
         this.dateJoined = dateJoined;
     } 
 
@@ -64,12 +64,12 @@ public class Volunteer extends Person {
         this.skills = skills;
     }
 
-    public boolean getActive() {
-        return active;
+    public boolean getisActive() {
+        return isActive;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public Date getDateJoined() {
