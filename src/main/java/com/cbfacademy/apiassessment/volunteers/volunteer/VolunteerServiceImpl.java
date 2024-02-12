@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.cbfacademy.apiassessment.volunteers.exception.VolunteerNotFoundException;
 import com.cbfacademy.apiassessment.volunteers.search.AdvancedSearchQuery;
 
+import com.cbfacademy.apiassessment.volunteers.volunteer.Volunteer;
+import com.cbfacademy.apiassessment.volunteers.volunteer.VolunteerRepository;
+
 
 // Marks this class a Spring-managed service component
 @Service 
@@ -18,34 +21,50 @@ public class VolunteerServiceImpl implements VolunteerService {
     private final VolunteerRepository volunteerRepository;
 
     // Constructor-based dependency injection for the repository 
+
     /**
-     * @param volunteerRepository
+     * Constructs a VolunteerServiceImpl with a specified VolunteerRepository.
+     * 
+     * @param volunteerRepository the repository used for volunteer data operations
      */
+    
     public VolunteerServiceImpl(VolunteerRepository volunteerRepository) {
         this.volunteerRepository = volunteerRepository;
     }
 
-    // Handles the creation of a new volunteer, encapsulating any pre-persistence logic
+    /**
+     * Creates and saves a new volunteer to the repository after validation.
+     * 
+     * @param volunteer the volunteer to be created and saved
+     * @return the saved volunteer with persisted data (e.g., generated ID)
+     * @throws IllegalArgumentException if any mandatory field of the volunteer is empty
+     */
     @Override
     public Volunteer createVolunteer (Volunteer volunteer) {
-        // Business logic added here to validate volunteer data before saving the volunteer
         validateVolunteer(volunteer); 
-        // Business logic processed, save the volunteer
-        return volunteerRepository.save(volunteer); // Saves the volunteer entity 
+        return volunteerRepository.save(volunteer);
     }
 
+    /**
+     * Updates an existing volunteer identified by UUID with new volunteer data.
+     * 
+     * @param id the UUID of the volunteer to update
+     * @param volunteer the new volunteer data to update
+     * @return the updated volunteer
+     * @throws VolunteerNotFoundException if no volunteer is found with the specified UUID
+     * @throws IllegalArgumentException if any mandatory field of the volunteer is empty
+     */
     @Override
     public Volunteer updateVolunteer (UUID id, Volunteer volunteer) {
-        validateVolunteer(volunteer); // Validate volunteer data
-        // Ensure the volunteer exists before updating
+        validateVolunteer(volunteer);
         return volunteerRepository.findById(id)
                 .map(existingVolunteer -> volunteerRepository.save(volunteer))
-                .orElseThrow(() -> new VolunteerNotFoundException(id)); // Custom exception
+                .orElseThrow(() -> new VolunteerNotFoundException(id));
     }
 
-
-   /**
+    /**
     * Validates the mandatory fields of a volunteer.
+
     * @param volunteer the volunteer to validate.
     * @throws IllegalArgumentException if any mandatory field is empty.
     */
@@ -64,40 +83,68 @@ public class VolunteerServiceImpl implements VolunteerService {
         }
     }
 
-    // Retrieves a list of all volunteers from the repository
+
+    /**
+     * Retrieves all volunteers from the repository
+     * 
+     * @return a list of all volunteers
+     */
     @Override
     public List<Volunteer> getAllVolunteers() {
         return volunteerRepository.findAll();
     }
 
-    // Fetches a single volunteer by their UUID
+    /**
+     * Fetches a single volunteer by their UUID.
+     * 
+     * @param id the UUID of the volunteer to retrieve
+     * @return the found volunteer
+     * @throws VolunteerNotFoundException if no volunteer is found with the specified UUID
+     */
     @Override
     public Volunteer getVolunteerById(UUID id) {
-        // Throws an exception if the volunteer is not found
         return volunteerRepository.findById(id)
                 .orElseThrow(() -> new VolunteerNotFoundException(id));
     }
 
-    // Deletes a volunteer identified by their UUID
+    /**
+     * Deletes a volunteer identified by their UUID.
+     * 
+     * @param id the UUID of the volunteer to delete
+     * @throws VolunteerNotFoundException if no volunteer is found with the specified UUID
+     */
     @Override
     public void deleteVolunteer(UUID id) {
         Volunteer volunteer = getVolunteerById(id); // Ensures volunteer exists before deletion
         volunteerRepository.delete(volunteer);
     }
-                
+    
+    /**
+     * Searches for volunteers based on an advanced query including active status and skills.
+     * 
+     * @param query the advanced search criteria
+     * @return a list of volunteers matching the search criteria
+     */
     @Override
     public List<Volunteer> searchVolunteers(AdvancedSearchQuery query) {
         List<Volunteer> allVolunteers = volunteerRepository.findAll();
         return allVolunteers.stream()
-                .filter(volunteer -> volunteer.isActive() == query.isActive()) // Filter by active status
-                .filter(volunteer -> matchesSkills(volunteer, query.getSkills())) //Filter by skills
+                .filter(volunteer -> volunteer.isActive() == query.isActive())
+                .filter(volunteer -> matchesSkills(volunteer, query.getSkills()))
                 .collect(Collectors.toList());
 
     }
 
+    /**
+     * Checks if a voulteer has any if the required skills.
+     * 
+     * @param volunteer the volunteer to check
+     * @param requiredSkills the list of skills to match against the volunteer's skills
+     * @return true if the volunteer has any of the required skills, otherwise false
+    */
     private boolean matchesSkills(Volunteer volunteer, List<String> requiredSkills) {
         if (requiredSkills == null || requiredSkills.isEmpty()) {
-            return true; // If no skills are specified in the query, all volunteers match. 
+            return true; 
         }
         return requiredSkills.stream().anyMatch(skill -> volunteer.getSkills().contains(skill));
     }
