@@ -3,7 +3,6 @@ package com.cbfacademy.apiassessment.volunteers.volunteer;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cbfacademy.apiassessment.volunteers.search.AdvancedSearchQuery;
-import com.cbfacademy.apiassessment.volunteers.search.TaskAssignmentRequest;
 
 import java.util.List;
 import java.util.UUID;
@@ -101,23 +100,6 @@ public class VolunteerController {
         List<Volunteer> volunteers = volunteerService.searchVolunteers(query);
         return new ResponseEntity<>(volunteers, HttpStatus.OK);
     }
-
-    /**
-     * Assigns a volunteer to a specific task, creating a relationship between a volunteer and a task.
-     * This endpoint updates the volunteer entity to include task information or updates a separate entity managing assignments.
-     *
-     * @param volunteerId The UUID of the volunteer to assign to a task.
-     * @param request Contains the task ID to which the volunteer will be assigned.
-     * @return The updated volunteer entity, reflecting the new task assignment, wrapped in a ResponseEntity.
-     */
-    @PostMapping("/{volunteerId/assign}")
-    public ResponseEntity<Volunteer> assignVolunteerToTask(@PathVariable UUID volunteerId, @RequestBody TaskAssignmentRequest request) {
-        Volunteer updatedVolunteer = volunteerService.assignToTask(volunteerId, request.getTaskId());
-        return new ResponseEntity<>(updatedVolunteer, HttpStatus.OK);
-    }
-    
         
 }
     
-
-

@@ -145,4 +145,5 @@ public class VolunteerServiceImpl implements VolunteerService {
         }
         return requiredSkills.stream().anyMatch(skill -> volunteer.getSkills().contains(skill));
     }
+
 }
