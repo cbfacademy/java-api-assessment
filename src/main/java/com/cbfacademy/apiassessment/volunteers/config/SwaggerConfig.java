@@ -1,4 +1,4 @@
-package com.cbfacademy.apiassessment.config;
+package com.cbfacademy.apiassessment.volunteers.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
