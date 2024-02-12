@@ -61,6 +61,15 @@ public interface VolunteerService {
      * @return A list of volunteers that match the search criteria.
      */
     List<Volunteer> searchVolunteers(AdvancedSearchQuery query);
+
+    /**
+     * Assigns a specific task to a volunteer.
+     *
+     * @param volunteerId The UUID of the volunteer to whom the task is being assigned.
+     * @param taskId The UUID of the task that is being assigned to the volunteer.
+     * @return The updated volunteer with the task assignment.
+     */
+    Volunteer assignToTask(UUID volunteerId, UUID taskId);
     
 }
 
