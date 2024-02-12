@@ -1,29 +1,30 @@
 package com.cbfacademy.apiassessment;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
-public class Inventory {
+public class Product {
     private UUID Id;
     private String name;
     private String description;
+    private Integer quantity; 
     private Integer minimumQuantity;
     private Integer maximumQuantity;
     private LocalDateTime createdOn;
 
-    public Inventory(String name, String descriprion, Integer minimumQuantity, Integer qmaximumQuantity) {
+    public Product(String name, String description, Integer minimumQuantity, Integer maximumQuantity) {
         this.name = name;
-        this.description = descriprion;
+        this.description = description;
         this.minimumQuantity = minimumQuantity;
-        this.minimumQuantity = minimumQuantity;
+        this.maximumQuantity = maximumQuantity;
         this.createdOn = LocalDateTime.now();
-    }
-    
-    public Inventory() {
+        this.quantity = 0; 
     }
 
-    public Inventory(UUID id) {
+    public Product() {
+    }
+
+    public Product(UUID id) {
         this.Id = id;
     }
 
@@ -31,10 +32,12 @@ public class Inventory {
         return Id;
     }
 
-    public String getname() {
+    public String getName() {
         return name;
     }
 
+    
+    public void updateQuantity(int quantity) {
+        this.quantity += quantity;
+    }
 }
-
-
