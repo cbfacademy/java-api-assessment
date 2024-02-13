@@ -40,6 +40,8 @@ public class VolunteerServiceTest {
         // Then: The saved volunteer should not be null and should match the new volunteer
         assertNotNull(savedVolunteer, "The saved volunteer should not be null");
         assertEquals(newVolunteer, savedVolunteer, "The saved volunteer should match the new volunteer");
+
+        //Verify: The repository's save method was called.
         verify(volunteerRepository, times(1)).save(newVolunteer);
     }
 
@@ -50,9 +52,10 @@ public class VolunteerServiceTest {
         Volunteer invalidVolunteer = new Volunteer(null, "Caleb", LocalDate.of(2000,07,28), "07958444472", "m.caleb@gmail.com", "Event Manager", "Hospitality", true, LocalDate.of(2023,03,18));
 
         // When & Then: Creating an invalid volunteer should throw IllegalArgumentException
-        assertThrows(IllegalArgumentException.class, () -> {
-            volunteerService.createVolunteer(invalidVolunteer);
-        }, "Creating a volunteer with invalid attributes should throw IllegalArgumentException");
+        assertThrows(IllegalArgumentException.class, () -> volunteerService.createVolunteer(invalidVolunteer), "Creating a volunteer with invalid attributes should throw IllegalArgumentException");
+
+        // Verify: The repository's save method was not called
+        verify(volunteerRepository, never()).save(any(Volunteer.class));
     } 
 
     // Test updating an existing volunteer with valid changes
