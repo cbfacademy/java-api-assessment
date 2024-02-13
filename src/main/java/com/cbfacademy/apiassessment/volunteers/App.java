@@ -1,4 +1,4 @@
-package com.cbfacademy.apiassessment;
+package com.cbfacademy.apiassessment.volunteers;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,8 +15,8 @@ public class App {
 	}
 
 	@GetMapping("/greeting")
-	public String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-		return String.format("Hello %s", name);
+	public String greeting(@RequestParam(defaultValue = "World") String name) {
+		return "Hello %s".formatted(name);
 	}
 
 }
