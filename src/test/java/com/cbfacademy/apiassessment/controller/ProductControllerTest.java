@@ -1,4 +1,4 @@
-package com.cbfacademy.apiassessment;
+package com.cbfacademy.apiassessment.controller;
 
 import com.cbfacademy.apiassessment.controller.ProductController;
 import com.cbfacademy.apiassessment.model.Product;
