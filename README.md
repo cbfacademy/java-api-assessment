@@ -68,7 +68,7 @@ Onward with this assessment, you're set for a deep dive into API development wit
 
 Before you begin, make sure you have the following installed:
 
-1. [JDK 17](https://learn.microsoft.com/en-gb/java/openjdk/download#openjdk-17) (or higher)
+1. [JDK 21](https://learn.microsoft.com/en-gb/java/openjdk/download#openjdk-21) (or higher)
 
 2. [Git](https://git-scm.com/downloads)
 
