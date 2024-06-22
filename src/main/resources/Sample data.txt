@@ -1,0 +1,6 @@
+{
+"name" : "Miski",
+"email" : "miski@abc.com"
+}
+user JSON
+
