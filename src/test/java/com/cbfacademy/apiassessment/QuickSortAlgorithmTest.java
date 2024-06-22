@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 public class QuickSortAlgorithmTest {
 
@@ -32,9 +33,9 @@ public class QuickSortAlgorithmTest {
 
         assertEquals(expected.size(), percentages.size());
     
-        for(int i = 0; i < expected.size(); i++ ) {
-            assertEquals(expected.get(i), percentages.get(i));
-        }
+        assertIterableEquals(expected, percentages);
+    }
+        
     }
 
-}
+
