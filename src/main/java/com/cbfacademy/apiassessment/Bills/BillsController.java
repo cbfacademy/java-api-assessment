@@ -39,45 +39,42 @@ public List<Bills> getAllBillsById(@PathVariable UUID id, @RequestBody Bills bil
         return billsService.getBillsById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("rent/{id}")
     public List<Bills> getRentById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
         return billsService.getRentById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("mortgage/{id}")
     public List<Bills> getMortgageById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
         return billsService.getMortgageById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("mortgage-endowment/{id}")
     public List<Bills> getMortgageEndowmentById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
         return billsService.getMortgageEndowmentById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("council-tax/{id}")
     public List<Bills> getCouncilTaxById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
         return billsService.getCouncilTaxById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("insurance/{id}")
     public List<Bills> getInsuranceById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
         return billsService.getInsuranceById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("utilities/{id}")
     public List<Bills> getUtilitiesById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
         return billsService.getUtilitiesById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("groceries/{id}")
     public List<Bills>  getGroceriesById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
         return billsService.getGroceriesById(id);            
 }
 
-
-
-
-@GetMapping
+@GetMapping("frequency/{id}")
 public List<Bills> getFrequency() throws NoSuchElementException{
         return billsService.getFrequency();
 }

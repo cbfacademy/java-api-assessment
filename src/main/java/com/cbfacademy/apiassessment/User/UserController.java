@@ -1,5 +1,6 @@
 package com.cbfacademy.apiassessment.User;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
@@ -34,6 +35,12 @@ public List<User> getAllUsers()  throws NoSuchElementException{
 public List<User> getId(@PathVariable UUID id) {
     return userService.getAllUsers();
 }
+
+@GetMapping("/percentage/{userPercentage}")
+public List<User> getUserPercentage(@PathVariable BigDecimal userPercentage) {
+    return userService.getUserPercentage(userPercentage);
+}
+
 
 @PostMapping
 public ResponseEntity<User> createUser(@RequestBody User user){

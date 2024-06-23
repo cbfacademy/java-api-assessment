@@ -45,7 +45,7 @@ LeisureService leisureService, UUID id) {
     }
 
     public List<BigDecimal> retrievePercentages() {
-        List<BigDecimal> percentages = new ArrayList<>();
+    List<BigDecimal> percentages = new ArrayList<>();
 
     BigDecimal totalIncome = calculateTotalIncome();
     BigDecimal totalExpenses = calculateTotalExpenses();
@@ -63,7 +63,9 @@ LeisureService leisureService, UUID id) {
 
         return percentages;
     }
-        
+    public BigDecimal calculateSavingsByUserPercentage(BigDecimal totalIncome, BigDecimal totalExpenses, BigDecimal userPercentage) {
+        return calculatePercentageOfSavings(totalIncome, totalExpenses, userPercentage);
+    }
 
     public BigDecimal calculateTotalIncome() {
         BigDecimal totalIncome = BigDecimal.ZERO;
@@ -256,86 +258,3 @@ LeisureService leisureService, UUID id) {
 
 
 
-
-//  return TotalIncome(incomes, benefitsAndTaxCredits, pensions, otherIncomes);
-
-
-        
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public BigDecimal calculateTotalBills(UUID id) {
-    
-    // public BigDecimal calculateSavings(BigDecimal totalIncome, BigDecimal totalBills, BigDecimal savingsPercentage) {
-    //     BigDecimal totalExpenses = totalBills;
-    //     BigDecimal remainingIncome = totalIncome.subtract(totalExpenses);
-    //     return remainingIncome.multiply(savingsPercentage.divide(BigDecimal.valueOf(100)));
-    // }
-
-    // public String recommendSavings(BigDecimal totalIncome) {
-    //     BigDecimal needs = totalIncome.multiply(BigDecimal.valueOf(0.50));
-    //     BigDecimal wants = totalIncome.multiply(BigDecimal.valueOf(0.30));
-    //     BigDecimal savings = totalIncome.multiply(BigDecimal.valueOf(0.20));
-    //     return String.format("Based on a 50-30-20 budget, allocate:\n" +
-    //             "50%% (%.2f) for needs,\n" +
-    //             "30%% (%.2f) for wants,\n" +
-    //             "20%% (%.2f) for savings.", needs, wants, savings);
-    // }
-
-
-//    List<Income> incomes, 
-// List<BenefitsAndTaxCredits> benefitsAndTaxCredits, List<Pensions> pension, List<OtherIncome> otherIncome){
-// BigDecimal totalIncome = BigDecimal.ZERO;
-
-// if(incomes != null) {
-//     totalIncome = totalIncome.add(incomes.stream()
-//             .map(income -> income.getFrequency().equalsIgnoreCase("annually") ? income.getIncomeById().divide(BigDecimal.valueOf(12),RoundingMode.HALF_UP) : BigDecimal.valueOf(income.getAmount())
-//             .reduce(BigDecimal.ZERO, BigDecimal::add)));
-// }
-// totalIncome = totalIncome.add(Income.stream()
-//             .map(income -> income.getFrequency().equalsIgnoreCase("annually") ? BigDecimal.valueOf(income.getAmount()). divide(BigDecimal.valueOf(12),2, RoundingMode.HALF_UP) : BigDecimal.valueOf(income.getAmount()))
-//             .reduce(BigDecimal.ZERO, BigDecimal::add));
-
-// totalIncome = totalIncome.add(BenefitsAndTaxCredits.stream()
-//              .map(benefitsAndTaxCredits -> benefitsAndTaxCredits.getFrequency().equalsIgnoreCase("annually") ? BigDecimal.valueOf(income.getAmount()) .divide(BigDecimal.valueOf(12), 2, RoundingMode.HALF_UP) : BigDecimal.valueOf(income.getAmount()))                   
-//              .reduce(BigDecimal.ZERO, BigDecimal::add));
-
-// totalIncome = totalIncome.add(Pensions.stream()
-//             .map(pension -> pension.getFrequency().equalsIgnoreCase("annually")? BigDecimal.valueOf(pension.getAmount()).divide(BigDecimal.valueOf(12), 2, RoundingMode.HALF_UP) : BigDecimal.valueOf(income.getAmount())))
-//             .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-
-// totalIncome = totalIncome.add(OtherIncome.stream()
-//             .map(otherIncme -> otherIncome.getFrequency().equalsIgnoreCase("annually")? BigDecimal.valueOf(otherIncome.getAmount()).divide(BigDecimal.valueOf(12), 2, RoundingMode.HALF_UP) : BigDecimal.valueOf(otherIncome.getAmount()))
-//             .reduce(BigDecimal.ZERO, BigDecimal::add));
-
-
-
-// return totalIncome;
-// }
-
-
-
-//wrote down in notes what to do next for streams 
-//I'll come back for this and the test once I finish the controllers and services

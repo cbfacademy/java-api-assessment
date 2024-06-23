@@ -1,5 +1,6 @@
 package com.cbfacademy.apiassessment.User;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -24,8 +25,11 @@ public List<User> getAllUsers() {
 
 public User getUser(UUID id) throws NoSuchElementException{
      return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Id Not Found"));
-        
     }
+
+ public List<User> getUserPercentage(BigDecimal userPercentage) {
+    return userRepository.findByUserPercentage(userPercentage);
+    } 
 User createUser(User user) throws IllegalArgumentException, OptimisticLockingFailureException {
         return userRepository.save(user);
         
@@ -35,6 +39,9 @@ User createUser(User user) throws IllegalArgumentException, OptimisticLockingFai
       
         
         user.setName(updatedUser.getName());
+        user.setEmail(updatedUser.getEmail());
+        user.setUserPercentage(updatedUser.getUserPercentage());
+
         user.setIncome(updatedUser.getIncome() != null ? user.getIncome(): new ArrayList<>());
         user.setBenefitsAndTaxCredits(updatedUser.getBenefitsaAndTaxCredits()!= null ? user.getBenefitsaAndTaxCredits(): new ArrayList<>());
         user.setPension(updatedUser.getPensions()!= null ? user.getPensions(): new ArrayList<>());

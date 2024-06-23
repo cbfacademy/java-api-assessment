@@ -179,7 +179,7 @@ Open your browser and navigate to `http://localhost:8080`.
 
 ## **Deliverables**
 
-Ensure that your work is merged to the `main` branch of your GitHub repository by the specified deadline (original or extended). Your solution will assessed based on its state *at that point*; any later commits will **not** be taken into account.
+Ensure that your work is merged to the `git` branch of your GitHub repository by the specified deadline (original or extended). Your solution will assessed based on its state *at that point*; any later commits will **not** be taken into account.
 
 ## FAQs
 

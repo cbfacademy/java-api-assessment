@@ -38,17 +38,17 @@ public List<Pensions> getAllPensionsById(@PathVariable UUID id, @RequestBody Pen
         return pensionsService.getPensionsById(id);              
 }
 
-@GetMapping("/{id}")
+@GetMapping("state-pensions/{id}")
     public List<Pensions> getStatePensionById(@PathVariable UUID id, @RequestBody Pensions pensions) throws NoSuchElementException {
         return pensionsService.getStatePensionById(id);              
 }
 
-@GetMapping("/{id}")
+@GetMapping("private-pensions/{id}")
     public List<Pensions> getPrivatePensionById(@PathVariable UUID id, @RequestBody Pensions pensions) throws NoSuchElementException {
         return pensionsService.getPrivatePensionById(id);              
 }
-@GetMapping
-public List<Pensions> getFrequency() throws NoSuchElementException{
+@GetMapping("frequency/{id}")
+public List<Pensions> getFrequency(@PathVariable UUID id, @RequestBody Pensions pensions) throws NoSuchElementException{
         return pensionsService.getFrequency();
 }
 

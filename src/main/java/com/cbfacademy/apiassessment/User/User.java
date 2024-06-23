@@ -1,5 +1,6 @@
 package com.cbfacademy.apiassessment.User;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,7 @@ private final UUID id;
 
 private String name;
 private String email;
+private BigDecimal userPercentage;
 private Instant dateTime;
 
 
@@ -58,15 +60,16 @@ private List<Leisure> leisure = new ArrayList<>();
 
 //Constructors: default and parameterized
 public User() {
-    this(null, null, null, Instant.now());
+    this(null, null, null, Instant.now(), BigDecimal.ZERO);
 }
   
 
-public User(String name, UUID id, String email, Instant dateTime) {
+public User(String name, UUID id, String email, Instant dateTime, BigDecimal userPercentage) {
     this.id = UUID.randomUUID();
     this.name = name;
     this.email = email;
     this.dateTime = dateTime;
+    this.userPercentage = userPercentage;
 }
 
 // Getters and setters
@@ -93,6 +96,14 @@ public Instant getDateTime() {
 }
 public void setDateTime(Instant dateTime) {
     this.dateTime = dateTime;
+}
+
+public BigDecimal getUserPercentage() {
+    return userPercentage;
+}
+
+public void setUserPercentage (BigDecimal userPercentage) {
+    this.userPercentage = userPercentage;
 }
 
 public List<Income> getIncome() {

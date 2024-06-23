@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 
-
-
-
 @RestController
 @RequestMapping("/otherincome")
 public class OtherIncomeController {
@@ -34,23 +31,23 @@ public List<OtherIncome> getAllOtherIncomeById(@PathVariable UUID id, @RequestBo
         return otherIncomeService.getAllOtherIncomeById(id);
 }
 
-@GetMapping("/{id}")
+@GetMapping("/other-income/{id}")
     public List<OtherIncome> getOtherIncomeById(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException {
         return otherIncomeService.getOtherIncomeById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("/rental-income/{id}")
     public List<OtherIncome> getRentalIncomeById(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException {
         return otherIncomeService.getRentalIncomeById(id);            
 }
 
-@GetMapping("/{id}")
+@GetMapping("investment-income/{id}")
     public List<OtherIncome> getInvestmentIncomeById(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException {
         return otherIncomeService.getInvestmentIncomeById(id);            
 }
 
-@GetMapping
-public List<OtherIncome> getFrequency() throws NoSuchElementException{
+@GetMapping("frequency/{id}")
+public List<OtherIncome> getFrequency(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException{
         return otherIncomeService.getFrequency();
 }
 

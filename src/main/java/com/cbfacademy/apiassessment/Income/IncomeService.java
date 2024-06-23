@@ -62,8 +62,7 @@ Income updateIncome(UUID id, Income updatedIncome) throws NoSuchElementException
 
     return incomeRepository.save(updatedIncome);
        
-    //    }).orElseThrow(()-> new NoSuchElementException("Income not Found"));
-
+    
        }
 
         public void deleteIncomeById(UUID id){
@@ -74,7 +73,7 @@ Income updateIncome(UUID id, Income updatedIncome) throws NoSuchElementException
         }
 
 }
-// May need to add null parts in– for users who hasn't input anything
+
     
     
 

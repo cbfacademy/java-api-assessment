@@ -35,65 +35,65 @@ public List<BenefitsAndTaxCredits> getAllBenefitsAndTaxCreditsById(@PathVariable
         return benefitsAndTaxCreditsService.getBenefitsAndTaxCreditsById(id);
     }
 //starts her
-    @GetMapping("/{id}")
+    @GetMapping("jobseekers-allowance/{id}")
     public List<BenefitsAndTaxCredits> getJobSeekersAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getJobSeekersAllowanceById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("working-tax-credit/{id}")
     public List<BenefitsAndTaxCredits> getWorkingTaxCreditById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getWorkingTaxCreditById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("child-tax-credit/{id}")
     public List<BenefitsAndTaxCredits> getChildTaxCreditById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getChildTaxCreditById(id);
     }
     
 
-    @GetMapping("/{id}")
+    @GetMapping("child-benefit/{id}")
     public List<BenefitsAndTaxCredits> getChildBenefitById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getChildBenefitById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("emplyomenet-support-allowance/{id}")
     public List<BenefitsAndTaxCredits> getEmploymentSupportAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getEmploymentSupportAllowanceById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("universal-credit/{id}")
     public List<BenefitsAndTaxCredits> getUniversalCreditById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getUniversalCreditById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("disability-allowance/{id}")
     public List<BenefitsAndTaxCredits> getDisabilityAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getDisabilityAllowanceById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("attendance-allowance/{id}")
     public List<BenefitsAndTaxCredits> getAttendanceAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getAttendanceAllowanceById(id);
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("carers-allowance/{id}")
     public List<BenefitsAndTaxCredits> getCarersAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getCarersAllowanceById(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("housing-benefit/{id}")
     public List<BenefitsAndTaxCredits> getHousingBenefitById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getHousingBenefitById(id);
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("maternity-allowance/{id}")
     public List<BenefitsAndTaxCredits> getMaternityAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.getMaternityAllowanceById(id);
     }
-@GetMapping
-public List<BenefitsAndTaxCredits> getFrequency() throws NoSuchElementException{
+@GetMapping("frequency/{id}")
+public List<BenefitsAndTaxCredits> getFrequency(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits) throws NoSuchElementException{
         return benefitsAndTaxCreditsService.getFrequency();
 }
                

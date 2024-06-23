@@ -3,7 +3,16 @@ package com.cbfacademy.apiassessment.Algorithm;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.cbfacademy.apiassessment.Calculator.BudgetCalculator;
+
 public class QuickSortAlgorithm {
+   
+  public static void sortBudgetData(BudgetCalculator budgetCalculator) {
+        List<BigDecimal> percentages = budgetCalculator.retrievePercentages();
+        sortDescending(percentages, 0, percentages.size() - 1);
+    }
+
+
     public static void sortDescending(List<BigDecimal> percentages, int low, int high) {
         if (low < high) {
             int partitionIndex = partition(percentages, low, high);

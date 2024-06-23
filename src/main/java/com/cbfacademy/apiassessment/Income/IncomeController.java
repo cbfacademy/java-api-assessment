@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-
-
-
-
-
 @RestController
 @RequestMapping("/income")
 public class IncomeController {
@@ -40,28 +35,28 @@ public List<Income> getAllIncomeById(@PathVariable UUID id, @RequestBody Income 
         return incomeService.getIncomeById(id);
     }
 
-@GetMapping("/{id}")
+@GetMapping("salary-after-taxes/{id}")
 public List<Income> getSalaryAfterTaxesById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
         return incomeService.getSalaryAfterTaxesById(id);
 }
 
-@GetMapping("/{id}")
+@GetMapping("self-employment/{id}")
 public List<Income> getSelfEmploymentIncomeById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
         return incomeService.getSelfEmploymentIncomeById(id);
 }
 
-@GetMapping("/{id}")
+@GetMapping("statutory-sick-pay/{id}")
 public List<Income> getStatutorySickPayById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
         return incomeService.getStatutorySickPayById(id);
 }
 
-@GetMapping("/{id}")
+@GetMapping("statutory-maternity-pay/{id}")
 public List<Income> getStatutoryMaternityPayById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
         return incomeService.getStatutoryMaternityPayById(id);
 }
 
 @GetMapping
-public List<Income> getFrequency() throws NoSuchElementException{
+public List<Income> getFrequency(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
         return incomeService.getFrequency();
 }
 
