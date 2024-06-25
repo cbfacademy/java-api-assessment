@@ -25,11 +25,11 @@ public BenefitsAndTaxCreditsController(BenefitsAndTaxCreditsService benefitsAndT
     this.benefitsAndTaxCreditsService = benefitsAndTaxCreditsService;
 }
 
-@GetMapping("/{id}")
+    @GetMapping("/{id}")
     public List<BenefitsAndTaxCredits> findBenefitsAndTaxCreditsById(@PathVariable UUID id )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.findBenefitsAndTaxCreditsById(id);
     }
-//starts her
+
     @GetMapping("jobseekers-allowance/{id}")
     public List<BenefitsAndTaxCredits> findJobSeekersAllowanceById(@PathVariable UUID id )throws NoSuchElementException {
         return benefitsAndTaxCreditsService.findJobSeekersAllowanceById(id);

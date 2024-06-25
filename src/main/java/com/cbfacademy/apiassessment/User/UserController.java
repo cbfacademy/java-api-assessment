@@ -27,11 +27,6 @@ public UserController(UserService userService){
     this.userService = userService;
 }
 
-// @GetMapping 
-// public List<User> findAllById(@PathVariable UUID id)  throws NoSuchElementException{
-//     return userService.findAllById(id);
-// }
-
 @GetMapping("/{id}")
 public Optional<User> getId(@PathVariable UUID id)throws NoSuchElementException {
     return userService.findById(id);

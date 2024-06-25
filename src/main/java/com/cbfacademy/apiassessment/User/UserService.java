@@ -23,10 +23,6 @@ public UserService(UserRepository userRepository) {
     this.userRepository = userRepository;
 }
 
-// public List<User> findAllById(UUID id) {
-//     return userRepository.findAllById(id);
-// }
-
 public Optional<User> findById(UUID id) throws NoSuchElementException {
     return userRepository.findById(id);
            
