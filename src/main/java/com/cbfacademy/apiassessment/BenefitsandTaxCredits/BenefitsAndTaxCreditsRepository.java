@@ -4,26 +4,25 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.cbfacademy.apiassessment.User.User;
 
-
+@Repository
 public interface BenefitsAndTaxCreditsRepository extends ListCrudRepository<BenefitsAndTaxCredits, UUID> {
 
-List<BenefitsAndTaxCredits> searchByUser(String name);
 List<User> searchById(UUID id);
-List<BenefitsAndTaxCredits> getBenefitsAndTaxCreditsById(UUID id);
-List<BenefitsAndTaxCredits> getAllBenefitsAndTaxCreditsById(UUID id);
-List<BenefitsAndTaxCredits> getJobSeekersAllowanceById(UUID id);
-List<BenefitsAndTaxCredits> getWorkingTaxCreditById(UUID id);
-List<BenefitsAndTaxCredits> getChildTaxCreditById(UUID id);
-List<BenefitsAndTaxCredits> getChildBenefitById(UUID id);
-List<BenefitsAndTaxCredits> getEmploymentSupportAllowanceById(UUID id);
-List<BenefitsAndTaxCredits> getUniversalCreditById(UUID id);
-List<BenefitsAndTaxCredits> getDisabilityAllowanceById(UUID id);
-List<BenefitsAndTaxCredits> getAttendanceAllowanceById(UUID id);
-List<BenefitsAndTaxCredits> getCarersAllowanceById(UUID id);
-List<BenefitsAndTaxCredits> getHousingBenefitById(UUID id);
-List<BenefitsAndTaxCredits> getMaternityAllowanceById(UUID id);
-List<BenefitsAndTaxCredits> getFrequency();
+List<BenefitsAndTaxCredits> findBenefitsAndTaxCreditsById(UUID id);
+List<BenefitsAndTaxCredits> findJobSeekersAllowanceById(UUID id);
+List<BenefitsAndTaxCredits> findWorkingTaxCreditById(UUID id);
+List<BenefitsAndTaxCredits> findChildTaxCreditById(UUID id);
+List<BenefitsAndTaxCredits> findChildBenefitById(UUID id);
+List<BenefitsAndTaxCredits> findEmploymentSupportAllowanceById(UUID id);
+List<BenefitsAndTaxCredits> findUniversalCreditById(UUID id);
+List<BenefitsAndTaxCredits> findDisabilityAllowanceById(UUID id);
+List<BenefitsAndTaxCredits> findAttendanceAllowanceById(UUID id);
+List<BenefitsAndTaxCredits> findCarersAllowanceById(UUID id);
+List<BenefitsAndTaxCredits> findHousingBenefitById(UUID id);
+List<BenefitsAndTaxCredits> findMaternityAllowanceById(UUID id);
+List<BenefitsAndTaxCredits> findByFrequency(String frequency);
 }

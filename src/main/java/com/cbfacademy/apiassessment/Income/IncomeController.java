@@ -25,39 +25,34 @@ public IncomeController(IncomeService incomeService) {
     this.incomeService = incomeService;
 }
 
-@GetMapping("/{id}")
-public List<Income> getAllIncomeById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
-        return incomeService.getAllIncomeById(id);
-}
-
  @GetMapping("/{id}")
-    public List<Income> getIncomeById(@PathVariable UUID id, @RequestBody Income income )throws NoSuchElementException {
-        return incomeService.getIncomeById(id);
+    public List<Income> getIncomeById(@PathVariable UUID id )throws NoSuchElementException {
+        return incomeService.findIncomeById(id);
     }
 
 @GetMapping("salary-after-taxes/{id}")
-public List<Income> getSalaryAfterTaxesById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
-        return incomeService.getSalaryAfterTaxesById(id);
+public List<Income> getSalaryAfterTaxesById(@PathVariable UUID id) throws NoSuchElementException{
+        return incomeService.findSalaryAfterTaxesById(id);
 }
 
 @GetMapping("self-employment/{id}")
-public List<Income> getSelfEmploymentIncomeById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
-        return incomeService.getSelfEmploymentIncomeById(id);
+public List<Income> getSelfEmploymentIncomeById(@PathVariable UUID id) throws NoSuchElementException{
+        return incomeService.findSelfEmploymentIncomeById(id);
 }
 
 @GetMapping("statutory-sick-pay/{id}")
-public List<Income> getStatutorySickPayById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
-        return incomeService.getStatutorySickPayById(id);
+public List<Income> getStatutorySickPayById(@PathVariable UUID id) throws NoSuchElementException{
+        return incomeService.findStatutorySickPayById(id);
 }
 
 @GetMapping("statutory-maternity-pay/{id}")
-public List<Income> getStatutoryMaternityPayById(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
-        return incomeService.getStatutoryMaternityPayById(id);
+public List<Income> getStatutoryMaternityPayById(@PathVariable UUID id) throws NoSuchElementException{
+        return incomeService.findStatutoryMaternityPayById(id);
 }
 
-@GetMapping
-public List<Income> getFrequency(@PathVariable UUID id, @RequestBody Income income) throws NoSuchElementException{
-        return incomeService.getFrequency();
+@GetMapping("frequency/{id}")
+public List<Income> getFrequency(@PathVariable UUID id, String frequency) throws NoSuchElementException{
+        return incomeService.findByFrequency(frequency);
 }
 
 

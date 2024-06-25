@@ -20,44 +20,40 @@ public BillsService(BillsRepository billsRepository) {
     this.billsRepository = billsRepository;
 }
 
-public List<Bills> getAllBillsById(UUID id) {
-    return billsRepository.findAll();
+public List<Bills> findBillsById(UUID id) throws NoSuchElementException  {
+    return billsRepository.findBillsById(id);
 }
 
-public List<Bills> getBillsById(UUID id) throws NoSuchElementException  {
-    return billsRepository.getBillsById(id);
-}
-
-public List<Bills> getRentById(UUID id) {
-    return billsRepository.getRentById(id);
+public List<Bills> findRentById(UUID id) {
+    return billsRepository.findRentById(id);
 }
 // start
-public List<Bills> getMortgageById(UUID id) {
-    return billsRepository.getMortgageById(id);
+public List<Bills> findMortgageById(UUID id) {
+    return billsRepository.findMortgageById(id);
 }
 
-public List<Bills> getMortgageEndowmentById(UUID id) {
-    return billsRepository.getMortgageEndowmentById(id);
+public List<Bills> findMortgageEndowmentById(UUID id) {
+    return billsRepository.findMortgageEndowmentById(id);
 }
 
-public List<Bills> getCouncilTaxById(UUID id) {
-    return billsRepository.getCouncilTaxById(id);
+public List<Bills> findCouncilTaxById(UUID id) {
+    return billsRepository.findCouncilTaxById(id);
 }
 
-public List<Bills> getInsuranceById(UUID id) {
-    return billsRepository.getInsuranceById(id);
+public List<Bills> findInsuranceById(UUID id) {
+    return billsRepository.findInsuranceById(id);
 }
 
-public List<Bills> getUtilitiesById(UUID id) {
-    return billsRepository.getUtilitiesById(id);
+public List<Bills> findUtilitiesById(UUID id) {
+    return billsRepository.findUtilitiesById(id);
 }
 
-public List<Bills> getGroceriesById(UUID id) {
-    return billsRepository.getGroceriesById(id);
+public List<Bills> findGroceriesById(UUID id) {
+    return billsRepository.findGroceriesById(id);
 }
 
-public List<Bills> getFrequency() {
-    return billsRepository.getFrequency();
+public List<Bills> findByFrequency(String frequency) {
+    return billsRepository.findByFrequency(frequency);
 }
 
 

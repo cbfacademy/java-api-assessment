@@ -1,8 +1,9 @@
 package com.cbfacademy.apiassessment.User;
 
 import java.math.BigDecimal;
-import java.util.List;
+
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
@@ -26,19 +27,20 @@ public UserController(UserService userService){
     this.userService = userService;
 }
 
-@GetMapping 
-public List<User> getAllUsers()  throws NoSuchElementException{
-    return userService.getAllUsers();
-}
+// @GetMapping 
+// public List<User> findAllById(@PathVariable UUID id)  throws NoSuchElementException{
+//     return userService.findAllById(id);
+// }
 
 @GetMapping("/{id}")
-public List<User> getId(@PathVariable UUID id) {
-    return userService.getAllUsers();
+public Optional<User> getId(@PathVariable UUID id)throws NoSuchElementException {
+    return userService.findById(id);
 }
 
+
 @GetMapping("/percentage/{userPercentage}")
-public List<User> getUserPercentage(@PathVariable BigDecimal userPercentage) {
-    return userService.getUserPercentage(userPercentage);
+public BigDecimal getUserPercentage(@PathVariable UUID id) {
+    return userService.getUserPercentage(id);
 }
 
 

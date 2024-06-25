@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
+
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
@@ -16,59 +17,55 @@ public BenefitsAndTaxCreditsService(BenefitsAndTaxCreditsRepository benefitsAndT
     this.benefitsAndTaxCreditsRepository = benefitsAndTaxCreditsRepository;
 }
 
-public List<BenefitsAndTaxCredits> getAllBenefitsAndTaxCreditsById(UUID id)throws NoSuchElementException {
-    return benefitsAndTaxCreditsRepository.getAllBenefitsAndTaxCreditsById(id);
+public List<BenefitsAndTaxCredits> findBenefitsAndTaxCreditsById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findBenefitsAndTaxCreditsById(id);
 }
 
-public List<BenefitsAndTaxCredits> getBenefitsAndTaxCreditsById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getBenefitsAndTaxCreditsById(id);
+public List<BenefitsAndTaxCredits> findJobSeekersAllowanceById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findCarersAllowanceById(id);
 }
 
-public List<BenefitsAndTaxCredits> getJobSeekersAllowanceById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getJobSeekersAllowanceById(id);
+public List<BenefitsAndTaxCredits> findWorkingTaxCreditById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findWorkingTaxCreditById(id);
 }
 
-public List<BenefitsAndTaxCredits> getWorkingTaxCreditById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getWorkingTaxCreditById(id);
+public List<BenefitsAndTaxCredits> findChildTaxCreditById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findChildTaxCreditById(id);
 }
 
-public List<BenefitsAndTaxCredits> getChildTaxCreditById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getChildTaxCreditById(id);
+public List<BenefitsAndTaxCredits> findChildBenefitById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findChildBenefitById(id);
 }
 
-public List<BenefitsAndTaxCredits> getChildBenefitById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getChildBenefitById(id);
+public List<BenefitsAndTaxCredits> findEmploymentSupportAllowanceById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findEmploymentSupportAllowanceById(id);
 }
 
-public List<BenefitsAndTaxCredits> getEmploymentSupportAllowanceById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getEmploymentSupportAllowanceById(id);
+public List<BenefitsAndTaxCredits> findUniversalCreditById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findUniversalCreditById(id);
+}
+public List<BenefitsAndTaxCredits> findDisabilityAllowanceById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findDisabilityAllowanceById(id);
 }
 
-public List<BenefitsAndTaxCredits> getUniversalCreditById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getUniversalCreditById(id);
-}
-public List<BenefitsAndTaxCredits> getDisabilityAllowanceById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getDisabilityAllowanceById(id);
+public List<BenefitsAndTaxCredits> findAttendanceAllowanceById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findAttendanceAllowanceById(id);
 }
 
-public List<BenefitsAndTaxCredits> getAttendanceAllowanceById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getAttendanceAllowanceById(id);
+public List<BenefitsAndTaxCredits> findCarersAllowanceById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findCarersAllowanceById(id);
 }
 
-public List<BenefitsAndTaxCredits> getCarersAllowanceById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getCarersAllowanceById(id);
+public List<BenefitsAndTaxCredits> findHousingBenefitById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findHousingBenefitById(id);
 }
 
-public List<BenefitsAndTaxCredits> getHousingBenefitById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getHousingBenefitById(id);
+public List<BenefitsAndTaxCredits> findMaternityAllowanceById(UUID id) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findMaternityAllowanceById(id);
 }
 
-public List<BenefitsAndTaxCredits> getMaternityAllowanceById(UUID id) throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getMaternityAllowanceById(id);
-}
-
-public List<BenefitsAndTaxCredits> getFrequency() throws NoSuchElementException{
-    return benefitsAndTaxCreditsRepository.getFrequency();
+public List<BenefitsAndTaxCredits> findFrequency(String frequency) throws NoSuchElementException{
+    return benefitsAndTaxCreditsRepository.findByFrequency(frequency);
 }
 
 public BenefitsAndTaxCredits createBenefitsAndTaxCredits(BenefitsAndTaxCredits benefitsAndTaxCredits)

@@ -4,9 +4,14 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 
-import com.cbfacademy.apiassessment.Algorithm.QuickSortAlgorithm;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
+
+
 import com.cbfacademy.apiassessment.BenefitsandTaxCredits.BenefitsAndTaxCredits;
 import com.cbfacademy.apiassessment.BenefitsandTaxCredits.BenefitsAndTaxCreditsService;
 import com.cbfacademy.apiassessment.Bills.Bills;
@@ -19,36 +24,50 @@ import com.cbfacademy.apiassessment.OtherIncome.OtherIncome;
 import com.cbfacademy.apiassessment.OtherIncome.OtherIncomeService;
 import com.cbfacademy.apiassessment.Pensions.Pensions;
 import com.cbfacademy.apiassessment.Pensions.PensionsService;
+import com.cbfacademy.apiassessment.User.User;
+import com.cbfacademy.apiassessment.User.UserService;
 
+@Component
 
 public class BudgetCalculator {
+
 private final IncomeService incomeService;
 private final BenefitsAndTaxCreditsService benefitsAndTaxCreditsService;
 private final PensionsService pensionsService;
 private final OtherIncomeService otherIncomeService;
 private final BillsService billsService;
 private final LeisureService leisureService;
-private final UUID id;
+private final UserService userService;
+
+
+
+
 
 
 public BudgetCalculator(IncomeService incomeService, BenefitsAndTaxCreditsService benefitsAndTaxCreditsService,
  PensionsService pensionsService, OtherIncomeService otherIncomeService, BillsService billsService,
-LeisureService leisureService, UUID id) {
-        this.id = UUID.randomUUID();
-        this.incomeService = incomeService;
-        this.benefitsAndTaxCreditsService = benefitsAndTaxCreditsService;
-        this.pensionsService = pensionsService;
-        this.otherIncomeService = otherIncomeService;
-        this.billsService = billsService;
-        this.leisureService = leisureService;
+LeisureService leisureService, @Lazy UserService userService) {
+    this.incomeService = incomeService;
+    this.benefitsAndTaxCreditsService = benefitsAndTaxCreditsService;
+    this.pensionsService = pensionsService;
+    this.otherIncomeService = otherIncomeService;
+    this.billsService = billsService;
+    this.leisureService = leisureService;
+    this.userService = userService;
        
     }
 
-    public List<BigDecimal> retrievePercentages() {
+   public Optional<User> findById(UUID userId) throws NoSuchElementException {
+        return userService.findById(userId);
+    }
+
+    public List<BigDecimal> retrievePercentages(UUID id)  {
+   
+
     List<BigDecimal> percentages = new ArrayList<>();
 
-    BigDecimal totalIncome = calculateTotalIncome();
-    BigDecimal totalExpenses = calculateTotalExpenses();
+    BigDecimal totalIncome = calculateTotalIncome(id);
+    BigDecimal totalExpenses = calculateTotalExpenses(id);
    
     BigDecimal tenPercentSavings = calculatePercentageOfSavings(totalIncome, totalExpenses, BigDecimal.valueOf(10));
     BigDecimal fifteenPercentSavings = calculatePercentageOfSavings(totalIncome, totalExpenses, BigDecimal.valueOf(15));
@@ -58,29 +77,40 @@ LeisureService leisureService, UUID id) {
     percentages.add(fifteenPercentSavings);
     percentages.add(recommendedTwentyPercentSavings);
 
-    QuickSortAlgorithm.sortDescending(percentages, 0, percentages.size() - 1);
+    
+    return percentages;
 
-
-        return percentages;
     }
-    public BigDecimal calculateSavingsByUserPercentage(BigDecimal totalIncome, BigDecimal totalExpenses, BigDecimal userPercentage) {
-        return calculatePercentageOfSavings(totalIncome, totalExpenses, userPercentage);
+    
+    public BigDecimal calculateSavingsByUsersPercentage(UUID id,Optional<User> optionalUser, BigDecimal userPercentage) {
+        
+        BigDecimal totalIncome = calculateTotalIncome(id);
+        BigDecimal totalExpenses = calculateTotalExpenses(id);
+        BigDecimal savings = calculateSavings(totalIncome, totalExpenses);
+   
+
+        return savings.multiply(userPercentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+    
     }
 
-    public BigDecimal calculateTotalIncome() {
+    protected BigDecimal calculateTotalIncome(UUID id) {
+ 
         BigDecimal totalIncome = BigDecimal.ZERO;
 
-        totalIncome = totalIncome.add(calculateIncome(incomeService.getAllIncomeById(id)));
-        totalIncome = totalIncome.add(calculateBenefitsAndTaxCredits(benefitsAndTaxCreditsService.getAllBenefitsAndTaxCreditsById(id)));
-        totalIncome = totalIncome.add(calculatePensions(pensionsService.getAllPensionsById(id)));
-        totalIncome = totalIncome.add(calculateOtherIncome(otherIncomeService.getAllOtherIncomeById(id)));
+        totalIncome = totalIncome.add(calculateIncome(incomeService.findIncomeById(id)));
+        totalIncome = totalIncome.add(calculateBenefitsAndTaxCredits(benefitsAndTaxCreditsService.findBenefitsAndTaxCreditsById(id)));
+        totalIncome = totalIncome.add(calculatePensions(pensionsService.findPensionsById(id)));
+        totalIncome = totalIncome.add(calculateOtherIncome(otherIncomeService.findOtherIncomeById(id)));
+        
         return totalIncome;
     }
 
-    public BigDecimal calculateTotalExpenses() {
+    protected BigDecimal calculateTotalExpenses(UUID id) {
         BigDecimal totalExpenses = BigDecimal.ZERO;
-        totalExpenses = totalExpenses.add(calculateBills(billsService.getAllBillsById(id)));
-        totalExpenses = totalExpenses.add(calculateLeisure(leisureService.getAllLeisureById(id)));
+       
+        totalExpenses = totalExpenses.add(calculateBills(billsService.findBillsById(id)));
+        totalExpenses = totalExpenses.add(calculateLeisure(leisureService.findLeisureById(id)));
+        
         return totalExpenses;
     }
 
@@ -213,19 +243,13 @@ LeisureService leisureService, UUID id) {
         return total;
     }
 
-    public BigDecimal calculateSavings(BigDecimal totalIncome, BigDecimal totalExpenses) {
+    private BigDecimal calculateSavings(BigDecimal totalIncome, BigDecimal totalExpenses) {
         return totalIncome.subtract(totalExpenses);
     }
 
-    public BigDecimal calculateSavingsPercentage(BigDecimal totalIncome, BigDecimal totalExpenses) {
-        BigDecimal savings = calculateSavings(totalIncome, totalExpenses);
-        if (totalIncome.compareTo(BigDecimal.ZERO) == 0) {
-            return BigDecimal.ZERO;
-        }
-        return savings.divide(totalIncome, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
-    }
 
-    public BigDecimal calculatePercentageOfSavings(BigDecimal totalIncome, BigDecimal totalExpenses, BigDecimal percentage) {
+
+    protected BigDecimal calculatePercentageOfSavings(BigDecimal totalIncome, BigDecimal totalExpenses, BigDecimal percentage) {
         BigDecimal savings = calculateSavings(totalIncome, totalExpenses);
         if (totalIncome.compareTo(BigDecimal.ZERO) == 0) {
             return BigDecimal.ZERO;
@@ -251,6 +275,8 @@ LeisureService leisureService, UUID id) {
                 "15%% of your savings: %.2f",
                  needs, wants, recommendedTwentyPercentSavings, savings, tenPercentSavings, fifteenPercentSavings);
     }
+
+ 
 }
       
      

@@ -30,53 +30,48 @@ public class BillsController {
     }
 
 @GetMapping("/{id}")
-public List<Bills> getAllBillsById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getAllBillsById(id);
-}
-
-@GetMapping("/{id}")
-    public List<Bills> getBillsById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getBillsById(id);            
+    public List<Bills> getBillsById(@PathVariable UUID id) throws NoSuchElementException{
+        return billsService.findBillsById(id);            
 }
 
 @GetMapping("rent/{id}")
-    public List<Bills> getRentById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getRentById(id);            
+    public List<Bills> getRentById(@PathVariable UUID id) throws NoSuchElementException{
+        return billsService.findRentById(id);            
 }
 
 @GetMapping("mortgage/{id}")
-    public List<Bills> getMortgageById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getMortgageById(id);            
+    public List<Bills> getMortgageById(@PathVariable UUID id) throws NoSuchElementException{
+        return billsService.findMortgageById(id);            
 }
 
 @GetMapping("mortgage-endowment/{id}")
-    public List<Bills> getMortgageEndowmentById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getMortgageEndowmentById(id);            
+    public List<Bills> getMortgageEndowmentById(@PathVariable UUID id) throws NoSuchElementException{
+        return billsService.findMortgageEndowmentById(id);            
 }
 
 @GetMapping("council-tax/{id}")
-    public List<Bills> getCouncilTaxById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getCouncilTaxById(id);            
+    public List<Bills> getCouncilTaxById(@PathVariable UUID id) throws NoSuchElementException{
+        return billsService.findCouncilTaxById(id);            
 }
 
 @GetMapping("insurance/{id}")
-    public List<Bills> getInsuranceById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getInsuranceById(id);            
+    public List<Bills> getInsuranceById(@PathVariable UUID id) throws NoSuchElementException{
+        return billsService.findInsuranceById(id);            
 }
 
 @GetMapping("utilities/{id}")
-    public List<Bills> getUtilitiesById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getUtilitiesById(id);            
+    public List<Bills> getUtilitiesById(@PathVariable UUID id) throws NoSuchElementException{
+        return billsService.findUtilitiesById(id);            
 }
 
 @GetMapping("groceries/{id}")
-    public List<Bills>  getGroceriesById(@PathVariable UUID id, @RequestBody Bills bills) throws NoSuchElementException{
-        return billsService.getGroceriesById(id);            
+    public List<Bills>  getGroceriesById(@PathVariable UUID id) throws NoSuchElementException{
+        return billsService.findGroceriesById(id);            
 }
 
 @GetMapping("frequency/{id}")
-public List<Bills> getFrequency() throws NoSuchElementException{
-        return billsService.getFrequency();
+public List<Bills> getFrequency(String frequency) throws NoSuchElementException{
+        return billsService.findByFrequency(frequency);
 }
 
 @PostMapping

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@RequestMapping("/benefitsAnTaxCredits")
+@RequestMapping("/benefitsAndTaxCredits")
 public class BenefitsAndTaxCreditsController {
 BenefitsAndTaxCreditsService benefitsAndTaxCreditsService;
 
@@ -26,75 +26,70 @@ public BenefitsAndTaxCreditsController(BenefitsAndTaxCreditsService benefitsAndT
 }
 
 @GetMapping("/{id}")
-public List<BenefitsAndTaxCredits> getAllBenefitsAndTaxCreditsById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits ) throws NoSuchElementException{
-        return benefitsAndTaxCreditsService.getAllBenefitsAndTaxCreditsById(id);
-}
-
-@GetMapping("/{id}")
-    public List<BenefitsAndTaxCredits> getBenefitsAndTaxCreditsById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getBenefitsAndTaxCreditsById(id);
+    public List<BenefitsAndTaxCredits> findBenefitsAndTaxCreditsById(@PathVariable UUID id )throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findBenefitsAndTaxCreditsById(id);
     }
 //starts her
     @GetMapping("jobseekers-allowance/{id}")
-    public List<BenefitsAndTaxCredits> getJobSeekersAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getJobSeekersAllowanceById(id);
+    public List<BenefitsAndTaxCredits> findJobSeekersAllowanceById(@PathVariable UUID id )throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findJobSeekersAllowanceById(id);
     }
 
     @GetMapping("working-tax-credit/{id}")
-    public List<BenefitsAndTaxCredits> getWorkingTaxCreditById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getWorkingTaxCreditById(id);
+    public List<BenefitsAndTaxCredits> findWorkingTaxCreditById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findWorkingTaxCreditById(id);
     }
 
     @GetMapping("child-tax-credit/{id}")
-    public List<BenefitsAndTaxCredits> getChildTaxCreditById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getChildTaxCreditById(id);
+    public List<BenefitsAndTaxCredits> findChildTaxCreditById(@PathVariable UUID id )throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findChildTaxCreditById(id);
     }
     
 
     @GetMapping("child-benefit/{id}")
-    public List<BenefitsAndTaxCredits> getChildBenefitById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getChildBenefitById(id);
+    public List<BenefitsAndTaxCredits> findChildBenefitById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findChildBenefitById(id);
     }
 
     @GetMapping("emplyomenet-support-allowance/{id}")
-    public List<BenefitsAndTaxCredits> getEmploymentSupportAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getEmploymentSupportAllowanceById(id);
+    public List<BenefitsAndTaxCredits> findEmploymentSupportAllowanceById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findEmploymentSupportAllowanceById(id);
     }
 
     @GetMapping("universal-credit/{id}")
-    public List<BenefitsAndTaxCredits> getUniversalCreditById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getUniversalCreditById(id);
+    public List<BenefitsAndTaxCredits> findUniversalCreditById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findUniversalCreditById(id);
     }
 
     @GetMapping("disability-allowance/{id}")
-    public List<BenefitsAndTaxCredits> getDisabilityAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getDisabilityAllowanceById(id);
+    public List<BenefitsAndTaxCredits> findDisabilityAllowanceById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findDisabilityAllowanceById(id);
     }
 
     @GetMapping("attendance-allowance/{id}")
-    public List<BenefitsAndTaxCredits> getAttendanceAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getAttendanceAllowanceById(id);
+    public List<BenefitsAndTaxCredits> findAttendanceAllowanceById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findAttendanceAllowanceById(id);
     }
 
 
     @GetMapping("carers-allowance/{id}")
-    public List<BenefitsAndTaxCredits> getCarersAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getCarersAllowanceById(id);
+    public List<BenefitsAndTaxCredits> findCarersAllowanceById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findCarersAllowanceById(id);
     }
 
     @GetMapping("housing-benefit/{id}")
-    public List<BenefitsAndTaxCredits> getHousingBenefitById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getHousingBenefitById(id);
+    public List<BenefitsAndTaxCredits> findHousingBenefitById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findHousingBenefitById(id);
     }
 
 
     @GetMapping("maternity-allowance/{id}")
-    public List<BenefitsAndTaxCredits> getMaternityAllowanceById(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits )throws NoSuchElementException {
-        return benefitsAndTaxCreditsService.getMaternityAllowanceById(id);
+    public List<BenefitsAndTaxCredits> findMaternityAllowanceById(@PathVariable UUID id)throws NoSuchElementException {
+        return benefitsAndTaxCreditsService.findMaternityAllowanceById(id);
     }
 @GetMapping("frequency/{id}")
-public List<BenefitsAndTaxCredits> getFrequency(@PathVariable UUID id, @RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits) throws NoSuchElementException{
-        return benefitsAndTaxCreditsService.getFrequency();
+public List<BenefitsAndTaxCredits> findFrequency(@PathVariable UUID id, String frequency) throws NoSuchElementException{
+        return benefitsAndTaxCreditsService.findFrequency(frequency);
 }
                
  @PostMapping

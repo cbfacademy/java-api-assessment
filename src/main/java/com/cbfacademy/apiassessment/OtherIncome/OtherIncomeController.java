@@ -26,29 +26,24 @@ public OtherIncomeController(OtherIncomeService otherIncomeService) {
     this.otherIncomeService = otherIncomeService;
 }
 
-@GetMapping("/{id}")
-public List<OtherIncome> getAllOtherIncomeById(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException{
-        return otherIncomeService.getAllOtherIncomeById(id);
-}
-
 @GetMapping("/other-income/{id}")
-    public List<OtherIncome> getOtherIncomeById(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException {
-        return otherIncomeService.getOtherIncomeById(id);            
+    public List<OtherIncome> getOtherIncomeById(@PathVariable UUID id) throws NoSuchElementException {
+        return otherIncomeService.findOtherIncomeById(id);            
 }
 
 @GetMapping("/rental-income/{id}")
-    public List<OtherIncome> getRentalIncomeById(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException {
-        return otherIncomeService.getRentalIncomeById(id);            
+    public List<OtherIncome> getRentalIncomeById(@PathVariable UUID id) throws NoSuchElementException {
+        return otherIncomeService.findRentalIncomeById(id);            
 }
 
 @GetMapping("investment-income/{id}")
-    public List<OtherIncome> getInvestmentIncomeById(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException {
-        return otherIncomeService.getInvestmentIncomeById(id);            
+    public List<OtherIncome> getInvestmentIncomeById(@PathVariable UUID id) throws NoSuchElementException {
+        return otherIncomeService.findInvestmentIncomeById(id);            
 }
 
 @GetMapping("frequency/{id}")
-public List<OtherIncome> getFrequency(@PathVariable UUID id, @RequestBody OtherIncome otherIncome) throws NoSuchElementException{
-        return otherIncomeService.getFrequency();
+public List<OtherIncome> getFrequency(@PathVariable UUID id, String frequency) throws NoSuchElementException{
+        return otherIncomeService.findByFrequency(frequency);
 }
 
  @PostMapping

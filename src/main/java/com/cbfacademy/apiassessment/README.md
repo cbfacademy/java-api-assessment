@@ -6,7 +6,7 @@ I have created a budget planner API that intends to calculate the user's savings
 
 ## Setup, installation and running for my API
 To setup my API follow these instructions below:
-1. Clone the repository: ‘git clone https://github.com/miski19/budgetingplannerAPI.git
+1. Clone the repository: git clone https://github.com/miski19/budgetingplannerAPI.git
 
 1. Navigate to the project directory in the terminal using GitBash: 
 ```sh
@@ -32,7 +32,7 @@ mvnw spring-boot:run
 ### **How my API works:**
 You can test my API after you've cloned the respository, installed the dependancies and ran Spring Boot. These are instructions on how to test my api.
 1. You have to open up Postman (or another REST client) and request body in JSON format for the `GET`,`PUT` and `POST` requests. 
-My URL is: http://localhost:8080/api/budgetplannerAPI/calculate-savings
+My URL is: http://localhost:8080/api/budgetplanner/
 
 Insert this JSON as the body for Postman: 
 ```JSON

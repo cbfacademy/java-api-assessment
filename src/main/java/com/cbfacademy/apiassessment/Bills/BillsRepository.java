@@ -4,24 +4,24 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.repository.ListCrudRepository;
-
+import org.springframework.stereotype.Repository;
 
 import com.cbfacademy.apiassessment.User.User;
 
+@Repository
 public interface BillsRepository extends ListCrudRepository<Bills, UUID> {
 
-List<Bills> searchByUser(String name);
-List<User> searchById(UUID id);
-List<Bills> getAllBillsById(UUID id);
-List<Bills> getBillsById(UUID id);
-List<Bills> getRentById(UUID id);
-List<Bills> getMortgageById(UUID id);
-List<Bills> getMortgageEndowmentById(UUID id);
-List<Bills> getCouncilTaxById(UUID id);
-List<Bills> getInsuranceById(UUID id);
-List<Bills> getUtilitiesById(UUID id);
-List<Bills> getGroceriesById(UUID id);
-List<Bills> getFrequency();
+
+List<User> searchById(UUID id);;
+List<Bills> findBillsById(UUID id);
+List<Bills> findRentById(UUID id);
+List<Bills> findMortgageById(UUID id);
+List<Bills> findMortgageEndowmentById(UUID id);
+List<Bills> findCouncilTaxById(UUID id);
+List<Bills> findInsuranceById(UUID id);
+List<Bills> findUtilitiesById(UUID id);
+List<Bills> findGroceriesById(UUID id);
+List<Bills> findByFrequency(String frequency);
 
 
 }

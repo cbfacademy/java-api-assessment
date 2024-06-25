@@ -60,22 +60,23 @@ private List<Leisure> leisure = new ArrayList<>();
 
 //Constructors: default and parameterized
 public User() {
-    this(null, null, null, Instant.now(), BigDecimal.ZERO);
+    this(null, null, null, Instant.now());
 }
   
 
-public User(String name, UUID id, String email, Instant dateTime, BigDecimal userPercentage) {
+public User(String name, UUID id, String email, Instant dateTime) {
     this.id = UUID.randomUUID();
     this.name = name;
     this.email = email;
     this.dateTime = dateTime;
-    this.userPercentage = userPercentage;
+    
 }
 
 // Getters and setters
-public UUID getId() {
+public UUID getId(UUID id) {
     return id;
 }
+
 public String getName(){
     return name;
 }
@@ -110,49 +111,41 @@ public List<Income> getIncome() {
     return income;
 }
 
-public List<BenefitsAndTaxCredits> getBenefitsaAndTaxCredits() {
-    return benefitsAndTaxCredits;
-}
-
-public List<Pensions> getPensions() {
-    return pensions;
-}
-
-public List<OtherIncome> getOtherIncome() {
-    return otherIncome;
-}
-
-public List<Bills> getBills() {
-    return bills;
-}
-
-public List<Leisure> getLeisure() {
-    return leisure;
-}
-//Setters for entities
 public void setIncome(List<Income> income) {
     this.income = income;
+}
+public List<BenefitsAndTaxCredits> getBenefitsaAndTaxCredits() {
+    return benefitsAndTaxCredits;
 }
 
 public void setBenefitsAndTaxCredits(List<BenefitsAndTaxCredits> benefitsAndTaxCredits) {
     this.benefitsAndTaxCredits = benefitsAndTaxCredits;
 }
 
-
+public List<Pensions> getPensions() {
+    return pensions;
+}
 public void setPension(List<Pensions> pensions) {
     this.pensions = pensions;
 }
 
-
+public List<OtherIncome> getOtherIncome() {
+    return otherIncome;
+}
 public void setOtherIncome(List<OtherIncome> otherIncome) {
     this.otherIncome = otherIncome;
 }
 
-
-public void setBill(List<Bills> bills) {
-    this.bills = bills;
+public List<Bills> getBills() {
+    return bills;
 }
 
+public void setBills(List<Bills> bills) {
+    this.bills = bills;
+}
+public List<Leisure> getLeisure() {
+    return leisure;
+}
 
 public void setLeisure(List<Leisure> leisure) {
     this.leisure = leisure;

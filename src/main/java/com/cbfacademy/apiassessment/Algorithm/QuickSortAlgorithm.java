@@ -1,14 +1,26 @@
 package com.cbfacademy.apiassessment.Algorithm;
 
+
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
+
+import org.springframework.stereotype.Component;
 
 import com.cbfacademy.apiassessment.Calculator.BudgetCalculator;
 
+@Component
 public class QuickSortAlgorithm {
    
-  public static void sortBudgetData(BudgetCalculator budgetCalculator) {
-        List<BigDecimal> percentages = budgetCalculator.retrievePercentages();
+    private static BudgetCalculator budgetCalculator;
+
+   
+   public void setBudgetCalculator(BudgetCalculator budgetCalculator) {
+        QuickSortAlgorithm.budgetCalculator = budgetCalculator;
+    }
+
+  public static void sortBudgetData(UUID id) {
+        List<BigDecimal> percentages = budgetCalculator.retrievePercentages(id);
         sortDescending(percentages, 0, percentages.size() - 1);
     }
 

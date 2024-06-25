@@ -30,40 +30,35 @@ public LeisureController (LeisureService leisureService) {
 }
 
 @GetMapping("/{id}")
-public List<Leisure> getAllLeisureById(@PathVariable UUID id, @RequestBody Leisure leisure) throws NoSuchElementException{
-        return leisureService.getAllLeisureById(id);
-}
-
-@GetMapping("/{id}")
-    public List<Leisure> getLeisureById(@PathVariable UUID id, @RequestBody Leisure leisure)throws NoSuchElementException  {
-        return leisureService.getLeisureById(id);
+    public List<Leisure> getLeisureById(@PathVariable UUID id)throws NoSuchElementException  {
+        return leisureService.findLeisureById(id);
     }
 
 //start
-@GetMapping("/{id}")
-public List<Leisure> getEntertainmentById(@PathVariable UUID id, @RequestBody Leisure leisure)throws NoSuchElementException  {
-        return leisureService.getEntertainmentById(id);
+@GetMapping("entertainment/{id}")
+public List<Leisure> getEntertainmentById(@PathVariable UUID id)throws NoSuchElementException  {
+        return leisureService.findEntertainmentById(id);
     }
 
-@GetMapping("/{id}")
-public List<Leisure> getDiningOutById(@PathVariable UUID id, @RequestBody Leisure leisure)throws NoSuchElementException  {
-        return leisureService.getDiningOutById(id);
+@GetMapping("dining-out/{id}")
+public List<Leisure> getDiningOutById(@PathVariable UUID id)throws NoSuchElementException  {
+        return leisureService.findDiningOutById(id);
     }
 
-@GetMapping("/{id}")
+@GetMapping("travel/{id}")
 public List<Leisure> getTravelById(@PathVariable UUID id, @RequestBody Leisure leisure)throws NoSuchElementException  {
-        return leisureService.getTravelById(id);
+        return leisureService.findTravelById(id);
     }
 
-@GetMapping("/{id}")
+@GetMapping("sports-membership/{id}")
 public List<Leisure> getSportsMembershipById(@PathVariable UUID id, @RequestBody Leisure leisure)throws NoSuchElementException  {
-        return leisureService.getSportsMembershipById(id);
+        return leisureService.findSportsMembershipById(id);
     }
 
 
-@GetMapping
-public List<Leisure> getFrequency() throws NoSuchElementException{
-        return leisureService.getFrequency();
+@GetMapping("frequency/{id}")
+public List<Leisure> getFrequency(String frequency) throws NoSuchElementException{
+        return leisureService.findByFrequency(frequency);
 }
                 
  @PostMapping

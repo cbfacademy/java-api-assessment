@@ -1,41 +1,49 @@
 package com.cbfacademy.apiassessment.User;
 
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
+
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 
 @Service
+@Lazy
 public class UserService {
-public UserRepository userRepository;
 
+public final UserRepository userRepository;
 
 
 public UserService(UserRepository userRepository) {
     this.userRepository = userRepository;
 }
 
-public List<User> getAllUsers() {
-    return userRepository.findAll();
+// public List<User> findAllById(UUID id) {
+//     return userRepository.findAllById(id);
+// }
+
+public Optional<User> findById(UUID id) throws NoSuchElementException {
+    return userRepository.findById(id);
+           
 }
-
-public User getUser(UUID id) throws NoSuchElementException{
-     return userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Id Not Found"));
-    }
-
- public List<User> getUserPercentage(BigDecimal userPercentage) {
-    return userRepository.findByUserPercentage(userPercentage);
-    } 
+ public BigDecimal getUserPercentage(UUID id) throws NoSuchElementException {
+    return userRepository.findById(id)
+    .map(User::getUserPercentage)
+    .orElseThrow(() -> new NoSuchElementException("User not found with id: " + id));
+}
+    
 User createUser(User user) throws IllegalArgumentException, OptimisticLockingFailureException {
         return userRepository.save(user);
         
     }
+
  User updateUser(UUID id, User updatedUser) throws NoSuchElementException, IllegalArgumentException{
-        User user = userRepository.findById(id).orElseThrow();
+        User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User not found"));
       
         
         user.setName(updatedUser.getName());
@@ -46,7 +54,7 @@ User createUser(User user) throws IllegalArgumentException, OptimisticLockingFai
         user.setBenefitsAndTaxCredits(updatedUser.getBenefitsaAndTaxCredits()!= null ? user.getBenefitsaAndTaxCredits(): new ArrayList<>());
         user.setPension(updatedUser.getPensions()!= null ? user.getPensions(): new ArrayList<>());
         user.setOtherIncome(updatedUser.getOtherIncome()!= null ? user.getOtherIncome(): new ArrayList<>());
-        user.setBill(updatedUser.getBills()!= null ? user.getBills(): new ArrayList<>());
+        user.setBills(updatedUser.getBills()!= null ? user.getBills(): new ArrayList<>());
         user.setLeisure(updatedUser.getLeisure()!= null ? user.getLeisure(): new ArrayList<>());
     
     return userRepository.save(updatedUser);

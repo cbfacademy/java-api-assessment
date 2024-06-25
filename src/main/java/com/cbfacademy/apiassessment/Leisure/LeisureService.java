@@ -19,32 +19,28 @@ public LeisureService(LeisureRepository leisureRepository){
         this.leisureRepository = leisureRepository;
 }
 
-public List<Leisure> getAllLeisureById(UUID id) {
-    return leisureRepository.getAllLeisureById(id);
+public List<Leisure> findLeisureById(UUID id) {
+    return leisureRepository.findLeisureById(id);
 }
 
-public List<Leisure> getLeisureById(UUID id) {
-    return leisureRepository.getLeisureById(id);
+public List<Leisure> findEntertainmentById(UUID id) {
+    return leisureRepository.findEntertainmentById(id);
 }
 
-public List<Leisure> getEntertainmentById(UUID id) {
-    return leisureRepository.getEntertainmentById(id);
+public List<Leisure> findDiningOutById(UUID id) {
+    return leisureRepository.findDiningOutById(id);
 }
 
-public List<Leisure> getDiningOutById(UUID id) {
-    return leisureRepository.getDiningOutById(id);
+public List<Leisure> findTravelById(UUID id) {
+    return leisureRepository.findTravelById(id);
 }
 
-public List<Leisure> getTravelById(UUID id) {
-    return leisureRepository.getTravelById(id);
+public List<Leisure> findSportsMembershipById(UUID id) {
+    return leisureRepository.findSportsMembershipById(id);
 }
 
-public List<Leisure> getSportsMembershipById(UUID id) {
-    return leisureRepository.getSportsMembershipById(id);
-}
-
-public List<Leisure> getFrequency() {
-    return leisureRepository.getFrequency();
+public List<Leisure> findByFrequency(String frequency) {
+    return leisureRepository.findByFrequency(frequency);
 }
 
 public Leisure createLeisure(Leisure leisure)

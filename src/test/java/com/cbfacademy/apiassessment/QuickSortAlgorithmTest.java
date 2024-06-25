@@ -18,6 +18,7 @@ import com.cbfacademy.apiassessment.OtherIncome.OtherIncomeService;
 import com.cbfacademy.apiassessment.Pensions.Pensions;
 import com.cbfacademy.apiassessment.Pensions.PensionsService;
 
+
 import java.math.BigDecimal;
 
 import java.util.Arrays;
@@ -31,14 +32,16 @@ import static org.mockito.Mockito.when;
 
 public class QuickSortAlgorithmTest{
 
+   
+   
     private IncomeService incomeService;
     private BenefitsAndTaxCreditsService benefitsAndTaxCreditsService;
     private PensionsService pensionsService;
     private OtherIncomeService otherIncomeService;
     private BillsService billsService;
     private LeisureService leisureService;
-    private UUID id;
     private BudgetCalculator budgetCalculator;
+ 
 
  @BeforeEach
     void setUp() {
@@ -48,8 +51,7 @@ public class QuickSortAlgorithmTest{
         otherIncomeService = mock(OtherIncomeService.class);
         billsService = mock(BillsService.class);
         leisureService = mock(LeisureService.class);
-        id = UUID.randomUUID();
-        budgetCalculator = new BudgetCalculator(incomeService, benefitsAndTaxCreditsService, pensionsService, otherIncomeService, billsService, leisureService, id);
+        budgetCalculator = new BudgetCalculator(incomeService, benefitsAndTaxCreditsService, pensionsService, otherIncomeService, billsService, leisureService, null);
     }
 
     @Test
@@ -63,14 +65,15 @@ public class QuickSortAlgorithmTest{
         UUID id = UUID.randomUUID();
 
         
-        when(incomeService.getAllIncomeById(id)).thenReturn(createMockIncomeList());
-        when(benefitsAndTaxCreditsService.getAllBenefitsAndTaxCreditsById(id)).thenReturn(createMockBenefitsAndTaxCreditsList());
-        when(pensionsService.getAllPensionsById(id)).thenReturn(createMockPensionsList());
-        when(otherIncomeService.getAllOtherIncomeById(id)).thenReturn(createMockOtherIncomeList());
-        when(billsService.getAllBillsById(id)).thenReturn(createMockBillsList());
-        when(leisureService.getAllLeisureById(id)).thenReturn(createMockLeisureList());
+        when(incomeService.findIncomeById(id)).thenReturn(createMockIncomeList());
+        when(benefitsAndTaxCreditsService.findBenefitsAndTaxCreditsById(id)).thenReturn(createMockBenefitsAndTaxCreditsList());
+        when(pensionsService.findPensionsById(id)).thenReturn(createMockPensionsList());
+        when(otherIncomeService.findOtherIncomeById(id)).thenReturn(createMockOtherIncomeList());
+        when(billsService.findBillsById(id)).thenReturn(createMockBillsList());
+        when(leisureService.findLeisureById(id)).thenReturn(createMockLeisureList());
+    
 
-        List<BigDecimal> percentages = budgetCalculator.retrievePercentages();
+        List<BigDecimal> percentages = budgetCalculator.retrievePercentages(id);
     
         List<BigDecimal> expected = List.of(
                 new BigDecimal("20.00"),

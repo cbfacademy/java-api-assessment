@@ -17,26 +17,22 @@ public PensionsService(PensionsRepository pensionsRepository){
         this.pensionsRepository = pensionsRepository;
 }
 
-public List<Pensions> getAllPensionsById(UUID id) {
-    return pensionsRepository.getAllPensionsById(id);
-}
-
-public List<Pensions> getPensionsById(UUID id) {
-    return pensionsRepository.getPensionsById(id);
+public List<Pensions> findPensionsById(UUID id) {
+    return pensionsRepository.findPensionsById(id);
 }
 
 
-public List<Pensions> getStatePensionById(UUID id) {
-    return pensionsRepository.getStatePensionById(id);
+public List<Pensions> findStatePensionById(UUID id) {
+    return pensionsRepository.findStatePensionById(id);
 }
 
 
-public List<Pensions> getPrivatePensionById(UUID id) {
-    return pensionsRepository.getPensionsById(id);
+public List<Pensions> findPrivatePensionById(UUID id) {
+    return pensionsRepository.findPensionsById(id);
 }
 
-public List<Pensions> getFrequency() {
-    return pensionsRepository.getFrequency();
+public List<Pensions> findByFrequency(String frequency) {
+    return pensionsRepository.findByFrequency(frequency);
 }
 
 public Pensions createPensions(Pensions pensions)

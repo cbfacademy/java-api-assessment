@@ -20,24 +20,20 @@ public OtherIncomeService(OtherIncomeRepository otherIncomeRepository){
         this.otherIncomeRepository = otherIncomeRepository;
 }
 
-public List<OtherIncome> getAllOtherIncomeById(UUID id) {
-    return otherIncomeRepository.getAllOtherIncomeById(id);
+public List<OtherIncome> findOtherIncomeById(UUID id) {
+    return otherIncomeRepository.findOtherIncomeById(id);
 }
 
-public List<OtherIncome> getOtherIncomeById(UUID id) {
-    return otherIncomeRepository.getOtherIncomeById(id);
+public List<OtherIncome> findRentalIncomeById(UUID id) {
+    return otherIncomeRepository.findOtherIncomeById(id);
 }
 
-public List<OtherIncome> getRentalIncomeById(UUID id) {
-    return otherIncomeRepository.getOtherIncomeById(id);
+public List<OtherIncome> findInvestmentIncomeById(UUID id) {
+    return otherIncomeRepository.findOtherIncomeById(id);
 }
 
-public List<OtherIncome> getInvestmentIncomeById(UUID id) {
-    return otherIncomeRepository.getOtherIncomeById(id);
-}
-
-public List<OtherIncome> getFrequency() {
-    return otherIncomeRepository.getFrequency();
+public List<OtherIncome> findByFrequency(String frequency) {
+    return otherIncomeRepository.findByFrequency(frequency);
 }
 
 public OtherIncome createOtherIncome(OtherIncome otherIncome)
