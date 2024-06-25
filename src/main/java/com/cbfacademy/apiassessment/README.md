@@ -32,7 +32,8 @@ mvnw spring-boot:run
 ### **How my API works:**
 You can test my API after you've cloned the respository, installed the dependancies and ran Spring Boot. These are instructions on how to test my api.
 1. You have to open up Postman (or another REST client) and request body in JSON format for the `GET`,`PUT` and `POST` requests. 
-My URL is: http://localhost:8080/api/budgetplanner/
+My URL is: localhost:8080/api/budgetplanner
+
 
 Insert this JSON as the body for Postman: 
 ```JSON
