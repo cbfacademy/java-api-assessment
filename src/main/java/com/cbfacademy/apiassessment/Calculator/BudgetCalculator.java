@@ -57,8 +57,8 @@ LeisureService leisureService, @Lazy UserService userService) {
        
     }
 
-   public Optional<User> findById(UUID userId) throws NoSuchElementException {
-        return userService.findById(userId);
+   public Optional<User> getById(UUID userId) throws NoSuchElementException {
+        return userService.getById(userId);
     }
 
     public List<BigDecimal> retrievePercentages(UUID id)  {

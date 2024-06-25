@@ -2,7 +2,7 @@ package com.cbfacademy.apiassessment.User;
 
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -23,8 +23,8 @@ public UserService(UserRepository userRepository) {
     this.userRepository = userRepository;
 }
 
-public Optional<User> findById(UUID id) throws NoSuchElementException {
-    return userRepository.findById(id);
+public Optional<User> getById(UUID id) throws NoSuchElementException {
+    return userRepository.getById(id);
            
 }
  public BigDecimal getUserPercentage(UUID id) throws NoSuchElementException {
@@ -45,13 +45,6 @@ User createUser(User user) throws IllegalArgumentException, OptimisticLockingFai
         user.setName(updatedUser.getName());
         user.setEmail(updatedUser.getEmail());
         user.setUserPercentage(updatedUser.getUserPercentage());
-
-        user.setIncome(updatedUser.getIncome() != null ? user.getIncome(): new ArrayList<>());
-        user.setBenefitsAndTaxCredits(updatedUser.getBenefitsaAndTaxCredits()!= null ? user.getBenefitsaAndTaxCredits(): new ArrayList<>());
-        user.setPension(updatedUser.getPensions()!= null ? user.getPensions(): new ArrayList<>());
-        user.setOtherIncome(updatedUser.getOtherIncome()!= null ? user.getOtherIncome(): new ArrayList<>());
-        user.setBills(updatedUser.getBills()!= null ? user.getBills(): new ArrayList<>());
-        user.setLeisure(updatedUser.getLeisure()!= null ? user.getLeisure(): new ArrayList<>());
     
     return userRepository.save(updatedUser);
 }

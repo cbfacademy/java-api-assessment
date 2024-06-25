@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends ListCrudRepository<User, UUID> {
 
      
-        Optional<User> findById (UUID id);
+        Optional<User> getById (UUID id);
         @Query("SELECT u.userPercentage FROM User u WHERE u.id = :id")
         Optional<BigDecimal> findUserPercentageById(@Param("id") UUID id);
      

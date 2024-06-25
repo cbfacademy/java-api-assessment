@@ -28,12 +28,12 @@ public UserController(UserService userService){
 }
 
 @GetMapping("/{id}")
-public Optional<User> getId(@PathVariable UUID id)throws NoSuchElementException {
-    return userService.findById(id);
+public Optional<User> findById(@PathVariable UUID id)throws NoSuchElementException {
+    return userService.getById(id);
 }
 
 
-@GetMapping("/percentage/{userPercentage}")
+@GetMapping("get-percentage/{id}")
 public BigDecimal getUserPercentage(@PathVariable UUID id) {
     return userService.getUserPercentage(id);
 }

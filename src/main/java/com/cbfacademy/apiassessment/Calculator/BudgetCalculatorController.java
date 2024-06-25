@@ -29,9 +29,9 @@ public class BudgetCalculatorController {
         this.userService = userService;
     }
 
-@GetMapping("/{id}")
+@GetMapping("user-percentage/{id}")
 public BigDecimal calculateSavingsByUsersPercentage(@PathVariable UUID id) throws NoSuchElementException {
-    Optional<User> optionalUser = userService.findById(id);
+    Optional<User> optionalUser = userService.getById(id);
     BigDecimal userPercentage = optionalUser.map(User::getUserPercentage)
                                             .orElseThrow(() -> new NoSuchElementException("User not found or percentage not available"));
     return budgetCalculator.calculateSavingsByUsersPercentage(id, optionalUser, userPercentage);

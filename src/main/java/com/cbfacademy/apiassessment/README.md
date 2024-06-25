@@ -32,83 +32,92 @@ mvnw spring-boot:run
 ### **How my API works:**
 You can test my API after you've cloned the respository, installed the dependancies and ran Spring Boot. These are instructions on how to test my api.
 1. You have to open up Postman (or another REST client) and request body in JSON format for the `GET`,`PUT` and `POST` requests. 
-My URL is: http://ocalhost:8080/api/budgetplanner
+My URL is: http://localhost:8080/api/budgetplanner                                              
+To `POST` it's http://localhost:8080/api/budgetplanner/calculate-savings 
 
+### Example
+Insert this JSON as the body on Postman for each endpoint : 
 
-Insert this JSON as the body for Postman: 
-```JSON
+User:
+```json
 {
-
-    "user": {
-    "id": "f8c3de3d-1fea-4d7c-a8b0-29f63c4c3454",
     "name": "Miski Hassan",
     "email": "miski12@abc.com",
     "date": "2024-04-23T18:25:43.511Z",
     "userPercentage": 20
-    },
+}
+```
+Income: 
 
-   "income": [
-        {
-            "salaryAfterTaxesById": 10000.00,
-            "selfEmploymentIncomeById": 400.00,
-            "statutorySickPayById": 100.00,
-            "statutoryMaternityPayById": 100.00,
-            "frequency": "monthly"
-        }
-    ],
-    "benefitsAndTaxCredits": [
-        {
-            "jobSeekersAllowanceById": 0.00,
-            "workingTaxCreditById": 50.00,
-            "childTaxCreditById": 30.00,
-            "childBenefitById": 20.00,
-            "employmentSupportAllowanceById": 40.00,
-            "universalCreditById": 0.00,
-            "disabilityAllowanceById": 0.00,
-            "attendanceAllowanceById": 80.00,
-            "carersAllowanceById": 90.00,
-            "housingBenefitById": 110.00,
-            "maternityAllowanceById": 130.00,
-            "frequency": "monthly"
-        }
-    ],
-    "otherIncome": [
-        {
-            "rentalIncomeById": 300.00,
-            "investmentIncomeById": 200.00,
-            "frequency": "monthly"
-        }
-    ],
-    "pensions": [
-        {
-            "statePensionById": 200.00,
-            "privatePensionById": 100.00,
-            "frequency": "monthly"
-        }
-    ],
-    "bills": [
-        {
-            "rentById": 1400.00,
-            "mortgageById": 500.00,
-            "mortgageEndowmentById": 600.00,
-            "councilTaxById": 100.00,
-            "insuranceById": 200.00,
-            "utilitiesById": 800.00,
-            "groceriesById": 400.00,
-            "frequency": "monthly"
-        }
-    ],
-    "leisure": [
-        {
-            "entertainmentById": 150.00,
-            "diningOutById": 100.00,
-            "travelById": 1500.00,
-            "sportsMembershipById": 70.00,
-            "frequency": "monthly"
-        }
-    ]
-   
-    }
+```json
+ {
+    "salaryAfterTaxesById": 10000.00,
+    "selfEmploymentIncomeById": 400.00,
+    "statutorySickPayById": 100.00,
+    "statutoryMaternityPayById": 100.00,
+    "frequency": "monthly"
+}
+```
+Benefits and Tax Credits
+```JSON 
+ {
+    "jobSeekersAllowanceById": 0.00,
+    "workingTaxCreditById": 50.00,
+    "childTaxCreditById": 30.00,
+    "childBenefitById": 20.00,
+    "employmentSupportAllowanceById": 40.00,
+    "universalCreditById": 0.00,
+    "disabilityAllowanceById": 0.00,
+    "attendanceAllowanceById": 80.00,
+    "carersAllowanceById": 90.00,
+    "housingBenefitById": 110.00,
+    "maternityAllowanceById": 130.00,
+    "frequency": "monthly"
+}
+ ```
+ Other Income:
+```JSON 
+{
+
+   "rentalIncomeById": 300.00,
+   "investmentIncomeById": 200.00,
+   "frequency": "monthly"
+}
+```  
+Pensions:
+```JSON 
+{
+
+ "statePensionById": 200.00,
+ "privatePensionById": 100.00,
+  "frequency": "monthly"
+}
+ ```   
+
+Bills:
+```JSON 
+{
+   "rentById": 1400.00,
+   "mortgageById": 500.00,
+   "mortgageEndowmentById": 600.00,
+   "councilTaxById": 100.00,
+   "insuranceById": 200.00,
+   "utilitiesById": 800.00,
+   "groceriesById": 400.00,
+   "frequency": "monthly" 
+}
+ ```
+
+Leisure:
+```JSON 
+{
+  "entertainmentById": 150.00,
+  "diningOutById": 100.00,
+  "travelById": 1500.00,
+  "sportsMembershipById": 70.00,
+  "frequency": "monthly"  
+}
+
 ```
    
 
