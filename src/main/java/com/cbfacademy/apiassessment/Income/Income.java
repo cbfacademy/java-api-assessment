@@ -19,6 +19,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "income")
 public class Income {
+    
 @Id
 @GeneratedValue(strategy = GenerationType.UUID)
 @Column(name = "income_id")
