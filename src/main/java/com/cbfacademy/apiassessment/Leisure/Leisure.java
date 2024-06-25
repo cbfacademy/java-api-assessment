@@ -20,7 +20,7 @@ public class Leisure {
 @Id
 @GeneratedValue(strategy = GenerationType.UUID)
 @Column(name = "leisure_id")
-private final UUID id;
+private UUID id;
 
 @ManyToOne
 @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -38,7 +38,6 @@ this(null, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, "
 }
 
 public Leisure(User user, BigDecimal entertainmentById, BigDecimal diningOutById, BigDecimal travelById, BigDecimal sportsMembershipById, String frequency) {
-    this.id= UUID.randomUUID();
     this.user= user;
     this.entertainmentById = entertainmentById;
     this.diningOutById = diningOutById;

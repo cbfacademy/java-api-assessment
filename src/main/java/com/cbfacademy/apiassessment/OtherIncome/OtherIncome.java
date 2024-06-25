@@ -20,7 +20,7 @@ public class OtherIncome {
 @Id
 @GeneratedValue(strategy = GenerationType.UUID)
 @Column(name = "otherincome_id")
-private final UUID id;
+private UUID id;
 
 @ManyToOne
 @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -37,7 +37,6 @@ this(null, BigDecimal.ZERO, BigDecimal.ZERO, "monthly");
 
 
 public OtherIncome(User user, BigDecimal rentalIncomeById, BigDecimal investmentIncomeById, String frequency) {
-    this.id = UUID.randomUUID();
     this.user = user;
     this.rentalIncomeById = rentalIncomeById;
     this.investmentIncomeById = investmentIncomeById;

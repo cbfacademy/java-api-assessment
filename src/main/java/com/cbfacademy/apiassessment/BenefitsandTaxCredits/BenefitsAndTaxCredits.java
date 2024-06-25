@@ -20,7 +20,7 @@ public class BenefitsAndTaxCredits {
 @Id
 @GeneratedValue(strategy = GenerationType.UUID)
 @Column(name = "benefitsAndTaxCredits")
-private final UUID id;
+private UUID id;
 
 @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -54,7 +54,6 @@ this(null, BigDecimal.ZERO, BigDecimal.ZERO,BigDecimal.ZERO, BigDecimal.ZERO, Bi
 public BenefitsAndTaxCredits(User user, BigDecimal jobSeekersAllowanceById, BigDecimal workingTaxCreditById, BigDecimal childTaxCreditById, BigDecimal childBenefitById,
 BigDecimal employmentSupportAllowanceById, BigDecimal universalCreditById, BigDecimal disabilityAllowanceById, BigDecimal attendanceAllowanceById,
 BigDecimal carersAllowanceById, BigDecimal housingBenefitById, BigDecimal maternityAllowanceById, String frequency) {
-this.id = UUID.randomUUID();
 this.user = user;
 this.jobSeekersAllowanceById = jobSeekersAllowanceById;
 this.workingTaxCreditById = workingTaxCreditById;

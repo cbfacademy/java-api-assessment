@@ -20,7 +20,7 @@ public class Pensions {
 @Id
 @GeneratedValue(strategy = GenerationType.UUID)
 @Column(name = "pensions_id")
-private final UUID id;
+private UUID id;
 
 @ManyToOne
 @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -37,7 +37,6 @@ public Pensions() {
 
 
 public Pensions(User user, BigDecimal statePensionById, BigDecimal privatePensionById, String frequency) {
-    this.id = UUID.randomUUID();
     this.user = user;
     this.statePensionById = statePensionById;
     this.privatePensionById = privatePensionById;

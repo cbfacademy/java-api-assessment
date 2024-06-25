@@ -21,7 +21,7 @@ public class Bills {
 @Id
 @GeneratedValue(strategy = GenerationType.UUID)
 @Column(name = "bills_id")
-private final UUID id;
+private UUID id;
 
 @ManyToOne
 @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -45,7 +45,6 @@ public Bills() {
 
 public Bills(User user, BigDecimal rentById, BigDecimal mortgageById, BigDecimal mortgageEndowmentById, BigDecimal councilTaxById,
         BigDecimal insuranceById, BigDecimal utilitiesById, BigDecimal groceriesById, String frequency) {
-    this.id = UUID.randomUUID();
     this.user = user;
     this.rentById = rentById;
     this.mortgageById = mortgageById;

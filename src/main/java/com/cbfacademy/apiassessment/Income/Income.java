@@ -22,7 +22,7 @@ public class Income {
 @Id
 @GeneratedValue(strategy = GenerationType.UUID)
 @Column(name = "income_id")
-private final UUID id;
+private UUID id;
 
 
 
@@ -44,7 +44,6 @@ this(null, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, "
 }
 
 public Income(User user, BigDecimal salaryAfterTaxesById, BigDecimal selfEmploymentIncomeById, BigDecimal statutorySickPayById, BigDecimal statutoryMaternityPayById, String frequency) {
-    this.id = UUID.randomUUID();
     this.user = user;
     this.salaryAfterTaxesById = salaryAfterTaxesById;
     this.selfEmploymentIncomeById = selfEmploymentIncomeById;

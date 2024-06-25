@@ -29,7 +29,7 @@ public class User {
 
 @Id
 @GeneratedValue(strategy = GenerationType.UUID)
-private final UUID id;
+private UUID id;
 
 private String name;
 private String email;
@@ -60,12 +60,12 @@ private List<Leisure> leisure = new ArrayList<>();
 
 //Constructors: default and parameterized
 public User() {
-    this(null, null, null, Instant.now());
+    this(null, null, Instant.now());
 }
   
 
-public User(String name, UUID id, String email, Instant dateTime) {
-    this.id = UUID.randomUUID();
+public User(String name, String email, Instant dateTime) {
+    // this.id = UUID.randomUUID();
     this.name = name;
     this.email = email;
     this.dateTime = dateTime;
@@ -73,7 +73,7 @@ public User(String name, UUID id, String email, Instant dateTime) {
 }
 
 // Getters and setters
-public UUID getId(UUID id) {
+public UUID getId() {
     return id;
 }
 
