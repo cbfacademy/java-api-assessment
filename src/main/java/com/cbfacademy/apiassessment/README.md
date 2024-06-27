@@ -33,10 +33,10 @@ mvnw spring-boot:run
 You can test my API after you've cloned the respository, installed the dependancies and ran Spring Boot. These are instructions on how to test my api.
 1. You have to open up Postman (or another REST client) and request body in JSON format for the `GET`,`PUT` and `POST` requests. 
 My URL is: http://localhost:8080/api/budgetplanner                                              
-To `POST` it's http://localhost:8080/api/budgetplanner/calculate-savings 
+To `POST` it's http://localhost:8080/api/budgetplanner/(what you want to post) 
 
 ### Example
-Insert this JSON as the body on Postman for each endpoint : 
+Insert this JSON as the body on Postman `POST` to create data for each entity class: 
 
 User:
 ```json
@@ -78,7 +78,6 @@ Benefits and Tax Credits
  Other Income:
 ```JSON 
 {
-
    "rentalIncomeById": 300.00,
    "investmentIncomeById": 200.00,
    "frequency": "monthly"
@@ -120,15 +119,26 @@ Leisure:
 
 ```
    
+Once the data has been created for each entity, then...
+
+
+
+Insert this JSON as the body on Postman `POST` to calculate savings based on %:
+```json
+{
+   
+"userPercentage": 20
+
+}
+
+```
+Insert this JSON as the body on Postman as a `POST`to see the sorted % (most popular to least popular):
 
 
 
 
 
 
-
-
-    
     
 
 

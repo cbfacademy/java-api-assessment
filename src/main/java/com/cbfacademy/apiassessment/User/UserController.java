@@ -1,7 +1,7 @@
 package com.cbfacademy.apiassessment.User;
 
 import java.math.BigDecimal;
-
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -30,6 +30,11 @@ public UserController(UserService userService){
 @GetMapping("/{id}")
 public Optional<User> findById(@PathVariable UUID id)throws NoSuchElementException {
     return userService.getById(id);
+}
+
+@GetMapping
+public List<User> getId(@PathVariable UUID id) {
+    return userService.findAllUsers();
 }
 
 

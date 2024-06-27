@@ -1,7 +1,7 @@
 package com.cbfacademy.apiassessment.User;
 
 import java.math.BigDecimal;
-
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -17,6 +17,7 @@ public interface UserRepository extends ListCrudRepository<User, UUID> {
 
      
         Optional<User> getById (UUID id);
+        List<User> findAllUsers();
         @Query("SELECT u.userPercentage FROM User u WHERE u.id = :id")
         Optional<BigDecimal> findUserPercentageById(@Param("id") UUID id);
      

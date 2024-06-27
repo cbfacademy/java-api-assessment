@@ -2,8 +2,7 @@ package com.cbfacademy.apiassessment.User;
 
 
 import java.math.BigDecimal;
-
-
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,6 +26,13 @@ public Optional<User> getById(UUID id) throws NoSuchElementException {
     return userRepository.getById(id);
            
 }
+
+public List<User> findAllUsers() {
+    return userRepository.findAllUsers();
+}
+
+
+
  public BigDecimal getUserPercentage(UUID id) throws NoSuchElementException {
     return userRepository.findById(id)
     .map(User::getUserPercentage)
@@ -38,7 +44,7 @@ User createUser(User user) throws IllegalArgumentException, OptimisticLockingFai
         
     }
 
- User updateUser(UUID id, User updatedUser) throws NoSuchElementException, IllegalArgumentException{
+User updateUser(UUID id, User updatedUser) throws NoSuchElementException, IllegalArgumentException{
         User user = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("User not found"));
       
         
@@ -49,12 +55,13 @@ User createUser(User user) throws IllegalArgumentException, OptimisticLockingFai
     return userRepository.save(updatedUser);
 }
 
-//delete left to do. Also fix find by id
 void deleteUserBy(UUID id) throws NoSuchElementException {
     if(!userRepository.existsById(id)) {
         throw new NoSuchElementException("Id Not Found");
     }
         userRepository.deleteById(id);
 }
+
+
 }
 

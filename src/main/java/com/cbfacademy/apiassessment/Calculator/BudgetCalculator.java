@@ -61,36 +61,30 @@ LeisureService leisureService, @Lazy UserService userService) {
         return userService.getById(userId);
     }
 
-    public List<BigDecimal> retrievePercentages(UUID id)  {
-   
+    public BigDecimal calculatePercentageOfSavings(UUID id) {
+        Optional<User> optionalUser = getById(id);
+        if (optionalUser.isEmpty()) {
+            throw new NoSuchElementException("User percentage not found");
+        }
+        User user = optionalUser.get();
+        BigDecimal userPercentage = user.getUserPercentage();
 
-    List<BigDecimal> percentages = new ArrayList<>();
-
-    BigDecimal totalIncome = calculateTotalIncome(id);
-    BigDecimal totalExpenses = calculateTotalExpenses(id);
-   
-    BigDecimal tenPercentSavings = calculatePercentageOfSavings(totalIncome, totalExpenses, BigDecimal.valueOf(10));
-    BigDecimal fifteenPercentSavings = calculatePercentageOfSavings(totalIncome, totalExpenses, BigDecimal.valueOf(15));
-    BigDecimal recommendedTwentyPercentSavings = calculatePercentageOfSavings(totalIncome, totalExpenses, BigDecimal.valueOf(20));
-
-    percentages.add(tenPercentSavings);
-    percentages.add(fifteenPercentSavings);
-    percentages.add(recommendedTwentyPercentSavings);
-
-    
-    return percentages;
-
-    }
-    
-    public BigDecimal calculateSavingsByUsersPercentage(UUID id,Optional<User> optionalUser, BigDecimal userPercentage) {
-        
         BigDecimal totalIncome = calculateTotalIncome(id);
         BigDecimal totalExpenses = calculateTotalExpenses(id);
         BigDecimal savings = calculateSavings(totalIncome, totalExpenses);
-   
 
         return savings.multiply(userPercentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+    }
+
+    public List<BigDecimal> retrievePercentages(UUID id)  {
+        List<User> users = userService.findAllUsers();
+        List<BigDecimal> percentages = new ArrayList<>();
+        for (User user : users) {
+            percentages.add(user.getUserPercentage());
+        }
     
+    return percentages;
+
     }
 
     protected BigDecimal calculateTotalIncome(UUID id) {
@@ -247,8 +241,6 @@ LeisureService leisureService, @Lazy UserService userService) {
         return totalIncome.subtract(totalExpenses);
     }
 
-
-
     protected BigDecimal calculatePercentageOfSavings(BigDecimal totalIncome, BigDecimal totalExpenses, BigDecimal percentage) {
         BigDecimal savings = calculateSavings(totalIncome, totalExpenses);
         if (totalIncome.compareTo(BigDecimal.ZERO) == 0) {
@@ -257,6 +249,7 @@ LeisureService leisureService, @Lazy UserService userService) {
         return savings.multiply(percentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
     }
  
+
 
     public String recommendSavings(BigDecimal totalIncome, BigDecimal totalExpenses) {
         BigDecimal savings = calculateSavings(totalIncome, totalExpenses);
@@ -284,3 +277,29 @@ LeisureService leisureService, @Lazy UserService userService) {
 
 
 
+
+
+ // 1# BigDecimal totalIncome = calculateTotalIncome(id);
+    // BigDecimal totalExpenses = calculateTotalExpenses(id);
+   
+    // BigDecimal tenPercentSavings = calculatePercentageOfSavings(totalIncome, totalExpenses, BigDecimal.valueOf(10));
+    // BigDecimal fifteenPercentSavings = calculatePercentageOfSavings(totalIncome, totalExpenses, BigDecimal.valueOf(15));
+    // BigDecimal recommendedTwentyPercentSavings = calculatePercentageOfSavings(totalIncome, totalExpenses, BigDecimal.valueOf(20));
+
+    // percentages.add(tenPercentSavings);
+    // percentages.add(fifteenPercentSavings);
+    // percentages.add(recommendedTwentyPercentSavings);
+
+
+    //  2# public BigDecimal calculateSavingsByUsersPercentage(UUID id,Optional<User> optionalUser, BigDecimal userPercentage) {
+        
+    //     BigDecimal totalIncome = calculateTotalIncome(id);
+    //     BigDecimal totalExpenses = calculateTotalExpenses(id);
+    //     BigDecimal savings = calculateSavings(totalIncome, totalExpenses);
+   
+
+    //     return savings.multiply(userPercentage).divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+    
+    // }
+
+    // methods to sum up amounts from lists
