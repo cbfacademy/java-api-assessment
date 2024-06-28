@@ -132,7 +132,11 @@ Insert this JSON as the body on Postman `POST` to calculate savings based on %:
 }
 
 ```
-Insert this JSON as the body on Postman as a `POST`to see the sorted % (most popular to least popular):
+ Type this URL on Postman as a `GET`to see the sorted % (most popular to least popular):
+  http://localhost:8080/api/budgetplanner/sort/sortAllUsers: 
+
+
+To this if the sorting works, type this URL as a `GET` request to test the quick sort algorithm: http://localhost:8080/api/budgetplanner/user/sort-users-percentages
 
 
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.OptimisticLockingFailureException;
@@ -31,13 +32,17 @@ public List<User> findAllUsers() {
     return userRepository.findAllUsers();
 }
 
-
-
  public BigDecimal getUserPercentage(UUID id) throws NoSuchElementException {
     return userRepository.findById(id)
     .map(User::getUserPercentage)
     .orElseThrow(() -> new NoSuchElementException("User not found with id: " + id));
 }
+
+public List<BigDecimal> getAllUsersPercentages() {
+         return userRepository.findAll().stream()
+                .map(User::getUserPercentage)
+                .collect(Collectors.toList());
+    }
     
 User createUser(User user) throws IllegalArgumentException, OptimisticLockingFailureException {
         return userRepository.save(user);
