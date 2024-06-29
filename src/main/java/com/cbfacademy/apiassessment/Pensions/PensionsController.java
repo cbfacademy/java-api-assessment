@@ -47,7 +47,7 @@ public List<Pensions> getFrequency(@PathVariable UUID id, String frequency) thro
         return pensionsService.findByFrequency(frequency);
 }
 
- @PostMapping
+ @PostMapping("/{id}")
     public ResponseEntity<Pensions> createPension (@RequestBody Pensions pensions) {
         try {
             Pensions createdPensions = pensionsService.createPensions(pensions);

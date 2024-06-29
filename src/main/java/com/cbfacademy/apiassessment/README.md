@@ -48,7 +48,7 @@ User: `http://localhost:8080/user`
     "userPercentage": 20
 }
 ```
-Income: `http://localhost:8080/income`
+Income: `http://localhost:8080/income/{id}`
 
 ```json
  {
@@ -59,7 +59,7 @@ Income: `http://localhost:8080/income`
     "frequency": "monthly"
 }
 ```
-Benefits and Tax Credits: `http://localhost:8080/benefitsAndTaxCredits`
+Benefits and Tax Credits: `http://localhost:8080/benefitsAndTaxCredits/{id}`
 ```JSON 
  {
     "jobSeekersAllowanceById": 0.00,
@@ -76,7 +76,7 @@ Benefits and Tax Credits: `http://localhost:8080/benefitsAndTaxCredits`
     "frequency": "monthly"
 }
  ```
- Other Income: `http://localhost:8080/otherincome`
+ Other Income: `http://localhost:8080/otherincome/{id}`
 ```JSON 
 {
    "rentalIncomeById": 300.00,
@@ -84,7 +84,7 @@ Benefits and Tax Credits: `http://localhost:8080/benefitsAndTaxCredits`
    "frequency": "monthly"
 }
 ```  
-Pensions: `http://localhost:8080/pensions`
+Pensions: `http://localhost:8080/pensions/{id}`
 ```JSON 
 {
 
@@ -94,7 +94,7 @@ Pensions: `http://localhost:8080/pensions`
 }
  ```   
 
-Bills:   `http://localhost:8080/bills`
+Bills:   `http://localhost:8080/bills/{id}`
 ```JSON 
 {
    "rentById": 1400.00,
@@ -108,7 +108,7 @@ Bills:   `http://localhost:8080/bills`
 }
  ```
 
-Leisure:  `http://localhost:8080/leisure`
+Leisure:  `http://localhost:8080/leisure/{id}`
 ```JSON 
 {
   "entertainmentById": 150.00,
@@ -124,14 +124,14 @@ Once the data has been created for each entity, then...
 
 
 
-Insert this JSON as the body on Postman `POST` to calculate savings based on % using this URL:`http://localhost:8080/budgetplanner/calculate-savings`
+Insert this JSON as the body on Postman `POST` to calculate savings based on % using this URL:`http://localhost:8080/budgetplanner/calculate-savings/{id}`
 ```json
 {
 
   "id": "123e4567-e89b-12d3-a456-556642440000", // Replace with a valid UUID
   "totalIncome": 5000.00,
   "totalExpenses": 3000.00,
-  "userPercentage": 15 // Replace with the desired user percentage (e.g., 10, 15, 20)
+  "userPercentage": 15 
 
 
 }

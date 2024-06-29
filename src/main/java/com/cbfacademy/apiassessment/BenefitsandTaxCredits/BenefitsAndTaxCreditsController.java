@@ -92,7 +92,7 @@ public List<BenefitsAndTaxCredits> findFrequency(@PathVariable UUID id, String f
         return benefitsAndTaxCreditsService.findFrequency(frequency);
 }
                
- @PostMapping
+ @PostMapping("/{id}")
     public ResponseEntity<BenefitsAndTaxCredits> createBenefitsAndTaxCredits(@RequestBody BenefitsAndTaxCredits benefitsAndTaxCredits) {
         try {
             BenefitsAndTaxCredits createdBenefitsAndTaxCredits = benefitsAndTaxCreditsService.createBenefitsAndTaxCredits(benefitsAndTaxCredits);

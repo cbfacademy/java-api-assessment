@@ -38,7 +38,7 @@ public class BudgetCalculatorController {
         }
     }
 
-    @PostMapping("/calculate-savings")
+    @PostMapping("/calculate-savings/{id}")
     public ResponseEntity<String> calculateSavings(@RequestBody CalculateSavingsRequest request) {
         UUID id = request.getId();
         BigDecimal totalIncome = budgetCalculator.calculateTotalIncome(id);

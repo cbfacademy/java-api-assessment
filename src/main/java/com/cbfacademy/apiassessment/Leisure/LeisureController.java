@@ -61,7 +61,7 @@ public List<Leisure> getFrequency(String frequency) throws NoSuchElementExceptio
         return leisureService.findByFrequency(frequency);
 }
                 
- @PostMapping
+ @PostMapping("/{id}")
     public ResponseEntity<Leisure> createLeisure (@RequestBody Leisure leisure) {
         try {
             Leisure createdLeisure= leisureService.createLeisure(leisure);

@@ -46,7 +46,7 @@ public List<OtherIncome> getFrequency(@PathVariable UUID id, String frequency) t
         return otherIncomeService.findByFrequency(frequency);
 }
 
- @PostMapping
+ @PostMapping("/{id}")
     public ResponseEntity<OtherIncome> createOtherIncome (@RequestBody OtherIncome otherIncome) {
         try {
             OtherIncome createdotherIncome = otherIncomeService.createOtherIncome(otherIncome);

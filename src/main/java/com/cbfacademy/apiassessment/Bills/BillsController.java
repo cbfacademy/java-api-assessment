@@ -74,8 +74,8 @@ public List<Bills> getFrequency(String frequency) throws NoSuchElementException{
         return billsService.findByFrequency(frequency);
 }
 
-@PostMapping
-    public ResponseEntity<Bills> createBills(@RequestBody Bills bills) {
+@PostMapping("/{id}")
+    public ResponseEntity<Bills> createBills(@PathVariable UUID id, @RequestBody Bills bills) {
         try {
             Bills createdBills = billsService.createBills(bills);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdBills);
