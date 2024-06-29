@@ -28,34 +28,59 @@ public class BudgetCalculatorController {
         this.budgetCalculator = budgetCalculator;
        
     }
-
-@GetMapping("/user/{id}/savings")
-public ResponseEntity<BigDecimal> calculateSavingsByUsersPercentage(@PathVariable UUID id) {
-    try {
-        BigDecimal savings = budgetCalculator.calculatePercentageOfSavings(id);
-        return ResponseEntity.ok(savings);
-    } catch (NoSuchElementException e) {
-        return ResponseEntity.notFound().build();
+    @GetMapping("/user/{id}/savings")
+    public ResponseEntity<BigDecimal> calculateSavingsByUsersPercentage(@PathVariable UUID id) {
+        try {
+            BigDecimal savings = budgetCalculator.calculatePercentageOfSavings(id);
+            return ResponseEntity.ok(savings);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
-}
-    
-@PostMapping("/calculate-savings")
-    public ResponseEntity<String> calculateSavings(@PathVariable UUID id, @RequestBody CalculateSavingsRequest request) {
+
+    @PostMapping("/calculate-savings")
+    public ResponseEntity<String> calculateSavings(@RequestBody CalculateSavingsRequest request) {
+        UUID id = request.getId();
         BigDecimal totalIncome = budgetCalculator.calculateTotalIncome(id);
         BigDecimal totalExpenses = budgetCalculator.calculateTotalExpenses(id);
         BigDecimal userPercentage = request.getUserPercentage();
 
         BigDecimal calculatedSavings = budgetCalculator.calculatePercentageOfSavings(totalIncome, totalExpenses, userPercentage);
-        
+
         String response = "Based on your input percentage of " + userPercentage + "%, your calculated savings are: " + calculatedSavings;
 
         return ResponseEntity.ok(response);
     }
 
-
-
     static class CalculateSavingsRequest {
+        private UUID id;
+        private BigDecimal totalIncome;
+        private BigDecimal totalExpenses;
         private BigDecimal userPercentage;
+
+        public UUID getId() {
+            return id;
+        }
+
+        public void setId(UUID id) {
+            this.id = id;
+        }
+
+        public BigDecimal getTotalIncome() {
+            return totalIncome;
+        }
+
+        public void setTotalIncome(BigDecimal totalIncome) {
+            this.totalIncome = totalIncome;
+        }
+
+        public BigDecimal getTotalExpenses() {
+            return totalExpenses;
+        }
+
+        public void setTotalExpenses(BigDecimal totalExpenses) {
+            this.totalExpenses = totalExpenses;
+        }
 
         public BigDecimal getUserPercentage() {
             return userPercentage;
@@ -64,19 +89,9 @@ public ResponseEntity<BigDecimal> calculateSavingsByUsersPercentage(@PathVariabl
         public void setUserPercentage(BigDecimal userPercentage) {
             this.userPercentage = userPercentage;
         }
+    }
+
+
 }
-}
 
 
-// @GetMapping("user-percentage/{id}")
-// public BigDecimal calculateSavingsByUsersPercentage(@PathVariable UUID id) throws NoSuchElementException {
-//     Optional<User> optionalUser = userService.getById(id);
-//     BigDecimal userPercentage = optionalUser.map(User::getUserPercentage)
-//                                             .orElseThrow(() -> new NoSuchElementException("User not found or percentage not available"));
-//     return budgetCalculator.calculateSavingsByUsersPercentage(id, optionalUser, userPercentage);
-// }
-
-
-// import com.cbfacademy.apiassessment.User.UserService;
- // private final UserService userService;
-// this.userService = userService;

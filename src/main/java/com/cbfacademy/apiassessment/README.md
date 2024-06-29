@@ -32,13 +32,13 @@ mvnw spring-boot:run
 ### **How my API works:**
 You can test my API after you've cloned the respository, installed the dependancies and ran Spring Boot. These are instructions on how to test my api.
 1. You have to open up Postman (or another REST client) and request body in JSON format for the `GET`,`PUT` and `POST` requests. 
-My URL is: http://localhost:8080/api/budgetplanner                                              
-To `POST` it's http://localhost:8080/api/budgetplanner/(what you want to post) 
+                                           
+To `POST` it's `http://localhost:8080/(what you want to post)`
 
 ### Example
 Insert this JSON as the body on Postman `POST` to create data for each entity class: 
 
-User: `http://localhost:8080/api/budgetplanner/user`
+User: `http://localhost:8080/user`
 
 ```json
 {
@@ -48,7 +48,7 @@ User: `http://localhost:8080/api/budgetplanner/user`
     "userPercentage": 20
 }
 ```
-Income: 
+Income: `http://localhost:8080/income`
 
 ```json
  {
@@ -59,7 +59,7 @@ Income:
     "frequency": "monthly"
 }
 ```
-Benefits and Tax Credits
+Benefits and Tax Credits: `http://localhost:8080/benefitsAndTaxCredits`
 ```JSON 
  {
     "jobSeekersAllowanceById": 0.00,
@@ -76,7 +76,7 @@ Benefits and Tax Credits
     "frequency": "monthly"
 }
  ```
- Other Income:
+ Other Income: `http://localhost:8080/otherincome`
 ```JSON 
 {
    "rentalIncomeById": 300.00,
@@ -84,7 +84,7 @@ Benefits and Tax Credits
    "frequency": "monthly"
 }
 ```  
-Pensions:
+Pensions: `http://localhost:8080/pensions`
 ```JSON 
 {
 
@@ -94,7 +94,7 @@ Pensions:
 }
  ```   
 
-Bills:
+Bills:   `http://localhost:8080/bills`
 ```JSON 
 {
    "rentById": 1400.00,
@@ -108,7 +108,7 @@ Bills:
 }
  ```
 
-Leisure:
+Leisure:  `http://localhost:8080/leisure`
 ```JSON 
 {
   "entertainmentById": 150.00,
@@ -124,16 +124,20 @@ Once the data has been created for each entity, then...
 
 
 
-Insert this JSON as the body on Postman `POST` to calculate savings based on %:
+Insert this JSON as the body on Postman `POST` to calculate savings based on % using this URL:`http://localhost:8080/budgetplanner/calculate-savings`
 ```json
 {
-   
-"userPercentage": 20
+
+  "id": "123e4567-e89b-12d3-a456-556642440000", // Replace with a valid UUID
+  "totalIncome": 5000.00,
+  "totalExpenses": 3000.00,
+  "userPercentage": 15 // Replace with the desired user percentage (e.g., 10, 15, 20)
+
 
 }
 
 ```
- Type this URL on Postman as a `GET`to see the sorted % (most popular to least popular):
+ Type this URL on Postman as a `GET` to see the sorted % (most popular to least popular):
   `http://localhost:8080/api/budgetplanner/sort/sortAllUsers` 
 
 
