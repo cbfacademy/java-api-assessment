@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AlgorithmSorterController {
     private final QuickSortAlgorithm quickSortAlgorithm;
 
-    public AlgorithmSorterController(QuickSortAlgorithm quickSortAlgorithm) {
+     public AlgorithmSorterController(QuickSortAlgorithm quickSortAlgorithm) {
         this.quickSortAlgorithm = quickSortAlgorithm;
     }
 

@@ -38,7 +38,8 @@ To `POST` it's http://localhost:8080/api/budgetplanner/(what you want to post)
 ### Example
 Insert this JSON as the body on Postman `POST` to create data for each entity class: 
 
-User:
+User: `http://localhost:8080/api/budgetplanner/user`
+
 ```json
 {
     "name": "Miski Hassan",
@@ -133,10 +134,11 @@ Insert this JSON as the body on Postman `POST` to calculate savings based on %:
 
 ```
  Type this URL on Postman as a `GET`to see the sorted % (most popular to least popular):
-  http://localhost:8080/api/budgetplanner/sort/sortAllUsers: 
+  `http://localhost:8080/api/budgetplanner/sort/sortAllUsers` 
 
 
-To this if the sorting works, type this URL as a `GET` request to test the quick sort algorithm: http://localhost:8080/api/budgetplanner/user/sort-users-percentages
+To this if the sorting works, type this URL as a `GET` request to test the quick sort algorithm: 
+`http://localhost:8080/api/budgetplanner/user/sort-users-percentages`
 
 
 

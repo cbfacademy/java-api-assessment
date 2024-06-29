@@ -17,7 +17,7 @@ public interface UserRepository extends ListCrudRepository<User, UUID> {
 
      
         Optional<User> getById (UUID id);
-        List<User> findAllUsers();
+        List<User> findAll();
         @Query("SELECT u.userPercentage FROM User u WHERE u.id = :id")
         Optional<BigDecimal> findUserPercentageById(@Param("id") UUID id);
      

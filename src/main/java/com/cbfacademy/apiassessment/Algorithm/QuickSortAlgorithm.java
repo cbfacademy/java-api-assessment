@@ -4,14 +4,13 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
-
 import org.springframework.stereotype.Component;
 
 import com.cbfacademy.apiassessment.User.UserService;
 
 @Component
 public class QuickSortAlgorithm {
-   
+
     private final UserService userService;
     
     public QuickSortAlgorithm(UserService userService) {

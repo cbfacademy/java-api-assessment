@@ -77,7 +77,7 @@ LeisureService leisureService, @Lazy UserService userService) {
     }
 
     public List<BigDecimal> retrievePercentages(UUID id)  {
-        List<User> users = userService.findAllUsers();
+        List<User> users = userService.findAll();
         List<BigDecimal> percentages = new ArrayList<>();
         for (User user : users) {
             percentages.add(user.getUserPercentage());

@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,6 @@ public class UserService {
 
 public final UserRepository userRepository;
 
-
 public UserService(UserRepository userRepository) {
     this.userRepository = userRepository;
 }
@@ -28,8 +28,8 @@ public Optional<User> getById(UUID id) throws NoSuchElementException {
            
 }
 
-public List<User> findAllUsers() {
-    return userRepository.findAllUsers();
+public List<User> findAll() {
+    return userRepository.findAll();
 }
 
  public BigDecimal getUserPercentage(UUID id) throws NoSuchElementException {
@@ -67,6 +67,9 @@ void deleteUserBy(UUID id) throws NoSuchElementException {
         userRepository.deleteById(id);
 }
 
+public void deleteAllUsers() {
+    userRepository.deleteAll();
+}
 
 }
 

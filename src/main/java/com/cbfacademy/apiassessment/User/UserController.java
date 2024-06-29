@@ -38,7 +38,7 @@ public Optional<User> findById(@PathVariable UUID id)throws NoSuchElementExcepti
 
 @GetMapping
 public List<User> getId(@PathVariable UUID id) {
-    return userService.findAllUsers();
+    return userService.findAll();
 }
 
 
@@ -85,6 +85,17 @@ public ResponseEntity<?> deleteUserById(@PathVariable UUID id) {
     } catch (RuntimeException exception) {
         throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), exception);
     }
+}
+
+    @DeleteMapping("/delete-all")
+    public ResponseEntity<?> deleteAllUsers() {
+        try {
+            userService.deleteAllUsers();
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException exception) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, exception.getMessage(), exception);
+        }
+        
 
 }
 }
