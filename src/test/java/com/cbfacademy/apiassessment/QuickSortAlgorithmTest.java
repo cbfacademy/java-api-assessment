@@ -33,9 +33,9 @@ public class QuickSortAlgorithmTest {
     void testSortAllUsersPercentage() {
         // Mock data for userService.getAllUsersPercentages()
         List<BigDecimal> inputPercentages = Arrays.asList(
-            new BigDecimal("20.00"),
-            new BigDecimal("15.00"),
-            new BigDecimal("10.00")
+            new BigDecimal("20"),
+            new BigDecimal("15"),
+            new BigDecimal("10")
         );
 
         // Mock behavior of userService.getAllUsersPercentages()
@@ -46,9 +46,9 @@ public class QuickSortAlgorithmTest {
 
         // Expected sorted order
         List<BigDecimal> expected = Arrays.asList(
-            new BigDecimal("20.00"),
-            new BigDecimal("15.00"),
-            new BigDecimal("10.00")
+            new BigDecimal("20"),
+            new BigDecimal("15"),
+            new BigDecimal("10")
         );
 
         // Assert that the sorted list matches the expected order
