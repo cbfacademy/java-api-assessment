@@ -302,4 +302,3 @@ LeisureService leisureService, @Lazy UserService userService) {
     
     // }
 
-    // methods to sum up amounts from lists
