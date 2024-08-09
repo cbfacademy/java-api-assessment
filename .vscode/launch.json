@@ -1,0 +1,38 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "EmissionsCalculatorUtils",
+            "request": "launch",
+            "mainClass": "com.cbfacademy.apiassessment.EmissionsCalculatorUtils",
+            "projectName": "api-assessment"
+        },
+        {
+            "type": "java",
+            "name": "EmissionsCalculator",
+            "request": "launch",
+            "mainClass": "com.cbfacademy.apiassessment.EmissionsCalculator",
+            "projectName": "api-assessment"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.cbfacademy.apiassessment.App",
+            "projectName": "api-assessment"
+        },
+        {
+            "name": "Listen for XDebug",
+            "log": false,
+            "type": "php",
+            "request": "launch",
+            "port": 9000,
+            "xdebugSettings": {
+                "max_children": 128,
+                "max_data": 1024,
+                "max_depth": 3,
+                "show_hidden": 1
+            }
+        }
+    ]
+}

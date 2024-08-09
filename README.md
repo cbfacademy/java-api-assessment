@@ -1,44 +1,44 @@
-# **Java API Assessment**
+# Java API Assessment
 
-## **Introduction**
-Dive into the world of API development using Java and SpringBoot. We're handing over a skeleton codebase; your challenge is to shape a top-notch API from it.
+## Introduction
+This assessment requires you to build a RESTful API, using all you've learned about software development using Java and Spring Boot.
 
-You can build any API of your choosing, but it must include the following:
+You can build any API of your choosing, but it **must** include the following:
 
-1. At least one algorithm
-1. Unit test at least one class
-1. Store the data in a JSON file 
-1. Exception handling 
-1. Evidence of inheritance
-1. Good use of HTTP Protocols - methods, request and response, have full CRUD operations supported 
-1. Documentation
+1. At least one filterable endpoint using a Spring Data JPA query method (custom or derived)
+2. Unit tests for at least one class
+3. Data storage in a MySQL database
+4. Exception handling
+5. Evidence of inheritance
+6. Good use of HTTP Protocols - methods, request and response, have full CRUD operations supported
+7. Documentation
 
-### **Learning Outcomes:**
+### Learning Outcomes
 
 By the end of this assessment, you should be able to:
 
 1. **Design and Architect APIs**: Get to grips with the nitty-gritty of curating a top-quality API, focusing on data flow and endpoint interactions.
-1. **Implement Best Practices**: Showcase your adherence to Java & SpringBoot coding standards, error handling, and optimal project structure.
+1. **Implement Best Practices**: Showcase your adherence to Java & Spring Boot coding standards, error handling, and optimal project structure.
 1. **Code Integration**: Seamlessly combine your creations with the provided skeleton codebase.
 1. **Exception Management**: Efficiently handle exceptions, ensuring your API remains sturdy and dependable.
 
-Onward with this assessment, you're set for a deep dive into API development with Java and SpringBoot.
+Onward with this assessment, you're set for a deep dive into API development with Java and Spring Boot.
 
-## **Design & Requirements**
+## Design & Requirements
 
-### **Design Considerations:**
+### Design Considerations
 - **API Flow**: Map out your API's progression, from endpoints to their functionalities.
 
-### **Requirements List:**
-- **Core**: Make use of Java and SpringBoot.
+### Requirements List
+- **Core**: Make use of Java and Spring Boot.
 - **End Points**: Ensure they are detailed and fully operational.
 - **Error Handling**: Your API should handle mishaps gracefully and return informative feedback.
 
-### **Learning Outcomes:**
+### Learning Outcomes
 - Acknowledge the pivotal role of a focused design in APIs.
 - See firsthand how a detailed requirements list can pave the way for successful development.
 
-## **Repository Management**
+## Repository Management
 
 - **Consistent Commits**: Commit often, capturing your progress and thought process.
 - **README**: Not just an afterthought. Fill it with the essence of your API, setup instructions, and other salient details.
@@ -47,14 +47,14 @@ Onward with this assessment, you're set for a deep dive into API development wit
 - Hone your skills in effective version control.
 - Recognise the value of a well-curated repository.
 
-## **Code Quality & Structure**
+## Code Quality & Structure
 
-- **Best Practices**: Stick to Java and SpringBoot best practices and conventions.
+- **Best Practices**: Stick to Java and Spring Boot best practices and conventions.
 - **Modularity**: Your code should be modular, reusable, and easily comprehensible.
 
-#### **Learning Outcomes:**
+#### Learning Outcomes
 - Craft clean, efficient, and maintainable code.
-- Harness Java and SpringBoot to the fullest.
+- Harness Java and Spring Boot to the fullest.
 
 ---
 
@@ -82,114 +82,45 @@ Also make sure you have accounts for the following:
 
 ### Setup
 
-#### 1. Clone the Repository
-
-```sh
-git clone [REPO_URL]
-cd [REPO_NAME]
-```
-
-Replace [REPO_URL] with the link to your GitHub repository and [REPO_NAME] with the repository's name.
-
-#### 2. Install Dependencies
-
-Open a terminal at the root of the repo directory and run the following command to install the dependencies:
-
-```sh
-./mvnw clean dependency:resolve
-```
-
-If you are on a Windows machine, that will be:
-```cmd
-mvnw clean dependency:resolve
-```
-
-You should see console output similar to the following:
-
-```sh
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] -------------------< com.cbfacademy:api-assessment >--------------------
-[INFO] Building api-assessment 0.0.1-SNAPSHOT
-[INFO]   from pom.xml
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-[INFO] --- clean:3.2.0:clean (default-clean) @ api-assessment ---
-[INFO] Deleting /Users/user/Dev/cbfacademy/java-api-assessment/target
-...
-[truncated output]
-...
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  3.060 s
-[INFO] Finished at: 2023-10-03T16:18:25+01:00
-[INFO] ------------------------------------------------------------------------
-```
-
-#### 3. Running the Application
-
-To start the API in VS Code, press `F5` or tap the 'Play' icon for the `api-assessment` app in the Spring Boot Dashboard.
-
-Alternatively, to start the API from the terminal, run the following command:
-
-```sh
-./mvnw spring-boot:run
-```
-
-Or on Windows:
-
-```cmd
-mvnw spring-boot:run
-```
-
-You should see console output similar to the following (press `Ctrl + C` to exit):
-
-```sh
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] -------------------< com.cbfacademy:api-assessment >--------------------
-[INFO] Building api-assessment 0.0.1-SNAPSHOT
-[INFO]   from pom.xml
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-[INFO] --- clean:3.2.0:clean (default-clean) @ api-assessment ---
-[INFO] Deleting /Users/gary/Dev/cbfacademy/java-api-assessment/target
-[INFO] 
-[INFO] >>> spring-boot:3.1.4:run (default-cli) > test-compile @ api-assessment >>>
-[INFO] 
-[INFO] --- resources:3.3.1:resources (default-resources) @ api-assessment ---
-[INFO] Copying 1 resource from src/main/resources to target/classes
-[INFO] Copying 0 resource from src/main/resources to target/classes
-...
-[truncated output]
-...
-2023-10-03T17:17:34.413+01:00  INFO 35536 --- [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-10-03T17:17:34.751+01:00  INFO 35536 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
-2023-10-03T17:17:34.756+01:00  INFO 35536 --- [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2023-10-03T17:17:34.756+01:00  INFO 35536 --- [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.13]
-2023-10-03T17:17:34.777+01:00  INFO 35536 --- [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2023-10-03T17:17:34.778+01:00  INFO 35536 --- [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 364 ms
-2023-10-03T17:17:34.898+01:00  INFO 35536 --- [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2023-10-03T17:17:34.907+01:00  INFO 35536 --- [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-2023-10-03T17:17:34.911+01:00  INFO 35536 --- [  restartedMain] com.cbfacademy.apiassessment.App         : Started App in 0.643 seconds (process running for 0.786)
-```
-
-Open your browser and navigate to `http://localhost:8080`.
+1. Create a new repository on GitHub and clone it to your local machine.
+2. Create a new Spring Boot project using [Spring Initializr](https://start.spring.io/). Choose the appropriate options for your project, such as the programming language, framework, and dependencies. Unzip the downloaded archive into your repository.
+3. Implement the functionality of your API to fulfill the requirements.
 
 ## **Deliverables**
 
-Ensure that your work is merged to the `main` branch of your GitHub repository by the specified deadline (original or extended). Your solution will assessed based on its state *at that point*; any later commits will **not** be taken into account.
+Ensure that your work is merged to the `main` branch of your GitHub repository by the specified deadline (original or extended). Your solution will assessed based on the state of that branch *at that point in time*; any feature branches or later commits will **not** be taken into account.
 
-## FAQs
+### Export Database
 
-- Q: How can I process JSON in Java?
-    
-    A: There are a number of open-source packages that you can use to manipulate JSON. We recommend [Gson](https://github.com/google/gson), but you can also investigate alternatives like [json-simple](https://github.com/cliftonlabs/json-simple) or [Jackson](https://github.com/FasterXML/jackson-databind/).
+To ensure that your project can be assessed correctly, you **must** include a database dump file that can be used to restore a usable database and document the file's location in your `README.md` file.
 
-- Q: Can I use another IDE I'm more familiar with instead of VS Code, like IntelliJ or Eclipse?
+You can generate a dump file using the command line or MySQL Workbench:
 
-    A: You can if you wish, but only VS Code is formally supported by CBF Academy staff, so you do so at your own risk.
+#### Command Line
+
+Execute the following command to export the database:
+
+```sh
+mysqldump -u [username] -p --databases [database_name] > [dump_file.sql]
+```
+
+Replace `[username]`, `[database_name]`, and `[dump_file.sql]` with your MySQL username, the name of the database you want to dump, and the desired filename for the dump file, respectively. Remove the `-p` flag if you don't have a password set for your MySQL user.
+
+#### MySQL Workbench
+
+1. Open MySQL Workbench.
+2. Connect to your MySQL server.
+3. Go to the "Server" menu and select "Data Export".
+4. Select the database you want to export:
+   - In the "Data Export" tab, check the box next to the database you want to export.
+5. Choose the Export Options:
+   - Select "Dump Structure and Data" to include both the database schema and the data.
+   - Choose "Export to Self-Contained File" and provide a filename for the dump file.
+6. Include the Create Database Statement:
+   - In the "Advanced Options" section, ensure that the "Add DROP DATABASE" and "Add CREATE DATABASE" options are checked. This ensures that the dump file will contain statements to drop and create the database.
+7. Start the Export:
+   - Click the "Start Export" button to generate the dump file.
+
 
 ## Top Tips
 
