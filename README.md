@@ -18,9 +18,9 @@ You can build any API of your choosing, but it **must** include the following:
 By the end of this assessment, you should be able to:
 
 1. **Design and Architect APIs**: Get to grips with the nitty-gritty of curating a top-quality API, focusing on data flow and endpoint interactions.
-1. **Implement Best Practices**: Showcase your adherence to Java & Spring Boot coding standards, error handling, and optimal project structure.
-1. **Code Integration**: Seamlessly combine your creations with the provided skeleton codebase.
-1. **Exception Management**: Efficiently handle exceptions, ensuring your API remains sturdy and dependable.
+1. **Implement Best Practices**: Showcase your adherence to Java and Spring Boot coding standards, error handling, and optimal project structure.
+2. **Code Integration**: Seamlessly combine your custom code with the Spring Initializr project.
+3. **Exception Management**: Efficiently handle exceptions, ensuring your API remains sturdy and dependable.
 
 Onward with this assessment, you're set for a deep dive into API development with Java and Spring Boot.
 
@@ -31,7 +31,7 @@ Onward with this assessment, you're set for a deep dive into API development wit
 
 ### Requirements List
 - **Core**: Make use of Java and Spring Boot.
-- **End Points**: Ensure they are detailed and fully operational.
+- **Endpoints**: Ensure they are detailed and fully operational.
 - **Error Handling**: Your API should handle mishaps gracefully and return informative feedback.
 
 ### Learning Outcomes
@@ -120,7 +120,6 @@ Replace `[username]`, `[database_name]`, and `[dump_file.sql]` with your MySQL u
    - In the "Advanced Options" section, ensure that the "Add DROP DATABASE" and "Add CREATE DATABASE" options are checked. This ensures that the dump file will contain statements to drop and create the database.
 7. Start the Export:
    - Click the "Start Export" button to generate the dump file.
-
 
 ## Top Tips
 
