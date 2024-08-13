@@ -5,7 +5,7 @@ This assessment requires you to build a RESTful API, using all you've learned ab
 
 You can build any API of your choosing, but it **must** include the following:
 
-1. At least one filterable endpoint using a Spring Data JPA query method (custom or derived)
+1. At least one GET endpoint that can have its results filtered using a Spring Data JPA query method (custom or derived)
 2. Unit tests for at least one class
 3. Data storage in a MySQL database
 4. Exception handling
