@@ -177,19 +177,39 @@ You should see console output similar to the following (press `Ctrl + C` to exit
 
 Open your browser and navigate to `http://localhost:8080`.
 
-## **Deliverables**
+## Deliverables
 
-Ensure that your work is merged to the `main` branch of your GitHub repository by the specified deadline (original or extended). Your solution will assessed based on its state *at that point*; any later commits will **not** be taken into account.
+Ensure that your work is merged to the `main` branch of your GitHub repository by the specified deadline (original or extended). Your solution will assessed based on the state of that branch *at that point in time*; any feature branches or later commits will **not** be taken into account.
 
-## FAQs
+### Export Database
 
-- Q: How can I process JSON in Java?
-    
-    A: There are a number of open-source packages that you can use to manipulate JSON. We recommend [Gson](https://github.com/google/gson), but you can also investigate alternatives like [json-simple](https://github.com/cliftonlabs/json-simple) or [Jackson](https://github.com/FasterXML/jackson-databind/).
+To ensure that your project can be assessed correctly, you **must** include a database dump file that can be used to restore a usable database and document the file's location in your `README.md` file.
 
-- Q: Can I use another IDE I'm more familiar with instead of VS Code, like IntelliJ or Eclipse?
+You can generate a dump file using the command line or MySQL Workbench:
 
-    A: You can if you wish, but only VS Code is formally supported by CBF Academy staff, so you do so at your own risk.
+#### Command Line
+
+Execute the following command to export the database:
+```sh
+mysqldump -u [username] -p --databases [database_name] > [dump_file.sql]
+```
+
+Replace `[username]`, `[database_name]`, and `[dump_file.sql]` with your MySQL username, the name of the database you want to dump, and the desired filename for the dump file, respectively. Remove the `-p` flag if you don't have a password set for your MySQL user.
+
+#### MySQL Workbench
+
+1. Open MySQL Workbench.
+2. Connect to your MySQL server.
+3. Go to the "Server" menu and select "Data Export".
+4. Select the database you want to export:
+   - In the "Data Export" tab, check the box next to the database you want to export.
+5. Choose the Export Options:
+   - Select "Dump Structure and Data" to include both the database schema and the data.
+   - Choose "Export to Self-Contained File" and provide a filename for the dump file.
+6. Include the Create Database Statement:
+   - In the "Advanced Options" section, ensure that the "Add DROP DATABASE" and "Add CREATE DATABASE" options are checked. This ensures that the dump file will contain statements to drop and create the database.
+7. Start the Export:
+   - Click the "Start Export" button to generate the dump file.
 
 ## Top Tips
 
