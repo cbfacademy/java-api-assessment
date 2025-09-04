@@ -9,8 +9,7 @@ You can build any API of your choosing, but it **must** include the following:
 2. Unit tests for at least one class
 3. Data storage in a MySQL database
 4. Exception handling
-5. Evidence of inheritance
-6. Good use of HTTP Protocols - methods, request and response, have full CRUD operations supported
+6. Full use of HTTP protocols - methods, request and response, have full CRUD operations supported
 7. Documentation
 
 ### Learning Outcomes
